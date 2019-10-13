@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Aiko",
+      "sex": "F",
+      "breed": "Shiba Inu",
+      "size": "S",
+      "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
+      "shortDesc": "This is a random blurb about Aiko",
+      "dates": [
+        "how to format dates",
+        "just display as strings for now"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Jasmine",
+      "sex": "F",
+      "breed": "Toy Poodle",
+      "size": "XS",
+      "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
+      "shortDesc": "This is a random blurb about Jasmine",
+      "dates": [
+        "how to format dates",
+        "just display as strings for now"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Westington",
+      "sex": "M",
+      "breed": "Rottweiler",
+      "size": "L",
+      "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
+      "shortDesc": "This is a random blurb about Westington",
+      "dates": [
+        "how to format dates",
+        "just display as strings for now"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Bow",
+      "sex": "M",
+      "breed": "Chihuahua Mix",
+      "size": "M",
+      "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
+      "shortDesc": "This is a random blurb about Bow",
+      "dates": [
+        "how to format dates",
+        "just display as strings for now"
+      ]
+    }
+  ]
+}
