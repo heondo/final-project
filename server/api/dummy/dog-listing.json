@@ -8,7 +8,7 @@
       "breed": "Shiba Inu",
       "size": "S",
       "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
-      "shortDesc": "This is a random blurb about Aiko",
+      "bio": "He said he was not there yesterday; however, many people saw him there. Wow, does that work?",
       "dates": [
         "how to format dates",
         "just display as strings for now"
@@ -21,7 +21,7 @@
       "breed": "Toy Poodle",
       "size": "XS",
       "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
-      "shortDesc": "This is a random blurb about Jasmine",
+      "bio": "He said he was not there yesterday; however, many people saw him there. Wow, does that work?",
       "dates": [
         "how to format dates",
         "just display as strings for now"
@@ -34,7 +34,7 @@
       "breed": "Rottweiler",
       "size": "L",
       "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
-      "shortDesc": "This is a random blurb about Westington",
+      "bio": "He said he was not there yesterday; however, many people saw him there. Wow, does that work?",
       "dates": [
         "how to format dates",
         "just display as strings for now"
@@ -47,7 +47,7 @@
       "breed": "Chihuahua Mix",
       "size": "M",
       "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
-      "shortDesc": "This is a random blurb about Bow",
+      "bio": "He said he was not there yesterday; however, many people saw him there. Wow, does that work?",
       "dates": [
         "how to format dates",
         "just display as strings for now"
