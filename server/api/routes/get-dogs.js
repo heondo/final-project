@@ -5,7 +5,7 @@ const db = require('./../../db_connection');
 
 router.get('/', (req, res, next) => {
   db.connect(() => {
-    let query = 'SELECT d.*, GROUP_CONCAT(di.url) as images FROM `dogs` as d JOIN `dog_images` AS di ON d.`id` = di.`dog_id` GROUP BY d.`id`';
+    let query = 'SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`primary` DESC) as images FROM `dogs` as d JOIN `dog_images` AS di ON d.`id` = di.`dog_id` GROUP BY d.`id`';
     let output;
     db.query(query, (err, data) => {
       if (err) {
@@ -29,6 +29,7 @@ router.get('/', (req, res, next) => {
   });
 });
 
+// api/get-dogs/{id}
 router.get('/:id', (req, res, next) => {
   db.connect(() => {
     const id = parseInt(req.params.id);
@@ -40,7 +41,8 @@ router.get('/:id', (req, res, next) => {
       };
       res.status(400).json(output);
     } else {
-      db.query('SELECT d.*, GROUP_CONCAT(di.url) as images FROM `dogs` as d JOIN `dog_images` AS di ON d.`id` = di.`dog_id` WHERE d.`id` = ? GROUP BY d.`id`', [id], (err, data) => {
+      db.query('SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`primary` DESC) as images FROM `dogs` as d JOIN `dog_images` AS di ON d.`id` = di.`dog_id` WHERE d.`id` = ? GROUP BY d.`id`', [id], (err, data) => {
+        // query fails then status 500 error message
         if (err) {
           output = {
             success: false,
