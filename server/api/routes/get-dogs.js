@@ -15,6 +15,9 @@ router.get('/', (req, res, next) => {
         };
         res.status(500);
       } else {
+        data.forEach(dog => {
+          dog.images = dog.images.split(',');
+        });
         output = {
           success: true,
           data
@@ -51,6 +54,7 @@ router.get('/:id', (req, res, next) => {
           };
           res.status(400).json(output);
         } else {
+          data[0].images = data[0].images.split(',');
           output = {
             success: true,
             data: data[0]
