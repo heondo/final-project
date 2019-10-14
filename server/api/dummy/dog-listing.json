@@ -2,55 +2,63 @@
   "success": true,
   "data": [
     {
-      "id": 1,
+      "id": 5,
       "name": "Aiko",
+      "weight": 15,
+      "bio": "This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.",
+      "user_id": 1,
+      "age": 2,
       "sex": "F",
       "breed": "Shiba Inu",
-      "size": "S",
-      "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
-      "bio": "He said he was not there yesterday; however, many people saw him there. Wow, does that work?",
-      "dates": [
-        "how to format dates",
-        "just display as strings for now"
+      "energy_lvl": 1,
+      "images": [
+        "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
+        "https://www.k9web.com/wp-content/uploads/2019/01/shiba-inu.jpg"
       ]
     },
     {
-      "id": 2,
+      "id": 6,
       "name": "Jasmine",
+      "weight": 7,
+      "bio": "This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.",
+      "user_id": 2,
+      "age": 5,
       "sex": "F",
       "breed": "Toy Poodle",
-      "size": "XS",
-      "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
-      "bio": "He said he was not there yesterday; however, many people saw him there. Wow, does that work?",
-      "dates": [
-        "how to format dates",
-        "just display as strings for now"
+      "energy_lvl": 0,
+      "images": [
+        "https://www.loveyourdog.com/wp-content/uploads/2019/04/Toy-Poodle.jpg",
+        "https://gfp-2a3tnpzj.stackpathdns.com/wp-content/uploads/2016/07/Miniature-Poodle-e1534277248978.jpg"
       ]
     },
     {
-      "id": 3,
+      "id": 7,
       "name": "Westington",
+      "weight": 70,
+      "bio": "This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.",
+      "user_id": 3,
+      "age": 3,
       "sex": "M",
       "breed": "Rottweiler",
-      "size": "L",
-      "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
-      "bio": "He said he was not there yesterday; however, many people saw him there. Wow, does that work?",
-      "dates": [
-        "how to format dates",
-        "just display as strings for now"
+      "energy_lvl": 2,
+      "images": [
+        "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12225014/Rottweiler-MP.jpg",
+        "https://vetstreet-brightspot.s3.amazonaws.com/a5/16f550a7fb11e0a0d50050568d634f/file/Rottweiler-2-645mk062811.jpg"
       ]
     },
     {
-      "id": 4,
+      "id": 8,
       "name": "Bow",
+      "weight": 35,
+      "bio": "This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.",
+      "user_id": 4,
+      "age": 4,
       "sex": "M",
       "breed": "Chihuahua Mix",
-      "size": "M",
-      "image": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355",
-      "bio": "He said he was not there yesterday; however, many people saw him there. Wow, does that work?",
-      "dates": [
-        "how to format dates",
-        "just display as strings for now"
+      "energy_lvl": 0,
+      "images": [
+        "https://thesmartcanine.com/wp-content/uploads/2019/05/chipin-chihuahua-mix.jpg",
+        "https://thesmartcanine.com/wp-content/uploads/2019/02/chihuahua-dachshund-mix-looks.jpg"
       ]
     }
   ]
