@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import { Button } from 'reactstrap';
+import React from 'react';
+import Header from './header';
 
 export default function App(props) {
-  const [data, setData] = useState([]);
-
   return (
-    <div className="container">
-      <div>Main container for the app right?</div>
-    </div>
+    <>
+      <Header />
+    </>
   );
 }
