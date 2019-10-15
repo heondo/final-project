@@ -6,6 +6,10 @@ import {
 import DogSmCarousel from './dog-sm-carousel';
 
 export default class DogCard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const { dog } = this.props;
     const cardStyle = {

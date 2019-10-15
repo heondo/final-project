@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
+// import HeaderModal from './header-modal';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -35,7 +36,6 @@ export default class Header extends React.Component {
       backgroundRepeat: 'no-repeat'
     };
     const { isOpen } = this.state;
-
     // if conditional is true, like logged in
     // it should render the profile drop down
     let navButtons = (true) ? (
@@ -67,7 +67,7 @@ export default class Header extends React.Component {
     ) : (
       <Nav className="ml-auto font-weight-normal" navbar>
         <NavItem>
-          <NavLink href="#">Log In</NavLink>
+          <NavLink href="#">Login</NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="#">Sign Up</NavLink>

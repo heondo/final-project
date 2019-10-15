@@ -1,31 +1,42 @@
 import React, { useState } from 'react';
-import Header from './header';
-import DogList from './dog-list';
+import Header from './help/header';
+import DogList from './dog/dog-list';
+import DogProfile from './dog/dog-profile';
 
-export default function App(props) {
+export default class App extends React.Component {
   // change the view to....nearby-dogs
   // nearby-dogs: {}
   // dog-profile: {id: #}
   // user-profile: {id: #}
+  constructor(props) {
+    super(props);
+    this.state = {
+      view: {
+        views: 'nearby-dogs',
+        params: {}
+      }
+    };
+  }
 
-  const [view, setView] = useState({
-    views: 'nearby-dogs',
-    params: {}
-  });
-
-  const checkViews = () => {
-    switch (view.views) {
+  checkViews() {
+    const { views, params } = this.state.view;
+    switch (views) {
       case 'nearby-dogs':
         return <DogList />;
+      case 'dog-profile':
+        console.log();
+        return <DogProfile dogID={params.id}/>;
     }
-  };
+  }
 
-  return (
-    <>
-      <Header />
-      {
-        checkViews()
-      }
-    </>
-  );
+  render() {
+    return (
+      <>
+        <Header />
+        {
+          this.checkViews()
+        }
+      </>
+    );
+  }
 }
