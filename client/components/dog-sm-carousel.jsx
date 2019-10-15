@@ -47,7 +47,6 @@ const DogSmCarousel = props => {
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        slide={false}
         key={item.src}
       >
         <div style={imgSize}></div>
@@ -75,6 +74,7 @@ const DogSmCarousel = props => {
       next={next}
       previous={prev}
       interval={false}
+      keyboard={false}
       slide={true}
     >
       <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} className="mb-0"/>
