@@ -53,6 +53,20 @@ const DogSmCarousel = props => {
         <div style={imgSize}></div>
       </CarouselItem>
     );
+    // let imgSize = {
+    //   width: '100%',
+    //   margin: '.25rem 0px'
+    // };
+    // return (
+    //   <CarouselItem
+    //     onExiting={() => setAnimating(true)}
+    //     onExited={() => setAnimating(false)}
+    //     slide={false}
+    //     key={item.src}
+    //   >
+    //     <img src={item.src} style={imgSize} />
+    //   </CarouselItem>
+    // );
   });
 
   return (
@@ -60,7 +74,8 @@ const DogSmCarousel = props => {
       activeIndex={activeIndex}
       next={next}
       previous={prev}
-      autoPlay
+      interval={false}
+      slide={true}
     >
       <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} className="mb-0"/>
       {slides}
