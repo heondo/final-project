@@ -62,7 +62,7 @@ const DogSmCarousel = props => {
       previous={prev}
       autoPlay
     >
-      <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+      <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} className="mb-0"/>
       {slides}
       <CarouselControl direction="prev" directionText="Previous" onClickHandler={prev} />
       <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
