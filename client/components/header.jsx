@@ -36,7 +36,7 @@ export default class Header extends React.Component {
     };
     const { isOpen } = this.state;
     return (
-      <div className="container-fluid">
+      <div className="container-fluid mb-3">
         <Navbar color="light" light expand="md">
           <NavbarBrand>
             <div style={bgImage} className="d-inline-block align-middle mb-1"></div>
