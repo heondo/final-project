@@ -1,0 +1,7 @@
+.dog-list-card {
+  transition: background-color 0.5s ease;
+}
+
+.dog-list-card:hover {
+  background-color: rgb(240, 240, 240);
+}

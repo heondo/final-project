@@ -9,14 +9,17 @@ export default class DogCard extends React.Component {
   render() {
     const { dog } = this.props;
     const cardStyle = {
-      border: 'none'
+      border: 'none',
+      overflow: 'hidden',
+      borderTopLeftRadius: '1.5%',
+      borderTopRightRadius: '1.5%'
     };
     const cardBodyStyle = {
       padding: '.25rem'
     };
     return (
       <div className="col-lg-3 col-md-4 col-sm-6">
-        <Card style={cardStyle}>
+        <Card style={cardStyle} className="dog-list-card">
           <DogSmCarousel items={dog.images}/>
           <CardBody style={cardBodyStyle}>
             <CardTitle className="mb-1"><p className="d-inline font-weight-bold">{dog.name}</p> - {dog.size} {dog.breed}</CardTitle>
