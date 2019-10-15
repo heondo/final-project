@@ -4,9 +4,10 @@ import DogList from './dog-list';
 
 export default function App(props) {
   // change the view to....nearby-dogs
+  // nearby-dogs: {}
   // dog-profile: {id: #}
   // user-profile: {id: #}
-  //
+
   const [view, setView] = useState({
     views: 'nearby-dogs',
     params: {}
