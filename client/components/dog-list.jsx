@@ -12,7 +12,12 @@ export default class DogList extends React.Component {
   componentDidMount() {
     fetch('/api/get-dogs/')
       .then(res => res.json())
-      .then(dogs => this.setState({ dogs: dogs.data }));
+      .then(dogs => {
+        if (!dogs.success) {
+          throw new Error(dogs.data);
+        }
+        this.setState({ dogs: dogs.data });
+      });
   }
 
   render() {

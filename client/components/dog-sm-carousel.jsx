@@ -37,7 +37,7 @@ const DogSmCarousel = props => {
 
   const slides = items.map(item => {
     let imgSize = {
-      height: '200px',
+      minHeight: '250px',
       backgroundImage: `url("${item.src}")`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
