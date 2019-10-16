@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 // import HeaderModal from './header-modal';
 
 export default class Header extends React.Component {
@@ -38,10 +39,10 @@ export default class Header extends React.Component {
     const { isOpen } = this.state;
     // if conditional is true, like logged in
     // it should render the profile drop down
-    let navButtons = (true) ? (
+    let navButtons = (false) ? (
       <Nav className="ml-auto font-weight-normal" navbar>
         <NavItem>
-          <NavLink href="#">Make Playdate</NavLink>
+          <NavLink >Make Playdate</NavLink>
         </NavItem>
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret>
@@ -67,19 +68,19 @@ export default class Header extends React.Component {
     ) : (
       <Nav className="ml-auto font-weight-normal" navbar>
         <NavItem>
-          <NavLink href="#">Login</NavLink>
+          <NavLink href="/login">Login</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Sign Up</NavLink>
+          <NavLink href="/signup">Signup</NavLink>
         </NavItem>
       </Nav>
     );
 
     return (
-      <div className="container-fluid mb-3">
+      <div className="container-fluid mb-1">
         <Navbar color="light" light expand="md">
           <NavbarBrand>
-            <div style={bgImage} className="d-inline-block align-middle"></div>
+            <Link to="/"><div style={bgImage} className="d-inline-block align-middle" /></Link>
             <h2 className="d-inline my-auto ml-n3">TinDog</h2>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggleNav} />

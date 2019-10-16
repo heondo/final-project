@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
 import Header from './help/header';
 import DogList from './dog/dog-list';
 import DogProfile from './dog/dog-profile';
@@ -8,35 +13,27 @@ export default class App extends React.Component {
   // nearby-dogs: {}
   // dog-profile: {id: #}
   // user-profile: {id: #}
-  constructor(props) {
-    super(props);
-    this.state = {
-      view: {
-        views: 'nearby-dogs',
-        params: {}
-      }
-    };
-  }
-
-  checkViews() {
-    const { views, params } = this.state.view;
-    switch (views) {
-      case 'nearby-dogs':
-        return <DogList />;
-      case 'dog-profile':
-        console.log();
-        return <DogProfile dogID={params.id}/>;
-    }
-  }
 
   render() {
     return (
-      <>
+      <Router>
         <Header />
-        {
-          this.checkViews()
-        }
-      </>
+        <hr />
+        <Switch>
+          <Route path="/dog/:id">
+            <DogProfile />
+          </Route>
+          <Route path="/login">
+            <div>You are viewing the log in page</div>
+          </Route>
+          <Route path="/signup">
+            <div>You are viewing the sign up page</div>
+          </Route>
+          <Route exact path="/">
+            <DogList />
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }
