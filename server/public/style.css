@@ -5,3 +5,9 @@
 .dog-list-card:hover {
   background-color: rgb(240, 240, 240);
 }
+
+.dog-list-card a:link, .dog-list-card a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: pointer;
+}
