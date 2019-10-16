@@ -77,7 +77,7 @@ export default class Header extends React.Component {
     );
 
     return (
-      <div className="container-fluid mb-1">
+      <div className="container-fluid">
         <Navbar color="light" light expand="md">
           <NavbarBrand>
             <Link to="/"><div style={bgImage} className="d-inline-block align-middle" /></Link>
