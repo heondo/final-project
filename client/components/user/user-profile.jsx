@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import UserDog from './user-dog';
 
 export default function UserProfile(props) {
   const params = useParams();
   const { id } = params;
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ dogs: [] });
 
   useEffect(() => {
     fetch(`/api/get-users/${id}`)
@@ -30,7 +31,7 @@ export default function UserProfile(props) {
     <div className="container-fluid px-5">
       <div className="row">
         <div className="col">
-          <div className="user-profile-card w-50 mx-auto d-flex flex-column oc-bg-grey p-4">
+          <div className="user-profile-card w-75 mx-auto d-flex flex-column oc-bg-grey p-4">
             <div className="img-and-info row">
               <div className="col-5 prof-pic" style={profPic}>Prof Pic</div>
               <div className="col-6 ml-2">
@@ -51,7 +52,16 @@ export default function UserProfile(props) {
           </div>
         </div>
         <div className="col">
-          {(true) ? <h4>Your Dogs <Link to="/add-dog">+ Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
+          <div className="user-dogs-header w-75 mr-5 mb-3">
+            {(true) ? <h4>Your Dogs <Link to="/add-dog" className="float-right">+ New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
+          </div>
+          <div className="users-dogs d-flex">
+            {
+              user.dogs.map(dog => {
+                return <UserDog key={dog.id} dog={dog}/>;
+              })
+            }
+          </div>
         </div>
       </div>
     </div>

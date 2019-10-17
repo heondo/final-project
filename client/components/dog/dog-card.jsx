@@ -24,7 +24,7 @@ export default class DogCard extends React.Component {
           <Link to={`/dog/${dog.id}`}>
             <DogSmCarousel items={dog.images} />
             <CardBody style={cardBodyStyle}>
-              <CardTitle className="mb-1"><p className="d-inline font-weight-bold">{dog.name}</p> - {dog.size} {dog.breed}</CardTitle>
+              <CardTitle className="mb-1"><p className="d-inline font-weight-bold">{dog.name}</p> - {dog.weight} {dog.breed}</CardTitle>
               <CardSubtitle># Dates: {dog.num_dates}, {dog.display_address}</CardSubtitle>
               <CardText>Enrgy: {dog.energy_lvl}, Sex: {dog.sex}, Age: {dog.age}</CardText>
             </CardBody>
