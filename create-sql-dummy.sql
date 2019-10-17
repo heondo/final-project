@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 15, 2019 at 05:55 PM
+-- Generation Time: Oct 16, 2019 at 05:30 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -399,8 +399,10 @@ CREATE TABLE `dogs` (
   `weight` tinyint(3) UNSIGNED NOT NULL,
   `bio` text NOT NULL,
   `user_id` int(11) NOT NULL,
-  `age` int(2) NOT NULL,
-  `sex` enum('M','F') NOT NULL,
+  `ig_url` varchar(60) NOT NULL,
+  `birth` varchar(20) NOT NULL,
+  `sex` enum('M','F','NA') NOT NULL,
+  `fixed` tinyint(1) NOT NULL,
   `breed` int(10) UNSIGNED NOT NULL,
   `energy_lvl` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -409,11 +411,12 @@ CREATE TABLE `dogs` (
 -- Dumping data for table `dogs`
 --
 
-INSERT INTO `dogs` (`id`, `name`, `num_dates`, `weight`, `bio`, `user_id`, `age`, `sex`, `breed`, `energy_lvl`) VALUES
-(5, 'Aiko', 15, 15, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 1, 2, 'F', 348, 1),
-(6, 'Jasmine', 3, 7, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 2, 5, 'F', 25, 0),
-(7, 'Westington', 6, 70, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 3, 3, 'M', 349, 2),
-(8, 'Bow', 0, 35, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 4, 4, 'M', 13, 0);
+INSERT INTO `dogs` (`id`, `name`, `num_dates`, `weight`, `bio`, `user_id`, `ig_url`, `birth`, `sex`, `fixed`, `breed`, `energy_lvl`) VALUES
+(5, 'Aiko', 15, 15, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 1, '', '1505026800', 'F', 1, 348, 1),
+(6, 'Jasmine', 3, 7, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 2, '', '1489132800', 'NA', 1, 25, 0),
+(7, 'Westington', 6, 70, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 3, '', '1470812400', 'M', 1, 349, 2),
+(8, 'Bow', 0, 35, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 4, '', '1392451200', 'M', 0, 13, 0),
+(10, 'Tudor', 5, 13, 'This is a bio for the dog that has two dogs. And this is in fact the second dog believe it or not', 2, 'instagram.com', '1571263155', 'M', 1, 251, 2);
 
 -- --------------------------------------------------------
 
@@ -453,7 +456,7 @@ CREATE TABLE `user` (
   `email` varchar(60) NOT NULL,
   `first` varchar(30) NOT NULL,
   `last` varchar(20) NOT NULL,
-  `location` varchar(100) NOT NULL,
+  `location` varchar(100) DEFAULT NULL,
   `display_address` varchar(60) NOT NULL,
   `bio` text NOT NULL,
   `image` varchar(256) NOT NULL
@@ -467,7 +470,8 @@ INSERT INTO `user` (`id`, `email`, `first`, `last`, `location`, `display_address
 (1, 'lay-adison@gmail.com', 'Adison', 'Lay', '', 'Irvine, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
 (2, 'john', 'John', 'Smith', '', 'Orange, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
 (3, 'kim-heondo@gmail.com', 'Heondo', 'Kim', '', 'Tustin, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
-(4, 'harrisonford@gmail.com', 'Harrison', 'Ford', '', 'Tustin, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg');
+(4, 'harrisonford@gmail.com', 'Harrison', 'Ford', '', 'Tustin, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
+(5, 'test', 'user', 'name', NULL, 'Orange County, CA', 'my biooooooooooo', 'https://image.shutterstock.com/image-vector/person-icon-260nw-282598823.jpg');
 
 --
 -- Indexes for dumped tables
@@ -513,7 +517,7 @@ ALTER TABLE `breeds`
 -- AUTO_INCREMENT for table `dogs`
 --
 ALTER TABLE `dogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `dog_images`
 --
@@ -523,7 +527,7 @@ ALTER TABLE `dog_images`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --

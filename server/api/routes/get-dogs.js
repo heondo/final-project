@@ -3,9 +3,16 @@ const router = express.Router();
 const mysql = require('mysql');
 const db = require('./../../db_connection');
 
+const calculateAge = birthday => { // birthday is a date
+  birthday = new Date(parseFloat(birthday * 1000));
+  var ageDifMs = Date.now() - birthday;
+  var ageDate = new Date(ageDifMs); // miliseconds from epoch
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+};
+
 router.get('/', (req, res, next) => {
   db.connect(() => {
-    let query = 'SELECT d.id, d.name, d.num_dates, d.weight, d.bio, d.user_id, d.birth, d.sex, d.energy_lvl, d.images, u.`display_address`, u.`first`, u.`last`, b.name as breed FROM `user` as u JOIN (SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`sort_ord`) as images FROM `dogs` as d JOIN `dog_images` AS di ON d.`id` = di.`dog_id` GROUP BY d.`id`) as d ON u.`id` = d.`user_id` JOIN `breeds` as b on d.`breed` = b.id';
+    let query = 'SELECT d.id, d.fixed, d.name, d.num_dates, d.weight, d.bio, d.user_id, d.birth, d.sex, d.energy_lvl, d.images, u.`display_address`, u.`first`, u.`last`, b.name as breed FROM `user` as u JOIN (SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`sort_ord`) as images FROM `dogs` as d LEFT JOIN `dog_images` AS di ON d.`id` = di.`dog_id` GROUP BY d.`id`) as d ON u.`id` = d.`user_id` JOIN `breeds` as b on d.`breed` = b.id';
     let output;
     db.query(query, (err, data) => {
       if (err) {
@@ -16,7 +23,11 @@ router.get('/', (req, res, next) => {
         res.status(500);
       } else {
         data.forEach(dog => {
+          if (!dog.images) {
+            dog.images = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
+          }
           dog.images = dog.images.split(',');
+          dog.age = calculateAge(dog.birth);
         });
         output = {
           success: true,
@@ -41,7 +52,7 @@ router.get('/:id', (req, res, next) => {
       };
       res.status(400).json(output);
     } else {
-      db.query('SELECT d.id, d.name, d.num_dates, d.weight, d.bio, d.user_id, d.birth, d.sex, d.energy_lvl, d.images, u.`display_address`, u.`first`, u.`last`, b.name as breed FROM `user` as u JOIN (SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`sort_ord`) as images FROM `dogs` as d JOIN `dog_images` AS di ON d.`id` = di.`dog_id` WHERE d.id = ? GROUP BY d.`id`) as d ON u.`id` = d.`user_id` JOIN `breeds` as b on d.`breed` = b.id', [id], (err, data) => {
+      db.query('SELECT d.id, d.fixed, d.name, d.num_dates, d.weight, d.bio, d.user_id, d.birth, d.sex, d.energy_lvl, d.images, u.`display_address`, u.`first`, u.`last`, b.name as breed FROM `user` as u JOIN (SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`sort_ord`) as images FROM `dogs` as d LEFT JOIN `dog_images` AS di ON d.`id` = di.`dog_id` WHERE d.id = ? GROUP BY d.`id`) as d ON u.`id` = d.`user_id` JOIN `breeds` as b on d.`breed` = b.id', [id], (err, data) => {
         // query fails then status 500 error message
         if (err) {
           output = {
@@ -56,7 +67,11 @@ router.get('/:id', (req, res, next) => {
           };
           res.status(400).json(output);
         } else {
+          if (!data[0].images) {
+            data[0].images = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
+          }
           data[0].images = data[0].images.split(',');
+          data[0].age = calculateAge(data[0].birth);
           output = {
             success: true,
             data: data[0]

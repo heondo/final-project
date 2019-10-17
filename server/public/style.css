@@ -11,3 +11,36 @@
     color: inherit;
     cursor: pointer;
 }
+
+.oc-bg-red {
+  background-color: #ed3f3e;
+}
+
+.oc-bg-pink {
+  background-color: #FA8767;
+}
+
+.oc-bg-yellow {
+  background-color: #f1be3e;
+}
+
+.oc-bg-grey {
+  background-color: #cfc2b9;
+}
+
+
+.oc-txt-red {
+  color: #ed3f3e;
+}
+
+.oc-txt-pink {
+  color: #FA8767;
+}
+
+.oc-txt-yellow {
+  color: #f1be3e;
+}
+
+.oc-txt-grey {
+  color: #cfc2b9;
+}
