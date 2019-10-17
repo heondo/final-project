@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-export default function DOBPicker() {
+export default function DOBPicker(props) {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <DatePicker
       selected={startDate}
-      onChange={date => setStartDate(date)}
+      onChange={date => {
+        console.log(date, typeof date);
+        props.updateDOBCallback(date.getTime() / 1000);
+        setStartDate(date);
+      }}
       peekNextMonth
       showMonthDropdown
       showYearDropdown
