@@ -3,3 +3,4 @@
 /server/node_modules/*
 /server/mysql_creds.js
 /server/aws-config.js
+/client/components/map/maps-script.jsx
