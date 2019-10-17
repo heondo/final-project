@@ -2,3 +2,4 @@
 /node_modules/*
 /server/node_modules/*
 /server/mysql_creds.js
+/server/aws-config.js
