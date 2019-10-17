@@ -5,17 +5,18 @@ import DOBPicker from '../help/dobPicker';
 export default class AddDogForm extends React.Component {
   constructor(props) {
     super(props);
-    this.newImageURL = null;
+    this.newImageURLs = null;
     this.updateDOB = this.updateDOB.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.imageToUpload = React.createRef();
+    this.imagesToUpload = React.createRef();
     this.state = {
       nameInput: '',
       breedInput: '',
       weightInput: '',
       dobInput: '',
-      genderInput: '',
+      genderInput: 'NA',
+      fixedInput: '0',
       energyLevelInput: '',
       descriptionInput: '',
       igInput: ''
@@ -31,22 +32,28 @@ export default class AddDogForm extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
-    console.log(this.imageToUpload.current.files[0]);
+    console.log('State as of submit button click:', this.state);
+    console.log('Array of image objects:', this.imagesToUpload.current.files);
 
     this.makeRequestToUploadDogImage();
   }
   makeRequestToUploadDogImage() {
     let formData = new FormData();
-    formData.append('imageInput', this.imageToUpload.current.files[0]);
-    fetch('/api/upload-dog-image', {
+    // formData.append('imageInput', this.imagesToUpload.current.files[0]);
+    // this.imagesToUpload.current.files.forEach(file => {
+    //   formData.append('imageInput', file);
+    // });
+    for (let file of this.imagesToUpload.current.files) {
+      formData.append('imageInput', file);
+    }
+    fetch('/api/upload-dog-image/', {
       method: 'POST',
-      // headers: { 'Content-Type': 'multipart/form-data' },
       body: formData
     })
       .then(response => response.json())
-      .then(dogImageURL => {
-        this.newImageURL = dogImageURL.imageURL;
+      .then(dogImageURLs => {
+        console.log('Res from upload-dog-image:', dogImageURLs);
+        this.newImageURLs = dogImageURLs.imageURLs;
         this.makeRequestToAddDog(this.props.userID);
       })
       .catch(error => console.error(error));
@@ -54,22 +61,33 @@ export default class AddDogForm extends React.Component {
   makeRequestToAddDog(userID) {
     let addDogRequestBody = JSON.parse(JSON.stringify(this.state));
     addDogRequestBody.userID = userID;
-    addDogRequestBody.imageURL = this.newImageURL;
-    console.log(addDogRequestBody);
-    fetch('/api/add-dog', {
+    addDogRequestBody.imageURLs = this.newImageURLs;
+    if (addDogRequestBody.fixedInput) {
+      addDogRequestBody.fixedInput = 1;
+    } else {
+      addDogRequestBody.fixedInput = 0;
+    }
+    console.log('addDogRequestBody', addDogRequestBody);
+    fetch('/api/add-dog/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(addDogRequestBody)
     })
       .then(response => response.json())
       .then(addedDogData => {
-        if (addedDogData.success) {
-          // need to redirect to newly created dog page here
-        }
+        console.log('Res from add-dog:', addedDogData);
+        // if (addedDogData.success) { // TODO: need to redirect to newly created dog page here
+        // }
       })
       .catch(error => console.error(error));
   }
   render() {
+    let fixedText = 'Fixed';
+    if (this.state.genderInput === 'F') {
+      fixedText = 'Spayed';
+    } else if (this.state.genderInput === 'M') {
+      fixedText = 'Neutered';
+    }
     return (
       <div className="container">
         <div className="row justify-content-center">
@@ -123,16 +141,53 @@ export default class AddDogForm extends React.Component {
               <FormGroup tag="fieldset" onChange={this.handleInputChange}>
                 <p className="mb-1">Gender</p>
                 <FormGroup check inline>
-                  <CustomInput type="radio" name="genderInput" id="femaleRadioOption" value="F" />
+                  <CustomInput
+                    type="radio"
+                    name="genderInput"
+                    id="femaleRadioOption"
+                    value="F"
+                    checked={this.state.genderInput === 'F'} />
                   <Label check htmlFor="femaleRadioOption">Female</Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <CustomInput type="radio" name="genderInput" id="maleRadioOption" value="M" />
+                  <CustomInput
+                    type="radio"
+                    name="genderInput"
+                    id="maleRadioOption"
+                    value="M"
+                    checked={this.state.genderInput === 'M'} />
                   <Label check htmlFor="maleRadioOption">Male</Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <CustomInput type="radio" name="genderInput" id="otherRadioOption" value="NULL" />
+                  <CustomInput
+                    type="radio"
+                    name="genderInput"
+                    id="otherRadioOption"
+                    value="NA"
+                    checked={this.state.genderInput === 'NA'} />
                   <Label check htmlFor="otherRadioOption">Prefer Not to Say</Label>
+                </FormGroup>
+              </FormGroup>
+
+              <FormGroup tag="fieldset" onChange={this.handleInputChange}>
+                <p className="mb-1">{fixedText + '?'}</p>
+                <FormGroup check inline>
+                  <CustomInput
+                    type="radio"
+                    name="fixedInput"
+                    id="fixedRadioOption"
+                    value="1"
+                    checked={this.state.fixedInput === '1'} />
+                  <Label check htmlFor="fixedRadioOption">Yes</Label>
+                </FormGroup>
+                <FormGroup check inline>
+                  <CustomInput
+                    type="radio"
+                    name="fixedInput"
+                    id="notFixedRadioOption"
+                    value="0"
+                    checked={this.state.fixedInput === '0'} />
+                  <Label check htmlFor="notFixedRadioOption">No</Label>
                 </FormGroup>
               </FormGroup>
 
@@ -178,7 +233,7 @@ export default class AddDogForm extends React.Component {
 
               <FormGroup>
                 <Label htmlFor="imageInput">Upload Image</Label>
-                <CustomInput type="file" name="imageInput" id="imageInput" innerRef={this.imageToUpload} />
+                <CustomInput type="file" name="imageInput" id="imageInput" multiple innerRef={this.imagesToUpload} />
               </FormGroup>
 
               <FormGroup className="d-flex justify-content-end">

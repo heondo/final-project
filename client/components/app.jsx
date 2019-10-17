@@ -27,7 +27,7 @@ export default class App extends React.Component {
             <DogProfile />
           </Route>
           <Route path="/add-dog">
-            <AddDogForm />
+            <AddDogForm userID="1" />
           </Route>
           <Route path="/user/:id">
             <UserProfile />
