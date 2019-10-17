@@ -20,13 +20,13 @@ export default class DogCard extends React.Component {
     };
     return (
       <div className="col-lg-3 col-md-4 col-sm-6">
-        <Card style={cardStyle} className="dog-list-card">
+        <Card style={cardStyle} className="dog-list-card mb-3">
           <Link to={`/dog/${dog.id}`}>
             <DogSmCarousel items={dog.images} />
             <CardBody style={cardBodyStyle}>
               <CardTitle className="mb-1"><p className="d-inline font-weight-bold">{dog.name}</p> - {dog.size} {dog.breed}</CardTitle>
               <CardSubtitle># Dates: {dog.num_dates}, {dog.display_address}</CardSubtitle>
-              <CardText>Enrgy: {dog.energy_lvl}, Sex: {dog.sex}</CardText>
+              <CardText>Enrgy: {dog.energy_lvl}, Sex: {dog.sex}, Age: {dog.age}</CardText>
             </CardBody>
           </Link>
         </Card>

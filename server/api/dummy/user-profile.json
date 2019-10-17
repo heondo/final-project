@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "users": [
+    {
+      "id": 1,
+      "first": "Heondo",
+      "last": "Kim",
+      "display_address": "Orange County, CA",
+      "bio": "This is a biography for heondo kim of orange coooooooooooounty",
+      "image": "https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg",
+      "dogs": [
+        {
+          "id": 5,
+          "name": "Aiko",
+          "weight": 15,
+          "bio": "This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.",
+          "num_dates": 10,
+          "age": 2,
+          "sex": "F",
+          "breed": "Shiba Inu",
+          "energy_lvl": 1,
+          "images": "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg?bust=1535566568&width=355"
+        },
+        {
+          "id": 6,
+          "name": "Jasmine",
+          "weight": 7,
+          "bio": "This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.",
+          "num_dates": 6,
+          "age": 5,
+          "sex": "F",
+          "breed": "Toy Poodle",
+          "energy_lvl": 0,
+          "images": "https://www.loveyourdog.com/wp-content/uploads/2019/04/Toy-Poodle.jpg"
+        }
+      ]
+    }
+  ]
+}
