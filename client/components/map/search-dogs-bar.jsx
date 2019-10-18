@@ -54,7 +54,6 @@ class SearchDogsBar extends React.Component {
       );
     }
     this.props.history.push(`/search?lat=${coordinates.lat}&lng=${coordinates.lng}`);
-    // needs to trigger a call back to replace the dogs in the listings...
   }
 
   render() {
