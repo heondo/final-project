@@ -26,7 +26,7 @@ export default class DogCard extends React.Component {
             <CardBody style={cardBodyStyle}>
               <CardTitle className="mb-1"><p className="d-inline font-weight-bold">{dog.name}</p> - {dog.weight} {dog.breed}</CardTitle>
               <CardSubtitle># Dates: {dog.num_dates}, {dog.display_address}</CardSubtitle>
-              <CardText>Enrgy: {dog.energy_lvl}, Sex: {dog.sex}, Age: {dog.age}</CardText>
+              <CardText>Enrgy: {dog.energy_lvl}, Sex: {dog.sex}, Age: {dog.age} {(dog.miles) ? <p className="float-right">{dog.miles.toFixed(2)} miles</p> : undefined} </CardText>
             </CardBody>
           </Link>
         </Card>
