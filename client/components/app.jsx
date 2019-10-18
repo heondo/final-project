@@ -19,30 +19,32 @@ export default class App extends React.Component {
   // user-profile: {id: #}
   render() {
     return (
-      <Router history={createBrowserHistory()}>
-        <Header />
-        <hr />
-        <Switch>
-          <Route path="/dog/:id">
-            <DogProfile />
-          </Route>
-          <Route path="/add-dog">
-            <AddDogForm userID="1" />
-          </Route>
-          <Route path="/user/:id">
-            <UserProfile />
-          </Route>
-          <Route path="/login">
-            <div>You are viewing the log in page</div>
-          </Route>
-          <Route path="/signup">
-            <div>You are viewing the sign up page</div>
-          </Route>
-          <Route exact path="/">
-            <DogList />
-          </Route>
-        </Switch>
-      </Router>
+      <>
+        <Router history={createBrowserHistory()}>
+          <Header />
+          <hr />
+          <Switch>
+            <Route path="/dog/:id">
+              <DogProfile />
+            </Route>
+            <Route path="/add-dog">
+              <AddDogForm userID="1"/>
+            </Route>
+            <Route path="/user/:id">
+              <UserProfile />
+            </Route>
+            <Route path="/login">
+              <div>You are viewing the log in page</div>
+            </Route>
+            <Route path="/signup">
+              <div>You are viewing the sign up page</div>
+            </Route>
+            <Route exact path="/">
+              <DogList />
+            </Route>
+          </Switch>
+        </Router>
+      </>
     );
   }
 }

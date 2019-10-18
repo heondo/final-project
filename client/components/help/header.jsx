@@ -13,7 +13,7 @@ import {
   DropdownItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-// import HeaderModal from './header-modal';
+import AutocompleteSearch from './../map/alltypes-search-form';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export default class Header extends React.Component {
     const bgImage = {
       backgroundImage: 'url("./assets/pet-logo.svg")',
       minHeight: '50px',
-      width: '100%',
+      width: '50px',
       backgroundSize: 'contain',
       backgroundRepeat: 'no-repeat'
     };
@@ -78,13 +78,14 @@ export default class Header extends React.Component {
 
     return (
       <div className="container-fluid">
-        <Navbar color="light" light expand="md">
+        <Navbar className="d-flex" color="light" light expand="md">
           <NavbarBrand>
             <Link to="/" style={bgImage} className="d-inline-block align-middle"></Link>
-            <h2 className="d-inline my-auto ml-n3">TinDog</h2>
+            <h2 className="d-inline my-auto">TinDog</h2>
           </NavbarBrand>
+          <AutocompleteSearch />
           <NavbarToggler onClick={this.toggleNav} />
-          <Collapse isOpen={isOpen} navbar>
+          <Collapse isOpen={isOpen} navbar className="d-inline-block">
             {navButtons}
           </Collapse>
         </Navbar>
