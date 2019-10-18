@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 16, 2019 at 05:30 PM
+-- Generation Time: Oct 17, 2019 at 07:29 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -412,11 +412,12 @@ CREATE TABLE `dogs` (
 --
 
 INSERT INTO `dogs` (`id`, `name`, `num_dates`, `weight`, `bio`, `user_id`, `ig_url`, `birth`, `sex`, `fixed`, `breed`, `energy_lvl`) VALUES
-(5, 'Aiko', 15, 15, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 1, '', '1505026800', 'F', 1, 348, 1),
+(5, 'Aiko', 15, 15, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 1, '', '1505026800', 'F', 1, 326, 1),
 (6, 'Jasmine', 3, 7, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 2, '', '1489132800', 'NA', 1, 25, 0),
 (7, 'Westington', 6, 70, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 3, '', '1470812400', 'M', 1, 349, 2),
 (8, 'Bow', 0, 35, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 4, '', '1392451200', 'M', 0, 13, 0),
-(10, 'Tudor', 5, 13, 'This is a bio for the dog that has two dogs. And this is in fact the second dog believe it or not', 2, 'instagram.com', '1571263155', 'M', 1, 251, 2);
+(10, 'Tudor', 5, 13, 'This is a bio for the dog that has two dogs. And this is in fact the second dog believe it or not', 2, 'instagram.com', '1571263155', 'M', 1, 251, 2),
+(11, 'Steve', 0, 55, 'This time for sure will work', 1, 'https://gramagram.com/', '946767408', 'M', 1, 42, 0);
 
 -- --------------------------------------------------------
 
@@ -428,7 +429,7 @@ CREATE TABLE `dog_images` (
   `id` int(11) NOT NULL,
   `dog_id` int(11) NOT NULL,
   `url` varchar(256) NOT NULL,
-  `sort_ord` tinyint(1) UNSIGNED DEFAULT NULL
+  `sort_ord` tinyint(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -443,7 +444,9 @@ INSERT INTO `dog_images` (`id`, `dog_id`, `url`, `sort_ord`) VALUES
 (5, 7, 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12225014/Rottweiler-MP.jpg', 0),
 (6, 7, 'https://vetstreet-brightspot.s3.amazonaws.com/a5/16f550a7fb11e0a0d50050568d634f/file/Rottweiler-2-645mk062811.jpg', 1),
 (7, 8, 'https://thesmartcanine.com/wp-content/uploads/2019/05/chipin-chihuahua-mix.jpg', 0),
-(8, 8, 'https://thesmartcanine.com/wp-content/uploads/2019/02/chihuahua-dachshund-mix-looks.jpg', 1);
+(8, 8, 'https://thesmartcanine.com/wp-content/uploads/2019/02/chihuahua-dachshund-mix-looks.jpg', 1),
+(9, 11, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/EOlgQaD.jpg', 0),
+(10, 11, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/evbIIyE.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -456,7 +459,8 @@ CREATE TABLE `user` (
   `email` varchar(60) NOT NULL,
   `first` varchar(30) NOT NULL,
   `last` varchar(20) NOT NULL,
-  `location` varchar(100) DEFAULT NULL,
+  `lat` double NOT NULL,
+  `lng` double NOT NULL,
   `display_address` varchar(60) NOT NULL,
   `bio` text NOT NULL,
   `image` varchar(256) NOT NULL
@@ -466,12 +470,12 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `first`, `last`, `location`, `display_address`, `bio`, `image`) VALUES
-(1, 'lay-adison@gmail.com', 'Adison', 'Lay', '', 'Irvine, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
-(2, 'john', 'John', 'Smith', '', 'Orange, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
-(3, 'kim-heondo@gmail.com', 'Heondo', 'Kim', '', 'Tustin, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
-(4, 'harrisonford@gmail.com', 'Harrison', 'Ford', '', 'Tustin, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
-(5, 'test', 'user', 'name', NULL, 'Orange County, CA', 'my biooooooooooo', 'https://image.shutterstock.com/image-vector/person-icon-260nw-282598823.jpg');
+INSERT INTO `user` (`id`, `email`, `first`, `last`, `lat`, `lng`, `display_address`, `bio`, `image`) VALUES
+(1, 'lay-adison@gmail.com', 'Adison', 'Lay', 33.6845673, -117.82650490000003, 'Irvine, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
+(2, 'john', 'John', 'Smith', 37.7749295, -122.41941550000001, 'San Francisco, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
+(3, 'kim-heondo@gmail.com', 'Heondo', 'Kim', 33.74200049999999, -117.82363909999998, 'Tustin, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
+(4, 'harrisonford@gmail.com', 'Harrison', 'Ford', 34.0522342, -118.2436849, 'Los Angeles, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
+(5, 'test', 'user', 'name', 33.7174708, -117.83114280000001, 'Orange County, CA', 'my biooooooooooo', 'https://image.shutterstock.com/image-vector/person-icon-260nw-282598823.jpg');
 
 --
 -- Indexes for dumped tables
@@ -495,7 +499,7 @@ ALTER TABLE `dogs`
 --
 ALTER TABLE `dog_images`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `dog_images_fk0` (`dog_id`);
+  ADD UNIQUE KEY `dog_image_order` (`dog_id`,`sort_ord`);
 
 --
 -- Indexes for table `user`
@@ -517,12 +521,12 @@ ALTER TABLE `breeds`
 -- AUTO_INCREMENT for table `dogs`
 --
 ALTER TABLE `dogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `dog_images`
 --
 ALTER TABLE `dog_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `user`
 --
