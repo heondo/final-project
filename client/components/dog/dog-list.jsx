@@ -11,32 +11,14 @@ export default class DogList extends React.Component {
   }
 
   componentDidUpdate(nextProps) {
-    if (nextProps.location.pathname !== this.props.location.pathname || nextProps.location.search !== this.props.location.search) {
-      const query = qs.parse(location.search);
-      if (Object.keys(query).length) {
-        fetch('/api/get-dogs/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(query)
-        })
-          .then(res => res.json())
-          .then(res => {
-            this.setState({ dogs: res.data });
-          });
-      } else {
-        fetch('/api/get-dogs/')
-          .then(res => res.json())
-          .then(dogs => {
-            if (!dogs.success) {
-              throw new Error(dogs.data);
-            }
-            this.setState({ dogs: dogs.data });
-          });
-      }
-    }
+    this.getDogs();
   }
 
   componentDidMount() {
+    this.getDogs();
+  }
+
+  getDogs() {
     const query = qs.parse(location.search);
     if (Object.keys(query).length) {
       fetch('/api/get-dogs/', {

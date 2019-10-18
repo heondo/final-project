@@ -10,6 +10,7 @@ import Header from './help/header';
 import DogList from './dog/dog-list';
 import DogProfile from './dog/dog-profile';
 import UserProfile from './user/user-profile';
+import AutofillBreed from './forms/autofill-breed';
 
 import { createBrowserHistory } from 'history';
 
@@ -23,6 +24,7 @@ export default class App extends React.Component {
       <>
         <Router history={createBrowserHistory()}>
           <Header />
+          <AutofillBreed/>
           <hr />
           <Switch>
             <Route path="/dog/:id">
