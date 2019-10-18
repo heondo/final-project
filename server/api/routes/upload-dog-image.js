@@ -30,10 +30,10 @@ const upload = multer({
   })
 });
 
-const singleUpload = upload.single('imageInput');
+const multiUpload = upload.array('imageInput');
 
 router.post('/', function (req, res) {
-  singleUpload(req, res, function (err) {
+  multiUpload(req, res, function (err) {
     if (err) {
       return res.status(422).send({
         errors: [{
@@ -42,7 +42,11 @@ router.post('/', function (req, res) {
         }]
       });
     }
-    return res.json({ 'imageURL': req.file.location });
+    let urls = [];
+    req.files.forEach(image => {
+      urls.push(image.location);
+    });
+    return res.json({ 'imageURLs': urls });
   });
 });
 
