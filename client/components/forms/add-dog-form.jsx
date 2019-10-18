@@ -208,7 +208,7 @@ export default class AddDogForm extends React.Component {
               </FormGroup>
 
               <FormGroup>
-                <Label htmlFor="description">Description</Label>
+                <Label htmlFor="descriptionInput">Description</Label>
                 <Input
                   type="textarea"
                   name="descriptionInput"

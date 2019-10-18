@@ -4,6 +4,7 @@ import { Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput
 export default class NewUserForm extends React.Component {
   constructor(props) {
     super(props);
+    this.newImageURL = null;
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.imageToUpload = React.createRef();
@@ -15,14 +16,29 @@ export default class NewUserForm extends React.Component {
       bioInput: ''
     };
   }
-  handleInputChange() {
-
+  handleInputChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({ [name]: value });
   }
-  handleSubmit() {
-
+  handleSubmit(event) {
+    event.preventDefault();
+    this.makeRequestToUploadUserImage();
   }
   makeRequestToUploadUserImage() {
-
+    let formData = new FormData();
+    formData.append('profilePicInput', this.imageToUpload.current.files[0]);
+    fetch('/api/upload-user-image/', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(profilePicURL => {
+        console.log('Res from upload-user-image:', profilePicURL);
+        this.newImageURL = profilePicURL.imageURL;
+        this.makeRequestToAddUser();
+      })
+      .catch(error => console.error(error));
   }
   makeRequestToAddUser() {
 
