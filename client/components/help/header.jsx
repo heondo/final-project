@@ -13,7 +13,7 @@ import {
   DropdownItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import AutocompleteSearch from './../map/alltypes-search-form';
+import SearchDogsBar from './../map/search-dogs-bar';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -83,7 +83,7 @@ export default class Header extends React.Component {
             <Link to="/" style={bgImage} className="d-inline-block align-middle"></Link>
             <h2 className="d-inline my-auto">TinDog</h2>
           </NavbarBrand>
-          <AutocompleteSearch />
+          <SearchDogsBar />
           <NavbarToggler onClick={this.toggleNav} />
           <Collapse isOpen={isOpen} navbar className="d-inline-block">
             {navButtons}

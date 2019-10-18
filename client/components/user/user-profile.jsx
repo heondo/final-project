@@ -8,15 +8,20 @@ export default function UserProfile(props) {
   const [user, setUser] = useState({ dogs: [] });
 
   useEffect(() => {
-    fetch(`/api/get-users/${id}`)
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
+    fetch(`/api/get-users/${id}`, { signal })
       .then(res => res.json())
       .then(user => {
         if (!user.success) {
           throw new Error(user.data);
         }
         setUser(user.user);
-      });
-  });
+      }); return function cleanup() {
+      abortController.abort();
+    };
+  }, []);
 
   const profPic = {
     width: '100%',

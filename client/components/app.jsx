@@ -3,6 +3,7 @@ import {
   Router,
   Switch,
   Route
+
 } from 'react-router-dom';
 import AddDogForm from './forms/add-dog-form';
 import Header from './help/header';
@@ -39,9 +40,8 @@ export default class App extends React.Component {
             <Route path="/signup">
               <div>You are viewing the sign up page</div>
             </Route>
-            <Route exact path="/">
-              <DogList />
-            </Route>
+            <Route key="search-dogs" path="/search" component={DogList}/>
+            <Route key="home-page" exact path="/" component={DogList} />
           </Switch>
         </Router>
       </>
