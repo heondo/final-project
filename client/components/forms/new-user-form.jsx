@@ -41,7 +41,21 @@ export default class NewUserForm extends React.Component {
       .catch(error => console.error(error));
   }
   makeRequestToAddUser() {
-
+    let addUserRequestBody = JSON.parse(JSON.stringify(this.state));
+    addUserRequestBody.imageURL = this.newImageURL;
+    console.log('addUserRequestBody', addUserRequestBody);
+    fetch('/api/add-user/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(addUserRequestBody)
+    })
+      .then(response => response.json())
+      .then(newUserData => {
+        console.log('Res from add-user:', newUserData);
+        // if (newUserData.success) { // TODO: need to redirect to add dog form here
+        // }
+      })
+      .catch(error => console.error(error));
   }
   render() {
     return (
@@ -51,7 +65,7 @@ export default class NewUserForm extends React.Component {
             <h4>New User</h4>
             <Form encType="multipart/form-data" onSubmit={this.handleSubmit}>
               <Row form>
-                <Col xs="auto">
+                <Col xs="6">
                   <FormGroup>
                     <Label htmlFor="firstNameInput">Name</Label>
                     <Input
@@ -66,8 +80,9 @@ export default class NewUserForm extends React.Component {
                   </FormGroup>
                 </Col>
 
-                <Col xs="auto">
+                <Col xs="6">
                   <FormGroup>
+                    <Label htmlFor="lastNameInput"><br /></Label>
                     <Input
                       type="text"
                       id="lastNameInput"
