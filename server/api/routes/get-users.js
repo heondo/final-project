@@ -34,6 +34,7 @@ router.get('/:id', (req, res, next) => {
           data: 'No user with that id'
         });
       } else {
+        // data[0].location = JSON.parse(data[0].location);
         data[0].dogs = (data[0].dogs) ? JSON.parse(data[0].dogs) : [];
         data[0].num_dates = 0;
         data[0].dogs.forEach(dog => {
@@ -43,7 +44,6 @@ router.get('/:id', (req, res, next) => {
             dog.image = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
           }
         });
-        // data.dogs = data.dogs.split('%%%');
         res.status(200).json({
           success: true,
           user: data[0]
