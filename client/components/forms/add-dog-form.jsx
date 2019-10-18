@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
+import { Container, Row, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 import DOBPicker from '../help/dobPicker';
 
 export default class AddDogForm extends React.Component {
@@ -89,8 +89,8 @@ export default class AddDogForm extends React.Component {
       fixedText = 'Neutered';
     }
     return (
-      <div className="container">
-        <div className="row justify-content-center">
+      <Container>
+        <Row className="justify-content-center">
           <div className="form-container w-50">
             <h4>Add New Dog</h4>
             <Form encType="multipart/form-data" onSubmit={this.handleSubmit}>
@@ -242,8 +242,8 @@ export default class AddDogForm extends React.Component {
               </FormGroup>
             </Form>
           </div>
-        </div>
-      </div>
+        </Row>
+      </Container>
     );
   }
 }
