@@ -10,6 +10,7 @@ import Header from './help/header';
 import DogList from './dog/dog-list';
 import DogProfile from './dog/dog-profile';
 import UserProfile from './user/user-profile';
+import NewUserForm from './forms/new-user-form';
 
 import { createBrowserHistory } from 'history';
 
@@ -41,6 +42,7 @@ export default class App extends React.Component {
             <Route key="home-page" exact path="/" render={props => <DogList {...props} />} />
           </Switch>
         </Router>
+        <NewUserForm></NewUserForm>
       </>
     );
   }
