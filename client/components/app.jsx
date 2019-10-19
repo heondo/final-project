@@ -33,7 +33,6 @@ export default class App extends React.Component {
       <>
         <Router history={createBrowserHistory()}>
           <Header isLoggedIn={isLoggedIn}/>
-          <NewUserForm />
           <hr />
           <Switch>
             <Route path="/dog/:id" render={props => <DogProfile {...props}/>}>
@@ -45,8 +44,7 @@ export default class App extends React.Component {
             <Route path="/login">
               <div>You are viewing the log in page</div>
             </Route>
-            <Route path="/signup">
-              <div>You are viewing the sign up page</div>
+            <Route path="/signup" render={props => <NewUserForm {...props} />}>
             </Route>
             <Route key="search-dogs" path="/search" render={props => <DogList {...props} />}/>
             <Route key="home-page" exact path="/" render={props => <DogList {...props} />} />
