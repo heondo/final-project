@@ -8,19 +8,17 @@ router.use(express.json());
 router.post('/', function (req, res) {
   const { body } = req;
   console.log('Add dog req body:', body);
-  db.connect(() => {
-    if (!body.breedIDInput) {
-      db.query('INSERT INTO `breeds` (`name`) VALUES (?)', [body.breedInput.toUpperCase()], (err, data) => {
-        if (err) {
-          res.status(500).json({ success: false, data: err });
-        }
-        const breedID = data.insertId;
-        addImageAndDog(req, res, body, breedID);
-      });
-    } else {
-      addImageAndDog(req, res, body, parseInt(body.breedIDInput));
-    }
-  });
+  if (!body.breedIDInput) {
+    db.query('INSERT INTO `breeds` (`name`) VALUES (?)', [body.breedInput.toUpperCase()], (err, data) => {
+      if (err) {
+        res.status(500).json({ success: false, data: err });
+      }
+      const breedID = data.insertId;
+      addImageAndDog(req, res, body, breedID);
+    });
+  } else {
+    addImageAndDog(req, res, body, parseInt(body.breedIDInput));
+  }
 });
 
 function addImageAndDog(req, res, body, breedID) {

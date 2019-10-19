@@ -14,6 +14,7 @@ export default class NewUserForm extends React.Component {
       firstNameInput: '',
       lastNameInput: '',
       emailInput: '',
+      passWordInput: '',
       locationInput: {
         lat: '',
         lng: '',
@@ -112,6 +113,18 @@ export default class NewUserForm extends React.Component {
                   name="emailInput"
                   placeholder="Email Address"
                   value={this.state.emailInput}
+                  onChange={this.handleInputChange}
+                  required />
+              </FormGroup>
+
+              <FormGroup>
+                <Label htmlFor="passWordInput">Password</Label>
+                <Input
+                  type="passWord"
+                  id="passWordInput"
+                  name="passWordInput"
+                  placeholder="Password"
+                  value={this.state.passWordInput}
                   onChange={this.handleInputChange}
                   required />
               </FormGroup>
