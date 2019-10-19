@@ -14,6 +14,7 @@ export default class NewUserForm extends React.Component {
       firstNameInput: '',
       lastNameInput: '',
       emailInput: '',
+      passWordInput: '',
       locationInput: {
         lat: '',
         lng: '',
@@ -32,7 +33,9 @@ export default class NewUserForm extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.makeRequestToUploadUserImage();
+    // TODO: change back to upload user image
+    // this.makeRequestToUploadUserImage();
+    this.makeRequestToAddUser();
   }
   makeRequestToUploadUserImage() {
     let formData = new FormData();
@@ -50,10 +53,10 @@ export default class NewUserForm extends React.Component {
       .catch(error => console.error(error));
   }
   makeRequestToAddUser() {
-    let addUserRequestBody = JSON.parse(JSON.stringify(this.state));
+    let addUserRequestBody = this.state;
     addUserRequestBody.imageURL = this.newImageURL;
     console.log('addUserRequestBody', addUserRequestBody);
-    fetch('/api/add-user/', {
+    fetch('/api/user-signup/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(addUserRequestBody)
@@ -112,6 +115,17 @@ export default class NewUserForm extends React.Component {
                   name="emailInput"
                   placeholder="Email Address"
                   value={this.state.emailInput}
+                  onChange={this.handleInputChange}
+                  required />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="passWordInput">Password</Label>
+                <Input
+                  type="passWord"
+                  id="passWordInput"
+                  name="passWordInput"
+                  placeholder="Password"
+                  value={this.state.passWordInput}
                   onChange={this.handleInputChange}
                   required />
               </FormGroup>
