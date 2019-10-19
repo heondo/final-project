@@ -15,20 +15,28 @@ import Error404Page from './help/error-404-page';
 import { createBrowserHistory } from 'history';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+      userID: 1
+    };
+  }
   // change the view to....nearby-dogs
   // nearby-dogs: {}
   // dog-profile: {id: #}
   // user-profile: {id: #}
   render() {
+    const { isLoggedIn, userID } = this.state;
     return (
       <>
         <Router history={createBrowserHistory()}>
-          <Header />
+          <Header isLoggedIn={isLoggedIn}/>
           <hr />
           <Switch>
             <Route path="/dog/:id" render={props => <DogProfile {...props}/>}>
             </Route>
-            <Route path="/add-dog" render={props => <AddDogForm {...props} userID="1" />}>
+            <Route path="/add-dog" render={props => <AddDogForm {...props} userID={userID} />}>
             </Route>
             <Route path="/user/:id" render={props => <UserProfile {...props}/>}>
             </Route>

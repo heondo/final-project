@@ -39,7 +39,7 @@ export default class Header extends React.Component {
     const { isOpen } = this.state;
     // if conditional is true, like logged in
     // it should render the profile drop down
-    let navButtons = (true) ? (
+    let navButtons = (this.props.isLoggedIn) ? (
       <Nav className="ml-auto font-weight-normal" navbar>
         <NavItem>
           <NavLink >Make Playdate</NavLink>
