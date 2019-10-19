@@ -60,7 +60,7 @@ export default function UserProfile(props) {
           <div className="user-dogs-header w-75 mr-5 mb-3">
             {(true) ? <h4>Your Dogs <Link to="/add-dog" className="float-right">+ New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
           </div>
-          <div className="users-dogs d-flex">
+          <div className="users-dogs d-flex flex-wrap">
             {
               user.dogs.map(dog => {
                 return <UserDog key={dog.id} dog={dog}/>;

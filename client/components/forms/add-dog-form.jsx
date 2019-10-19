@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 import DOBPicker from '../help/dobPicker';
+import AutofillBreed from './autofill-breed';
 
 export default class AddDogForm extends React.Component {
   constructor(props) {
@@ -10,8 +11,10 @@ export default class AddDogForm extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.imagesToUpload = React.createRef();
+    this.changeBreedState = this.changeBreedState.bind(this);
     this.state = {
       nameInput: '',
+      breedIDInput: null,
       breedInput: '',
       weightInput: '',
       dobInput: '',
@@ -22,6 +25,11 @@ export default class AddDogForm extends React.Component {
       igInput: ''
     };
   }
+
+  changeBreedState(id, name) {
+    this.setState({ breedIDInput: id, breedInput: name });
+  }
+
   updateDOB(date) {
     this.setState({ dobInput: date });
   }
@@ -109,7 +117,7 @@ export default class AddDogForm extends React.Component {
 
               <FormGroup>
                 <Label htmlFor="breedInput">Breed</Label>
-                <Input
+                {/* <Input
                   type="text"
                   id="breedInput"
                   name="breedInput"
@@ -117,7 +125,8 @@ export default class AddDogForm extends React.Component {
                   className="form-control"
                   value={this.state.breedInput}
                   onChange={this.handleInputChange}
-                  required />
+                  required /> */}
+                <AutofillBreed changeBreedState={this.changeBreedState}/>
               </FormGroup>
 
               <FormGroup>

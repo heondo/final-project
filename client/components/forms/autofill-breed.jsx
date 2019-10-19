@@ -10,7 +10,6 @@ export default class AutofillBreed extends React.Component {
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
     this.renderSuggestion = this.renderSuggestion.bind(this);
     this.state = {
-      id: null,
       value: '',
       suggestions: [],
       breeds: []
@@ -49,15 +48,16 @@ export default class AutofillBreed extends React.Component {
 
   onChange(event) {
     const value = event.target.value;
-    this.setState({ value, id: null });
+    this.props.changeBreedState(null, value);
+    this.setState({ value });
   }
 
   onSuggestionSelected(event) {
     const value = event.target.textContent;
     const id = event.target.getAttribute('breedid');
+    this.props.changeBreedState(id, value);
     this.setState({
-      value,
-      id: parseInt(id)
+      value
     });
   }
 
@@ -67,14 +67,14 @@ export default class AutofillBreed extends React.Component {
 
   renderSuggestion(value) {
     return (
-      <div breedid={value.id} className="position-absolute z-index-dropdown" style={{ maxHeight: '25px' }}>
+      <div breedid={value.id}>
         {this.formatString(value.name)}
       </div>
     );
   }
 
   render() {
-    const { value, suggestions, breeds } = this.state;
+    const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: 'Search for your breed',
       value,
