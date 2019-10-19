@@ -81,7 +81,7 @@ export default class Header extends React.Component {
         <Navbar className="d-flex" color="light" light expand="md">
           <NavbarBrand>
             <Link to="/" style={bgImage} className="d-inline-block align-middle"></Link>
-            <h2 className="d-inline my-auto">TinDog</h2>
+            <h2 className="d-inline my-auto ml-3">TINDOG</h2>
           </NavbarBrand>
           <SearchDogsBar />
           <NavbarToggler onClick={this.toggleNav} />
