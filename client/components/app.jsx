@@ -25,14 +25,11 @@ export default class App extends React.Component {
           <Header />
           <hr />
           <Switch>
-            <Route path="/dog/:id">
-              <DogProfile />
+            <Route path="/dog/:id" render={props => <DogProfile {...props}/>}>
             </Route>
-            <Route path="/add-dog">
-              <AddDogForm userID="1"/>
+            <Route path="/add-dog" render={props => <AddDogForm {...props} userID="1" />}>
             </Route>
-            <Route path="/user/:id">
-              <UserProfile />
+            <Route path="/user/:id" render={props => <UserProfile {...props}/>}>
             </Route>
             <Route path="/login">
               <div>You are viewing the log in page</div>
