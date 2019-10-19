@@ -42,7 +42,6 @@ export default class App extends React.Component {
             <Route key="home-page" exact path="/" render={props => <DogList {...props} />} />
           </Switch>
         </Router>
-        <NewUserForm></NewUserForm>
       </>
     );
   }

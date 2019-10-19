@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
-import DOBPicker from '../help/dobPicker';
+import DOBPicker from '../help/dob-picker';
 import AutofillBreed from './autofill-breed';
 
 export default class AddDogForm extends React.Component {
