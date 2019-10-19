@@ -50,7 +50,7 @@ export default class NewUserForm extends React.Component {
       .catch(error => console.error(error));
   }
   makeRequestToAddUser() {
-    let addUserRequestBody = JSON.parse(JSON.stringify(this.state));
+    let addUserRequestBody = this.state;
     addUserRequestBody.imageURL = this.newImageURL;
     console.log('addUserRequestBody', addUserRequestBody);
     fetch('/api/add-user/', {
