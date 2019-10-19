@@ -22,7 +22,6 @@ export default class App extends React.Component {
   render() {
     return (
       <>
-        <NewUserForm></NewUserForm>
         <Router history={createBrowserHistory()}>
           <Header />
           <hr />
@@ -46,6 +45,7 @@ export default class App extends React.Component {
             <Route key="home-page" exact path="/" component={DogList} />
           </Switch>
         </Router>
+        <NewUserForm></NewUserForm>
       </>
     );
   }

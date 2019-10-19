@@ -1,45 +1,38 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import Script from 'react-load-script';
 import { Input } from 'reactstrap';
 
-class UserLocationInput extends React.Component {
+export default class UserLocationInput extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleScriptLoad = this.handleScriptLoad.bind(this);
     this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
-    this.autoComplete = null;
+    this.locationAutoComplete = null;
     this.state = {
       address: '',
       query: '',
       coordinates: {}
     };
   }
-
   handleChange(event) {
     const query = event.target.value;
-    this.setState({
-      query
-    });
+    this.setState({ query });
   }
-
   handleScriptLoad() {
     // const options = {
     //   types: ['(cities)']
     // };
-
-    this.autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById('autocomplete')
+    this.locationAutoComplete = new google.maps.places.Autocomplete(
+      document.getElementById('locationInput')
       // options
     );
-
-    this.autocomplete.setFields(['address_components', 'formatted_address', 'geometry']);
-    this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+    this.locationAutoComplete.setFields(['address_components', 'formatted_address', 'geometry']);
+    this.locationAutoComplete.addListener('place_changed', this.handlePlaceSelect);
   }
-
   handlePlaceSelect() {
-    const addressObject = this.autocomplete.getPlace();
+    const addressObject = this.locationAutoComplete.getPlace();
     const address = addressObject.address_components;
     const coordinates = {
       lat: addressObject.geometry.location.lat(),
@@ -53,27 +46,27 @@ class UserLocationInput extends React.Component {
           coordinates
         }
       );
+      this.props.updateLocationCallback(this.state.coordinates.lat, this.state.coordinates.lng, this.state.query);
     }
   }
-
+  // componentDidMount() {
+  //   this.handleScriptLoad();
+  // }
   render() {
     return (
       <div>
         <Script
           url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWq6apxh7IJs8njuJgCEJf5QPenKjrCYc&libraries=places"
-          onLoad={this.handleScriptLoad}
-        />
+          onLoad={this.handleScriptLoad} />
         <Input
           type="text"
           id="locationInput"
           name="locationInput"
           placeholder="Location"
-          className="form-control"
           onChange={this.handleChange}
-          value={this.state.query} />
+          value={this.state.query}
+          required />
       </div>
     );
   }
 }
-
-export default withRouter(SearchDogsBar);

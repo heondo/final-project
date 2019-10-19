@@ -1,10 +1,12 @@
 import React from 'react';
+import UserLocationInput from '../map/user-location-input';
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 
 export default class NewUserForm extends React.Component {
   constructor(props) {
     super(props);
     this.newImageURL = null;
+    this.updateLocation = this.updateLocation.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.imageToUpload = React.createRef();
@@ -12,9 +14,16 @@ export default class NewUserForm extends React.Component {
       firstNameInput: '',
       lastNameInput: '',
       emailInput: '',
-      locationInput: '',
+      locationInput: {
+        lat: '',
+        lng: '',
+        city: ''
+      },
       bioInput: ''
     };
+  }
+  updateLocation(lat, lng, city) {
+    this.setState({ locationInput: { lat, lng, city } });
   }
   handleInputChange(event) {
     const name = event.target.name;
@@ -58,6 +67,7 @@ export default class NewUserForm extends React.Component {
       .catch(error => console.error(error));
   }
   render() {
+    // TODO: cancel button should route to homepage
     return (
       <Container>
         <Row className="justify-content-center">
@@ -73,7 +83,6 @@ export default class NewUserForm extends React.Component {
                       id="firstNameInput"
                       name="firstNameInput"
                       placeholder="First Name"
-                      className="form-control"
                       value={this.state.firstNameInput}
                       onChange={this.handleInputChange}
                       required />
@@ -88,7 +97,6 @@ export default class NewUserForm extends React.Component {
                       id="lastNameInput"
                       name="lastNameInput"
                       placeholder="Last Name"
-                      className="form-control"
                       value={this.state.lastNameInput}
                       onChange={this.handleInputChange}
                       required />
@@ -103,23 +111,22 @@ export default class NewUserForm extends React.Component {
                   id="emailInput"
                   name="emailInput"
                   placeholder="Email Address"
-                  className="form-control"
-                  value={this.state.lastNameInput}
+                  value={this.state.emailInput}
                   onChange={this.handleInputChange}
                   required />
               </FormGroup>
 
               <FormGroup>
                 <Label htmlFor="locationInput">Location</Label>
-                <Input
+                {/* <Input
                   type="text"
                   id="locationInput"
                   name="locationInput"
                   placeholder="Location"
-                  className="form-control"
                   value={this.state.locationInput}
                   onChange={this.handleInputChange}
-                  required />
+                  required /> */}
+                <UserLocationInput updateLocationCallback={this.updateLocation} />
               </FormGroup>
 
               <FormGroup>
@@ -129,7 +136,6 @@ export default class NewUserForm extends React.Component {
                   name="bioInput"
                   id="bioInput"
                   placeholder="Description"
-                  className="form-control"
                   value={this.state.bioInput}
                   onChange={this.handleInputChange} />
               </FormGroup>
@@ -139,6 +145,10 @@ export default class NewUserForm extends React.Component {
                 <CustomInput type="file" name="profilePicInput" id="profilePicInput" innerRef={this.imageToUpload} />
               </FormGroup>
 
+              <FormGroup className="d-flex justify-content-end">
+                <Button type="submit" color="primary" outline className="mx-2">Sign Up</Button>
+                <Button color="secondary" outline>Cancel</Button>
+              </FormGroup>
             </Form>
           </div>
         </Row>

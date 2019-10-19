@@ -88,6 +88,7 @@ export default class AddDogForm extends React.Component {
     } else if (this.state.genderInput === 'M') {
       fixedText = 'Neutered';
     }
+    // TODO: cancel button should route back to user's page
     return (
       <Container>
         <Row className="justify-content-center">
