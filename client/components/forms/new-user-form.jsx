@@ -1,5 +1,6 @@
 import React from 'react';
 import UserLocationInput from '../map/user-location-input';
+import ErrorModal from './../help/error-modal';
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 
 export default class NewUserForm extends React.Component {
@@ -9,6 +10,7 @@ export default class NewUserForm extends React.Component {
     this.updateLocation = this.updateLocation.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.modalToggle = this.modalToggle.bind(this);
     this.imageToUpload = React.createRef();
     this.state = {
       firstNameInput: '',
@@ -20,9 +22,20 @@ export default class NewUserForm extends React.Component {
         lng: '',
         city: ''
       },
-      bioInput: ''
+      bioInput: '',
+      errorModal: {
+        isOpen: false,
+        message: '',
+        type: ''
+      }
+
     };
   }
+
+  modalToggle(message, type) {
+    this.setState({ errorModal: { isOpen: !this.state.errorModal.isOpen, message, type } });
+  }
+
   updateLocation(lat, lng, city) {
     this.setState({ locationInput: { lat, lng, city } });
   }
@@ -62,15 +75,24 @@ export default class NewUserForm extends React.Component {
       .then(response => response.json())
       .then(newUserData => {
         console.log('Res from add-user:', newUserData);
+        if (newUserData.error) {
+          // catch error
+          if (newUserData.error === 'email') {
+            this.modalToggle(newUserData.message, 'Email');
+            throw new Error(newUserData.error);
+          }
+        }
         // if (newUserData.success) { // TODO: need to redirect to add dog form here
         // }
       })
       .catch(error => console.error(error));
   }
   render() {
+    const { isOpen, message, type } = this.state.errorModal;
     // TODO: cancel button should route to homepage
     return (
       <Container>
+        <ErrorModal className="error-modal" isOpen={isOpen} toggle={this.modalToggle} message={message} type={type}/>
         <Row className="justify-content-center">
           <div className="form-container w-50">
             <h4>New User</h4>
