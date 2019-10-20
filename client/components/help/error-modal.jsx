@@ -7,11 +7,11 @@ export default function ErrorModal(props) {
     className,
     message,
     errType,
-    toggle
+    modalToggle
   } = props;
 
   const realToggle = event => {
-    toggle(message, errType);
+    modalToggle(message, errType);
   };
 
   return (

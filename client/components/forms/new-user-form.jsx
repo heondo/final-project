@@ -92,7 +92,7 @@ export default class NewUserForm extends React.Component {
     // TODO: cancel button should route to homepage
     return (
       <Container>
-        <ErrorModal className="error-modal" isOpen={isOpen} toggle={this.modalToggle} message={message} errType={errType}/>
+        <ErrorModal className="error-modal" isOpen={isOpen} modalToggle={this.modalToggle} message={message} errType={errType}/>
         <Row className="justify-content-center">
           <div className="form-container w-50">
             <h4>New User</h4>
