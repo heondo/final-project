@@ -6,19 +6,23 @@ export default function ErrorModal(props) {
     isOpen,
     className,
     message,
-    type,
+    errType,
     toggle
   } = props;
 
+  const realToggle = event => {
+    toggle(message, errType);
+  };
+
   return (
     <div>
-      <Modal isOpen={isOpen} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>{type}</ModalHeader>
+      <Modal isOpen={isOpen} toggle={realToggle} className={className}>
+        <ModalHeader toggle={realToggle}>{errType}</ModalHeader>
         <ModalBody>
-          {message}
+          {(typeof message === 'object') ? JSON.stringify(message) : message}
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggle}>Escape</Button>
+          <Button color="secondary" onClick={realToggle}>Escape</Button>
         </ModalFooter>
       </Modal>
     </div>

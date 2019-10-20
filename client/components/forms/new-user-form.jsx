@@ -26,14 +26,14 @@ export default class NewUserForm extends React.Component {
       errorModal: {
         isOpen: false,
         message: '',
-        type: ''
+        errType: ''
       }
 
     };
   }
 
-  modalToggle(message, type) {
-    this.setState({ errorModal: { isOpen: !this.state.errorModal.isOpen, message, type } });
+  modalToggle(message, errType) {
+    this.setState({ errorModal: { isOpen: !this.state.errorModal.isOpen, message, errType } });
   }
 
   updateLocation(lat, lng, city) {
@@ -88,11 +88,11 @@ export default class NewUserForm extends React.Component {
       .catch(error => console.error(error));
   }
   render() {
-    const { isOpen, message, type } = this.state.errorModal;
+    const { isOpen, message, errType } = this.state.errorModal;
     // TODO: cancel button should route to homepage
     return (
       <Container>
-        <ErrorModal className="error-modal" isOpen={isOpen} toggle={this.modalToggle} message={message} type={type}/>
+        <ErrorModal className="error-modal" isOpen={isOpen} toggle={this.modalToggle} message={message} errType={errType}/>
         <Row className="justify-content-center">
           <div className="form-container w-50">
             <h4>New User</h4>
