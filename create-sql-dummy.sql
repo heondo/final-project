@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 19, 2019 at 02:04 PM
+-- Generation Time: Oct 19, 2019 at 09:02 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -425,7 +425,8 @@ INSERT INTO `dogs` (`id`, `name`, `num_dates`, `weight`, `bio`, `user_id`, `ig_u
 (11, 'Steve', 0, 55, 'This time for sure will work', 1, 'https://gramagram.com/', '946767408', 'M', 1, 42, 0),
 (21, 'heondo', 0, 2, 'fgsdgfdgfddsdgdfgdf', 1, 'http://heondo.com', '1570489479', 'M', 1, 356, 0),
 (22, 'd', 0, 1, 'dafasdfsdafasdfsd', 1, 'http://heondo.com', '1570407201', 'NA', 1, 357, 1),
-(23, 'heondo', 0, 12, 'fdffffdgfgdfgddgf', 1, 'http://heondo.com', '1570395342', 'F', 1, 2, 0);
+(23, 'heondo', 0, 12, 'fdffffdgfgdfgddgf', 1, 'http://heondo.com', '1570395342', 'F', 1, 2, 0),
+(24, 'heondo', 0, 2, 'cvgnbcvbvbvbvcb', 1, 'http://heondo.com', '1570591535', 'F', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -458,7 +459,8 @@ INSERT INTO `dog_images` (`id`, `dog_id`, `url`, `sort_ord`) VALUES
 (21, 21, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
 (22, 22, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
 (23, 23, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/ios-13-stock-wallpaper-3840x2160_949874-mm-90.jpg', 0),
-(24, 23, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 1);
+(24, 23, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 1),
+(25, 24, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -469,7 +471,7 @@ INSERT INTO `dog_images` (`id`, `dog_id`, `url`, `sort_ord`) VALUES
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `first` varchar(30) NOT NULL,
   `last` varchar(20) NOT NULL,
   `lat` double NOT NULL,
@@ -489,7 +491,8 @@ INSERT INTO `user` (`id`, `email`, `password`, `first`, `last`, `lat`, `lng`, `d
 (3, 'kim-heondo@gmail.com', '1', 'Heondo', 'Kim', 33.74200049999999, -117.82363909999998, 'Tustin, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
 (4, 'harrisonford@gmail.com', '1', 'Harrison', 'Ford', 34.0522342, -118.2436849, 'Los Angeles, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
 (5, 'test', '1', 'user', 'name', 33.7174708, -117.83114280000001, 'Orange County, CA', 'my biooooooooooo', 'https://image.shutterstock.com/image-vector/person-icon-260nw-282598823.jpg'),
-(6, 'fake@gmail.com', '$2b$10$SBGBVUXM98gFRx1OVHVMveC.DEUeko1Wq3gBVDdx4C3bmL2na6hc6', 'heondo', 'kim', 35.4675602, -97.51642759999999, 'Oklahoma City, OK, USA', 'dddddddddd', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg');
+(6, 'fake@gmail.com', '$2b$10$SBGBVUXM98gFRx1OVHVMveC.DEUeko1Wq3gBVDdx4C3bmL2na6hc6', 'heondo', 'kim', 35.4675602, -97.51642759999999, 'Oklahoma City, OK, USA', 'dddddddddd', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg'),
+(23, 'hi@hi.com', '$2b$10$sABOQ2.zuYz6iTBqJX6WN.TrO/UmLKwzeBH1vGS/HloNQeVZ1.fai', 'hi', 'what', 34.1231551, 123.1251614, 'irvine california babeeeeee', 'hi', 's43.com');
 
 --
 -- Indexes for dumped tables
@@ -535,17 +538,17 @@ ALTER TABLE `breeds`
 -- AUTO_INCREMENT for table `dogs`
 --
 ALTER TABLE `dogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `dog_images`
 --
 ALTER TABLE `dog_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- Constraints for dumped tables
 --
