@@ -13,8 +13,6 @@ import UserProfile from './user/user-profile';
 import Error404Page from './help/error-404-page';
 import NewUserForm from './forms/new-user-form';
 
-import { createBrowserHistory } from 'history';
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -31,9 +29,8 @@ export default class App extends React.Component {
     const { isLoggedIn, userID } = this.state;
     return (
       <>
-        <Router history={createBrowserHistory()}>
+        <Router >
           <Header isLoggedIn={isLoggedIn}/>
-          <hr />
           <Switch>
             <Route path="/dog/:id" render={props => <DogProfile {...props}/>}>
             </Route>

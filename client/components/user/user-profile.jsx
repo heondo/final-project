@@ -34,6 +34,7 @@ export default function UserProfile(props) {
 
   return (
     <div className="container-fluid px-5">
+      <hr />
       <div className="row">
         <div className="col">
           <div className="user-profile-card w-75 mx-auto d-flex flex-column oc-bg-grey p-4">
