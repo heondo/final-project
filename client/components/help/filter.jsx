@@ -14,7 +14,7 @@ class Filter extends React.Component {
     this.closeInputDropdown = this.closeInputDropdown.bind(this);
     this.state = {
       dropdownOpen: false,
-      genderFilter: '*',
+      genderFilter: '%',
       weightRangeFilter: {
         min: 0,
         max: 125
@@ -50,23 +50,14 @@ class Filter extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
+    this.closeInputDropdown();
     const {
       genderFilter: gender,
       weightRangeFilter: weight,
       ageRangeFilter: age,
       energyLevelFilter: energy
     } = this.state;
-    console.log(`/filter
-      ?gender=${gender}
-      &wmin=${weight.min}
-      &wmax=${weight.max}
-      &amin=${age.min}
-      &amax=${age.max}
-      &low=${energy.lowChecked ? 1 : 0}
-      &medium=${energy.mediumChecked ? 1 : 0}
-      &high=${energy.highChecked ? 1 : 0}
-    `);
-    this.props.history.push(`/filter?gender=${gender}&wmin=${weight.min}&wmax=${weight.max}&amin=${age.min}&amax=${age.max}&low=${energy.lowChecked ? 1 : 0}&medium=${energy.mediumChecked ? 1 : 0}&high=${energy.highChecked ? 1 : 0}`);
+    this.props.history.push(`/filter?gender=${gender}&wmin=${weight.min}&wmax=${weight.max}&amin=${age.min}&amax=${age.max}&low=${energy.lowChecked ? 1 : 0}&med=${energy.mediumChecked ? 1 : 0}&high=${energy.highChecked ? 1 : 0}`);
   }
   openInputDropdown() {
     this.setState({ dropdownOpen: true });
@@ -111,8 +102,8 @@ class Filter extends React.Component {
                   type="radio"
                   name="genderFilter"
                   id="allRadioOption"
-                  value="*"
-                  checked={this.state.genderFilter === '*'} />
+                  value="%"
+                  checked={this.state.genderFilter === '%'} />
                 <Label check htmlFor="otherRadioOption">All</Label>
               </FormGroup>
             </FormGroup>

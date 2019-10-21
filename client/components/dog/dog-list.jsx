@@ -20,7 +20,7 @@ export default class DogList extends React.Component {
 
   getDogs() {
     const query = qs.parse(location.search);
-    if (Object.keys(query).length) {
+    if (Object.keys(query).includes('lat') && Object.keys(query).includes('lng')) {
       fetch('/api/get-dogs/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -29,6 +29,16 @@ export default class DogList extends React.Component {
         .then(res => res.json())
         .then(res => {
           this.setState({ dogs: res.data });
+        });
+    } else if (Object.keys(query).includes('gender')) {
+      const extractedQueryString = qs.extract(location.search);
+      fetch('/api/get-dogs/?' + extractedQueryString)
+        .then(res => res.json())
+        .then(dogs => {
+          if (!dogs.success) {
+            throw new Error(dogs.data);
+          }
+          this.setState({ dogs: dogs.data });
         });
     } else {
       fetch('/api/get-dogs/')

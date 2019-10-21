@@ -10,11 +10,26 @@ const calculateAge = birthday => { // birthday is a date
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 };
 
+const calculateUnixAge = ageInYears => {
+  const ageInMs = parseInt(ageInYears) * 31556952000;
+  const unixAge = Date.now() - ageInMs;
+  const unixAgeObj = new Date(unixAge);
+  return Math.floor(unixAgeObj.getTime() / 1000);
+};
+
 router.use(express.json());
 
 router.get('/', (req, res, next) => {
+  let filterClause = '';
+  if (Object.keys(req.query).length) {
+    const { query } = req;
+    filterClause = ` WHERE (d.sex LIKE '${query.gender}') AND ` +
+      `(d.weight BETWEEN ${parseInt(query.wmin)} AND ${parseInt(query.wmax)}) AND ` +
+      `(d.birth BETWEEN '${calculateUnixAge(query.amax)}' AND '${calculateUnixAge(query.amin)}') AND ` +
+      `(d.energy_lvl = ${parseInt(query.low) ? 0 : 'NULL'} OR d.energy_lvl = ${parseInt(query.med) ? 1 : 'NULL'} OR d.energy_lvl = ${parseInt(query.high) ? 2 : 'NULL'})`;
+  }
 
-  let query = 'SELECT d.id, d.fixed, d.name, d.num_dates, d.weight, d.bio, d.user_id, d.birth, d.sex, d.energy_lvl, d.images, u.`display_address`, u.`first`, u.`last`, u.`lat`, u.`lng`, b.name as breed FROM `user` as u JOIN (SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`sort_ord`) as images FROM `dogs` as d LEFT JOIN `dog_images` AS di ON d.`id` = di.`dog_id` GROUP BY d.`id`) as d ON u.`id` = d.`user_id` JOIN `breeds` as b on d.`breed` = b.id';
+  let query = 'SELECT d.id, d.fixed, d.name, d.num_dates, d.weight, d.bio, d.user_id, d.birth, d.sex, d.energy_lvl, d.images, u.`display_address`, u.`first`, u.`last`, u.`lat`, u.`lng`, b.name as breed FROM `user` as u JOIN (SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`sort_ord`) as images FROM `dogs` as d LEFT JOIN `dog_images` AS di ON d.`id` = di.`dog_id` GROUP BY d.`id`) as d ON u.`id` = d.`user_id` JOIN `breeds` as b on d.`breed` = b.id' + filterClause;
   let output;
   db.query(query, (err, data) => {
     if (err) {
