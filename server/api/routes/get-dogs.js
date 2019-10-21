@@ -10,6 +10,8 @@ const calculateAge = birthday => { // birthday is a date
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 };
 
+const defaultImage = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
+
 router.use(express.json());
 
 router.get('/', (req, res, next) => {
@@ -26,7 +28,7 @@ router.get('/', (req, res, next) => {
     } else {
       data.forEach(dog => {
         if (!dog.images) {
-          dog.images = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
+          dog.images = defaultImage;
         }
         dog.images = dog.images.split(',');
         dog.age = calculateAge(dog.birth);
@@ -70,7 +72,7 @@ router.get('/:id', (req, res, next) => {
         res.status(400).json(output);
       } else {
         if (!data[0].images) {
-          data[0].images = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
+          data[0].images = defaultImage;
         }
         data[0].images = data[0].images.split(',');
         data[0].age = calculateAge(data[0].birth);
@@ -102,7 +104,7 @@ router.post('/', (req, res, next) => {
     } else {
       data.forEach(dog => {
         if (!dog.images) {
-          dog.images = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
+          dog.images = defaultImage;
         }
         dog.images = dog.images.split(',');
         dog.age = calculateAge(dog.birth);
