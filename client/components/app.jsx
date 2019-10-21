@@ -44,6 +44,7 @@ export default class App extends React.Component {
             <Route path="/signup" render={props => <NewUserForm {...props} />}>
             </Route>
             <Route key="search-dogs" path="/search" render={props => <DogList {...props} />}/>
+            <Route key="filter-dogs" path="/filter" render={props => <DogList {...props} />} />
             <Route key="home-page" exact path="/" render={props => <DogList {...props} />} />
             <Route component={Error404Page} />
           </Switch>
