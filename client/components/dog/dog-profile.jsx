@@ -67,6 +67,7 @@ export default function DogProfile(props) {
   return (
     <>
       <div className="dog-profile-images container-fluid px-0 mb-2">
+        <hr />
         <div className="row mx-auto" style={imgRowStyle}>
           <div className="col" style={primStyle}></div>
           <div className="col">

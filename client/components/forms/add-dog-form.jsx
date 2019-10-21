@@ -99,6 +99,7 @@ export default class AddDogForm extends React.Component {
     // TODO: cancel button should route back to user's page
     return (
       <Container>
+        <hr />
         <Row className="justify-content-center">
           <div className="form-container w-50">
             <h4>Add New Dog</h4>
