@@ -14,6 +14,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import SearchDogsBar from './../map/search-dogs-bar';
+import Filter from './filter';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -84,6 +85,7 @@ export default class Header extends React.Component {
             <h2 className="d-inline my-auto ml-3">TINDOG</h2>
           </NavbarBrand>
           <SearchDogsBar />
+          <Filter />
           <NavbarToggler onClick={this.toggleNav} />
           <Collapse isOpen={isOpen} navbar className="d-inline-block">
             {navButtons}
