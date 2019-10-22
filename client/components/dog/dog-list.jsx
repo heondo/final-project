@@ -20,17 +20,7 @@ export default class DogList extends React.Component {
 
   getDogs() {
     const query = qs.parse(location.search);
-    if (Object.keys(query).includes('lat') && Object.keys(query).includes('lng')) {
-      fetch('/api/get-dogs/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(query)
-      })
-        .then(res => res.json())
-        .then(res => {
-          this.setState({ dogs: res.data });
-        });
-    } else if (Object.keys(query).includes('gender')) {
+    if (Object.keys(query).length) {
       const extractedQueryString = qs.extract(location.search);
       fetch('/api/get-dogs/?' + extractedQueryString)
         .then(res => res.json())
@@ -54,22 +44,19 @@ export default class DogList extends React.Component {
 
   render() {
     const { dogs } = this.state;
-    if (this.props.filt) {
-      return (
-        <div className="">filterd dogs</div>
-      );
-    } else {
-      return (
-        <div className="container-fluid px-5">
-          <h4>{dogs.length} Dogs Nearby</h4>
-          <div className="row">
-            {
-              dogs.map(dog => <DogCard key={dog.id} dog={dog} />)
-            }
-          </div>
-        </div>
-      );
+    let dogListHeadingText = ' Dogs Nearby';
+    if (dogs.length === 1) {
+      dogListHeadingText = ' Dog Nearby';
     }
-
+    return (
+      <div className="container-fluid px-5">
+        <h4>{dogs.length + dogListHeadingText}</h4>
+        <div className="row">
+          {
+            dogs.map(dog => <DogCard key={dog.id} dog={dog} />)
+          }
+        </div>
+      </div>
+    );
   }
 }

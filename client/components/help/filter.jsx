@@ -67,7 +67,7 @@ class Filter extends React.Component {
       ageRangeFilter: age,
       energyLevelFilter: energy
     } = this.state;
-    if (Object.keys(existingQueryParams).length) {
+    if (Object.keys(existingQueryParams).includes('lat') && Object.keys(existingQueryParams).includes('lng')) {
       existingQueryString = qs.extract(location.search) + '&';
     }
     newQueryString += existingQueryString;
