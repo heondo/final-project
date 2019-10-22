@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import qs from 'query-string';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, CustomInput, Button } from 'reactstrap';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
@@ -51,13 +52,25 @@ class Filter extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.closeInputDropdown();
+    const newQueryString = this.buildQueryString();
+    this.props.history.push(newQueryString);
+  }
+  buildQueryString() {
+    let newQueryString = '/search?';
+    let existingQueryString = '';
+    const existingQueryParams = qs.parse(location.search);
     const {
       genderFilter: gender,
       weightRangeFilter: weight,
       ageRangeFilter: age,
       energyLevelFilter: energy
     } = this.state;
-    this.props.history.push(`/filter?gender=${gender}&wmin=${weight.min}&wmax=${weight.max}&amin=${age.min}&amax=${age.max}&low=${energy.lowChecked ? 1 : 0}&med=${energy.mediumChecked ? 1 : 0}&high=${energy.highChecked ? 1 : 0}`);
+    if (Object.keys(existingQueryParams).length) {
+      existingQueryString = qs.extract();
+    }
+    newQueryString += existingQueryString;
+    newQueryString += `gender=${gender}&wmin=${weight.min}&wmax=${weight.max}&amin=${age.min}&amax=${age.max}&low=${energy.lowChecked ? 1 : 0}&med=${energy.mediumChecked ? 1 : 0}&high=${energy.highChecked ? 1 : 0}`;
+    return newQueryString;
   }
   openInputDropdown() {
     this.setState({ dropdownOpen: true });
