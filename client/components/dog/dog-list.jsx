@@ -1,13 +1,21 @@
 import React from 'react';
 import DogCard from './dog-card';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 const qs = require('query-string');
 
 export default class DogList extends React.Component {
   constructor(props) {
     super(props);
+    this.toggleTab = this.toggleTab.bind(this);
     this.state = {
-      dogs: []
+      dogs: [],
+      playdates: [],
+      activeTab: '1'
     };
+  }
+
+  toggleTab(tab) {
+    this.setState({ activeTab: tab });
   }
 
   componentDidUpdate(nextProps) {
@@ -53,23 +61,42 @@ export default class DogList extends React.Component {
   }
 
   render() {
-    const { dogs } = this.state;
-    if (this.props.filt) {
-      return (
-        <div className="">filterd dogs</div>
-      );
-    } else {
-      return (
-        <div className="container-fluid px-5">
-          <h4>{dogs.length} Dogs Nearby</h4>
-          <div className="row">
-            {
-              dogs.map(dog => <DogCard key={dog.id} dog={dog} />)
-            }
-          </div>
-        </div>
-      );
-    }
+    const { dogs, activeTab } = this.state;
+    return (
+      <div className="container-fluid px-5">
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              className={(activeTab === '1') ? 'active' : ''}
+              onClick={() => { this.toggleTab('1'); }}
+            >
+              Dogs
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={(activeTab === '2') ? 'active' : ''}
+              onClick={() => { this.toggleTab('2'); }}
+            >
+              Playdates
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={activeTab}>
+          <TabPane tabId="1">
+            <h4>{dogs.length} Dogs Nearby</h4>
+            <div className="row">
+              {
+                dogs.map(dog => <DogCard key={dog.id} dog={dog} />)
+              }
+            </div>
+          </TabPane>
+          <TabPane tabId="2">
+            <h4>Playdate Listings</h4>
+          </TabPane>
+        </TabContent>
 
+      </div>
+    );
   }
 }
