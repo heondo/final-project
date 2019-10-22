@@ -13,6 +13,7 @@ class Filter extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.openInputDropdown = this.openInputDropdown.bind(this);
     this.closeInputDropdown = this.closeInputDropdown.bind(this);
+    this.resetFilterOptions = this.resetFilterOptions.bind(this);
     this.state = {
       dropdownOpen: false,
       genderFilter: '%',
@@ -59,6 +60,7 @@ class Filter extends React.Component {
     let newQueryString = '/search?';
     let existingQueryString = '';
     const existingQueryParams = qs.parse(location.search);
+    console.log('existingQueryParams', existingQueryParams);
     const {
       genderFilter: gender,
       weightRangeFilter: weight,
@@ -66,10 +68,11 @@ class Filter extends React.Component {
       energyLevelFilter: energy
     } = this.state;
     if (Object.keys(existingQueryParams).length) {
-      existingQueryString = qs.extract();
+      existingQueryString = qs.extract(location.search) + '&';
     }
     newQueryString += existingQueryString;
     newQueryString += `gender=${gender}&wmin=${weight.min}&wmax=${weight.max}&amin=${age.min}&amax=${age.max}&low=${energy.lowChecked ? 1 : 0}&med=${energy.mediumChecked ? 1 : 0}&high=${energy.highChecked ? 1 : 0}`;
+    console.log('newQueryString:', newQueryString);
     return newQueryString;
   }
   openInputDropdown() {
@@ -78,6 +81,24 @@ class Filter extends React.Component {
   closeInputDropdown() {
     this.setState({ dropdownOpen: false });
   }
+  resetFilterOptions() {
+    this.setState({
+      genderFilter: '%',
+      weightRangeFilter: {
+        min: 0,
+        max: 250
+      },
+      ageRangeFilter: {
+        min: 0,
+        max: 25
+      },
+      energyLevelFilter: {
+        lowChecked: true,
+        mediumChecked: true,
+        highChecked: true
+      }
+    });
+  }
   render() {
     return (
       <UncontrolledDropdown isOpen={this.state.dropdownOpen} inNavbar className="mx-2">
@@ -85,7 +106,8 @@ class Filter extends React.Component {
           Filter
         </DropdownToggle>
         <DropdownMenu className="px-5 py-4" style={{ width: 'max-content' }}>
-          <h3>Filter Dogs</h3>
+          <span className="h3 ml-n3">Filter Dogs</span>
+          <Button color="link" className="p-0" style={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }} onClick={this.resetFilterOptions}>Reset Filters</Button>
 
           <DropdownItem divider />
 
