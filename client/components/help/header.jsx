@@ -12,17 +12,28 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import SearchDogsBar from './../map/search-dogs-bar';
 import Filter from './filter';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
     this.toggleNav = this.toggleNav.bind(this);
+    this.logout = this.logout.bind(this);
+    this.toUser = this.toUser.bind(this);
     this.state = {
       isOpen: false
     };
+  }
+
+  logout() {
+    this.props.logout();
+    this.props.history.push('/');
+  }
+
+  toUser() {
+    this.props.history.push('/user/' + this.props.userID);
   }
 
   toggleNav() {
@@ -50,7 +61,7 @@ export default class Header extends React.Component {
             Profile
           </DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem>
+            <DropdownItem onClick={this.toUser}>
               Your Account
             </DropdownItem>
             <DropdownItem>
@@ -60,7 +71,7 @@ export default class Header extends React.Component {
               Your dogs
             </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>
+            <DropdownItem onClick={this.logout}>
               Log Out
             </DropdownItem>
           </DropdownMenu>
@@ -95,3 +106,5 @@ export default class Header extends React.Component {
     );
   }
 }
+
+export default withRouter(Header);

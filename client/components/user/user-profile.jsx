@@ -5,6 +5,7 @@ import UserDog from './user-dog';
 export default function UserProfile(props) {
   const params = useParams();
   const { id } = params;
+  const { userID } = props;
   const [user, setUser] = useState({ dogs: [] });
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function UserProfile(props) {
         </div>
         <div className="col">
           <div className="user-dogs-header w-75 mr-5 mb-3">
-            {(true) ? <h4>Your Dogs <Link to="/add-dog" className="float-right">+ New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
+            {(userID === parseInt(id)) ? <h4>Your Dogs <Link to="/add-dog" className="float-right">+ New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
           </div>
           <div className="users-dogs d-flex flex-wrap">
             {

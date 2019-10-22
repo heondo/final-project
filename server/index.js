@@ -9,6 +9,7 @@ const getUsersRoute = require('./api/routes/get-users');
 const addDogRoute = require('./api/routes/add-dog');
 const getBreedsRoute = require('./api/routes/get-breeds');
 const addUserRoute = require('./api/routes/add-user');
+const loginRoute = require('./api/routes/login');
 
 app.use('/api/get-dogs/', getDogsRoute);
 app.use('/api/upload-dog-image/', uploadDogImageRoute);
@@ -17,6 +18,7 @@ app.use('/api/add-dog/', addDogRoute);
 app.use('/api/get-breeds/', getBreedsRoute);
 app.use('/api/upload-user-image', uploadUserImageRoute);
 app.use('/api/add-user/', addUserRoute);
+app.use('/api/login', loginRoute);
 
 const port = process.env.PORT || 3001;
 const server = http.createServer(app);
