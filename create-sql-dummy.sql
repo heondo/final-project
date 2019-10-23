@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 19, 2019 at 09:02 PM
+-- Generation Time: Oct 22, 2019 at 10:05 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -465,6 +465,38 @@ INSERT INTO `dog_images` (`id`, `dog_id`, `url`, `sort_ord`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `playdates`
+--
+
+CREATE TABLE `playdates` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `dog_id` int(10) UNSIGNED NOT NULL,
+  `date` varchar(30) NOT NULL,
+  `lat` double NOT NULL,
+  `lng` double NOT NULL,
+  `display_address` varchar(255) NOT NULL,
+  `confirmed` tinyint(1) NOT NULL,
+  `dog_2_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `playdates`
+--
+
+INSERT INTO `playdates` (`id`, `dog_id`, `date`, `lat`, `lng`, `display_address`, `confirmed`, `dog_2_id`) VALUES
+(1, 12, '1571804024', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
+(2, 12, '1571804024', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
+(3, 12, '1571804032', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
+(4, 12, '1571804032', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
+(5, 12, '1571804055', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
+(6, 12, '1571804055', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
+(7, 5, '1571804151', 33.7036837, -117.72236470000001, '49 Gray Dove, Irvine, CA 92618, USA', 0, NULL),
+(8, 5, '1571804151', 33.7036837, -117.72236470000001, '49 Gray Dove, Irvine, CA 92618, USA', 0, NULL),
+(9, 5, '1571804151', 33.7036837, -117.72236470000001, '49 Gray Dove, Irvine, CA 92618, USA', 0, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -492,7 +524,8 @@ INSERT INTO `user` (`id`, `email`, `password`, `first`, `last`, `lat`, `lng`, `d
 (4, 'harrisonford@gmail.com', '1', 'Harrison', 'Ford', 34.0522342, -118.2436849, 'Los Angeles, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
 (5, 'test', '1', 'user', 'name', 33.7174708, -117.83114280000001, 'Orange County, CA', 'my biooooooooooo', 'https://image.shutterstock.com/image-vector/person-icon-260nw-282598823.jpg'),
 (6, 'fake@gmail.com', '$2b$10$SBGBVUXM98gFRx1OVHVMveC.DEUeko1Wq3gBVDdx4C3bmL2na6hc6', 'heondo', 'kim', 35.4675602, -97.51642759999999, 'Oklahoma City, OK, USA', 'dddddddddd', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg'),
-(23, 'hi@hi.com', '$2b$10$sABOQ2.zuYz6iTBqJX6WN.TrO/UmLKwzeBH1vGS/HloNQeVZ1.fai', 'hi', 'what', 34.1231551, 123.1251614, 'irvine california babeeeeee', 'hi', 's43.com');
+(23, 'hi@hi.com', '$2b$10$sABOQ2.zuYz6iTBqJX6WN.TrO/UmLKwzeBH1vGS/HloNQeVZ1.fai', 'hi', 'what', 34.1231551, 123.1251614, 'irvine california babeeeeee', 'hi', 's43.com'),
+(24, 'fakedfadsdccc@gmail.com', '$2a$10$KS7XP.o02gdFeMnb54mk0OxGsFoQAq1mIZ/.gLlE/R/OYkHE4rE76', 'er', 'guy', 33.4672256, -117.69810139999998, 'Dana Point, CA, USA', 'aefsdfsdfsdafsfsdf', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg');
 
 --
 -- Indexes for dumped tables
@@ -517,6 +550,12 @@ ALTER TABLE `dogs`
 ALTER TABLE `dog_images`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `dog_image_order` (`dog_id`,`sort_ord`);
+
+--
+-- Indexes for table `playdates`
+--
+ALTER TABLE `playdates`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -545,10 +584,15 @@ ALTER TABLE `dogs`
 ALTER TABLE `dog_images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
+-- AUTO_INCREMENT for table `playdates`
+--
+ALTER TABLE `playdates`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- Constraints for dumped tables
 --
