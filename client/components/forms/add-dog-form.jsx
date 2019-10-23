@@ -35,7 +35,6 @@ export default class AddDogForm extends React.Component {
   }
   handleInputChange(event) {
     const { target } = event;
-    console.log(target);
     const name = event.target.name;
     const value = event.target.value;
     // console.log(name, value);
@@ -87,6 +86,7 @@ export default class AddDogForm extends React.Component {
       .then(response => response.json())
       .then(addedDogData => {
         console.log('Res from add-dog:', addedDogData);
+        this.props.history.push(`/dog/${addedDogData.insertDogData.insertId}`);
         // if (addedDogData.success) { // TODO: need to redirect to newly created dog page here
         // }
       })
