@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { useParams, Link } from 'react-router-dom';
+import MakePlaydate from '../forms/make-playdate';
 
 export default function DogProfile(props) {
   const genericPic = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
   const params = useParams();
   const { id } = params;
+  const { userID } = props;
   const [dog, setDog] = useState({});
   const [images, setImages] = useState([]);
+  const [activeTab, toggleTab] = useState('1');
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -103,7 +107,39 @@ export default function DogProfile(props) {
             <h3>About {dog.name}</h3>
             <div>{dog.bio}</div>
           </div>
-          <div className="col"></div>
+          <div className="col dogs-listings">
+            <h4>{dog.name}s Listings</h4>
+            {(parseInt(userID) === parseInt(dog.user_id) ? <>
+               <Nav tabs>
+                 <NavItem>
+                   <NavLink
+                     className={(activeTab === '1') ? 'active' : ''}
+                     onClick={() => { toggleTab('1'); }}
+                   >
+                  Listings
+                   </NavLink>
+                 </NavItem>
+                 <NavItem>
+                   <NavLink
+                     className={(activeTab === '2') ? 'active' : ''}
+                     onClick={() => { toggleTab('2'); }}
+                   >
+                  Make Playdate
+                   </NavLink>
+                 </NavItem>
+               </Nav>
+              <TabContent activeTab={activeTab}>
+                <TabPane tabId="1">
+                  Listings
+                </TabPane>
+                <TabPane tabId="2">
+                  <MakePlaydate userID={dog.user_id} dogID={dog.id}/>
+                </TabPane>
+              </TabContent>
+              </>
+              : <h5>Just the listings</h5>
+            )}
+          </div>
         </div>
 
       </div>

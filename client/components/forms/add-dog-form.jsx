@@ -18,7 +18,7 @@ export default class AddDogForm extends React.Component {
       breedInput: '',
       weightInput: '',
       dobInput: '',
-      genderInput: 'NA',
+      genderInput: 'M',
       fixedInput: '0',
       energyLevelInput: '',
       descriptionInput: '',
@@ -34,8 +34,11 @@ export default class AddDogForm extends React.Component {
     this.setState({ dobInput: date });
   }
   handleInputChange(event) {
+    const { target } = event;
+    console.log(target);
     const name = event.target.name;
     const value = event.target.value;
+    // console.log(name, value);
     this.setState({ [name]: value });
   }
   handleSubmit(event) {
@@ -149,7 +152,7 @@ export default class AddDogForm extends React.Component {
                 <DOBPicker updateDOBCallback={this.updateDOB} />
               </FormGroup>
 
-              <FormGroup tag="fieldset" onChange={this.handleInputChange}>
+              <FormGroup tag="fieldset" onClick={this.handleInputChange}>
                 <p className="mb-1">Gender</p>
                 <FormGroup check inline>
                   <Input
@@ -157,7 +160,8 @@ export default class AddDogForm extends React.Component {
                     name="genderInput"
                     id="femaleRadioOption"
                     value="F"
-                    checked={this.state.genderInput === 'F'} />
+                    checked={this.state.genderInput === 'F'}
+                  />
                   <Label check htmlFor="femaleRadioOption">Female</Label>
                 </FormGroup>
                 <FormGroup check inline>
@@ -166,7 +170,8 @@ export default class AddDogForm extends React.Component {
                     name="genderInput"
                     id="maleRadioOption"
                     value="M"
-                    checked={this.state.genderInput === 'M'} />
+                    checked={this.state.genderInput === 'M'}
+                  />
                   <Label check htmlFor="maleRadioOption">Male</Label>
                 </FormGroup>
                 <FormGroup check inline>
@@ -175,7 +180,8 @@ export default class AddDogForm extends React.Component {
                     name="genderInput"
                     id="otherRadioOption"
                     value="NA"
-                    checked={this.state.genderInput === 'NA'} />
+                    checked={this.state.genderInput === 'NA'}
+                  />
                   <Label check htmlFor="otherRadioOption">Prefer Not to Say</Label>
                 </FormGroup>
               </FormGroup>
