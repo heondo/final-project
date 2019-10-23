@@ -16,7 +16,7 @@ class Filter extends React.Component {
     this.resetFilterOptions = this.resetFilterOptions.bind(this);
     this.state = {
       dropdownOpen: false,
-      genderFilter: '%',
+      genderFilter: 'A',
       weightRangeFilter: {
         min: 0,
         max: 125
@@ -58,21 +58,24 @@ class Filter extends React.Component {
   }
   buildQueryString() {
     let newQueryString = '/search?';
-    let existingQueryString = '';
-    const existingQueryParams = qs.parse(location.search);
-    console.log('existingQueryParams', existingQueryParams);
+    const queryParams = qs.parse(location.search);
     const {
       genderFilter: gender,
       weightRangeFilter: weight,
       ageRangeFilter: age,
       energyLevelFilter: energy
     } = this.state;
-    if (Object.keys(existingQueryParams).includes('lat') && Object.keys(existingQueryParams).includes('lng')) {
-      existingQueryString = qs.extract(location.search) + '&';
-    }
-    newQueryString += existingQueryString;
-    newQueryString += `gender=${gender}&wmin=${weight.min}&wmax=${weight.max}&amin=${age.min}&amax=${age.max}&low=${energy.lowChecked ? 1 : 0}&med=${energy.mediumChecked ? 1 : 0}&high=${energy.highChecked ? 1 : 0}`;
-    console.log('newQueryString:', newQueryString);
+
+    queryParams.gender = gender;
+    queryParams.wmin = weight.min;
+    queryParams.wmax = weight.max;
+    queryParams.amin = age.min;
+    queryParams.amax = age.max;
+    queryParams.low = energy.lowChecked ? 1 : 0;
+    queryParams.med = energy.mediumChecked ? 1 : 0;
+    queryParams.high = energy.highChecked ? 1 : 0;
+
+    newQueryString += qs.stringify(queryParams);
     return newQueryString;
   }
   openInputDropdown() {
@@ -83,7 +86,7 @@ class Filter extends React.Component {
   }
   resetFilterOptions() {
     this.setState({
-      genderFilter: '%',
+      genderFilter: 'A',
       weightRangeFilter: {
         min: 0,
         max: 250
@@ -137,8 +140,8 @@ class Filter extends React.Component {
                   type="radio"
                   name="genderFilter"
                   id="allRadioOption"
-                  value="%"
-                  checked={this.state.genderFilter === '%'} />
+                  value="A"
+                  checked={this.state.genderFilter === 'A'} />
                 <Label check htmlFor="otherRadioOption">All</Label>
               </FormGroup>
             </FormGroup>
