@@ -12,9 +12,10 @@ router.post('/', function (req, res) {
     db.query('INSERT INTO `breeds` (`name`) VALUES (?)', [body.breedInput.toUpperCase()], (err, data) => {
       if (err) {
         res.status(500).json({ success: false, data: err });
+      } else {
+        const breedID = data.insertId;
+        addImageAndDog(req, res, body, breedID);
       }
-      const breedID = data.insertId;
-      addImageAndDog(req, res, body, breedID);
     });
   } else {
     addImageAndDog(req, res, body, parseInt(body.breedIDInput));
@@ -22,7 +23,7 @@ router.post('/', function (req, res) {
 });
 
 function addImageAndDog(req, res, body, breedID) {
-  let output;
+  let output = {};
   const insertDogQuery = 'INSERT INTO `dogs` (`name`, `num_dates`, `weight`, `bio`, `user_id`, `ig_url`, `birth`, `sex`, `fixed`, `breed`, `energy_lvl`) ' +
     'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
   const insertValues = [
@@ -45,31 +46,30 @@ function addImageAndDog(req, res, body, breedID) {
         success: false,
         data: err
       };
-      res.status(500);
+      res.status(500).json(output);
     } else {
       let insertImagesQuery = 'INSERT INTO `dog_images` (`dog_id`, `url`, `sort_ord`) VALUES ';
       body.imageURLs.forEach((url, index, arr) => {
         insertImagesQuery += `(${insertDogResult.insertId}, '${url}', ${index})` + ((index === arr.length - 1) ? ';' : ',');
       });
-      db.query(insertImagesQuery, (err, insertImagesResult) => {
-        if (err) {
+      db.query(insertImagesQuery, (error, insertImagesResult) => {
+        if (error) {
           output = {
             success: false,
-            data: err
+            data: error
           };
-          res.status(500);
+          res.status(500).json(output);
         } else {
           output = {
             success: true,
             insertDogData: insertDogResult,
             insertImagesData: insertImagesResult
           };
-          res.status(200);
+          res.status(200).json(output);
         }
       });
     }
   });
-  res.json(output);
 }
 
 module.exports = router;

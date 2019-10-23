@@ -19,10 +19,11 @@ export default function UserProfile(props) {
           throw new Error(user.data);
         }
         setUser(user.user);
-      }); return function cleanup() {
+      });
+    return function cleanup() {
       abortController.abort();
     };
-  }, []);
+  }, [id]);
 
   const profPic = {
     width: '100%',

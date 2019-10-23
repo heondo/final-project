@@ -19,9 +19,11 @@ export default class DogList extends React.Component {
   }
 
   componentDidUpdate(nextProps) {
-    this.getDogs();
+    if (this.props.history.location.pathname !== nextProps.history.location.pathname) {
+      this.getDogs();
+    }
   }
-  
+
   componentDidMount() {
     this.getDogs();
   }
