@@ -1,6 +1,6 @@
 import React from 'react';
 import Script from 'react-load-script';
-import { Input, Label, Button } from 'reactstrap';
+import { Input, Label, Button, FormFeedback } from 'reactstrap';
 import PickDateRange from './../forms/pick-date-range';
 
 export default class MakePlaydate extends React.Component {
@@ -13,7 +13,8 @@ export default class MakePlaydate extends React.Component {
     this.state = {
       selectedDays: [new Date()],
       query: '',
-      coordinates: {}
+      coordinates: {},
+      validLocation: null
     };
   }
 
@@ -22,26 +23,28 @@ export default class MakePlaydate extends React.Component {
   }
 
   handleLocationChange(query) {
-    this.setState({ query, coordinates: {} });
+    this.setState({ query, coordinates: {}, validLocation: null });
   }
 
   handleLocationSelect(query, coordinates) {
-    this.setState({ query, coordinates });
+    this.setState({ query, coordinates, validLocation: null });
   }
 
   handleSubmit() {
     if (!this.state.coordinates.lat) {
-      console.log('must select valid address');
-
+      this.setState({ validLocation: false });
+      // console.log('must select valid address');
+    } else if (!this.state.selectedDays) {
+      console.log('must select a date');
     } else {
-      // make a fetch request to the backend to create dog listings?
       const reqBody = Object.assign({}, this.state);
       reqBody.dog_id = this.props.dogID;
       fetch('/api/add-playdates/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reqBody)
-      });
+      }).then(res => res.json())
+        .then(res => res);
     }
   }
 
@@ -49,7 +52,7 @@ export default class MakePlaydate extends React.Component {
     return (
       <>
         <h4 className="mb-1">Make Listings</h4>
-        <PlaydateLocation className="mb-1" handleLocationChange={this.handleLocationChange} handleLocationSelect={this.handleLocationSelect} query={this.state.query}/>
+        <PlaydateLocation className="mb-1" handleLocationChange={this.handleLocationChange} handleLocationSelect={this.handleLocationSelect} query={this.state.query} validLocation={this.state.validLocation}/>
         <PickDateRange handleDates={this.handleDates} selectedDays={this.state.selectedDays}/>
         <Button className="d-block" onClick={this.handleSubmit}>
           Create Playdates
@@ -103,14 +106,26 @@ class PlaydateLocation extends React.Component {
           url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWq6apxh7IJs8njuJgCEJf5QPenKjrCYc&libraries=places"
           onLoad={this.handleScriptLoad} />
         <Label>Location for Playdate</Label>
-        <Input
-          type="text"
-          id="playdateListing"
-          name="playdateListing"
-          placeholder="Location"
-          onChange={this.handleChange}
-          value={this.props.query}
-          required />
+        {(this.props.validLocation === false)
+          ? <Input
+            type="text"
+            id="playdateListing"
+            name="playdateListing"
+            placeholder="Location"
+            onChange={this.handleChange}
+            value={this.props.query}
+            invalid
+            required />
+          : <Input
+            type="text"
+            id="playdateListing"
+            name="playdateListing"
+            placeholder="Location"
+            onChange={this.handleChange}
+            value={this.props.query}
+            required />}
+        <FormFeedback>Valid location is required</FormFeedback>
+
       </div>
     );
   }
