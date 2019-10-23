@@ -7,7 +7,6 @@ export default class DogList extends React.Component {
   constructor(props) {
     super(props);
     this.toggleTab = this.toggleTab.bind(this);
-    this._isMounted = false;
     this.state = {
       dogs: [],
       playdates: [],
@@ -22,49 +21,34 @@ export default class DogList extends React.Component {
   componentDidUpdate(nextProps) {
     this.getDogs();
   }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
+  
   componentDidMount() {
-    this._isMounted = true;
     this.getDogs();
   }
 
   getDogs() {
     const query = qs.parse(location.search);
-    if (this._isMounted) {
-      if (Object.keys(query).includes('lat') && Object.keys(query).includes('lng')) {
-        fetch('/api/get-dogs/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(query)
-        })
-          .then(res => res.json())
-          .then(res => {
-            this.setState({ dogs: res.data });
-          });
-      } else if (Object.keys(query).includes('gender')) {
-        const extractedQueryString = qs.extract(location.search);
-        fetch('/api/get-dogs/?' + extractedQueryString)
-          .then(res => res.json())
-          .then(dogs => {
-            if (!dogs.success) {
-              throw new Error(dogs.data);
-            }
-            this.setState({ dogs: dogs.data });
-          });
-      } else {
-        fetch('/api/get-dogs/')
-          .then(res => res.json())
-          .then(dogs => {
-            if (!dogs.success) {
-              throw new Error(dogs.data);
-            }
-            this.setState({ dogs: dogs.data });
-          });
-      }
+
+    if (Object.keys(query).length) {
+      const extractedQueryString = qs.extract(location.search);
+      fetch('/api/get-dogs/?' + extractedQueryString)
+        .then(res => res.json())
+        .then(dogs => {
+          if (!dogs.success) {
+            throw new Error(dogs.data);
+          }
+          this.setState({ dogs: dogs.data });
+        });
+    } else {
+      fetch('/api/get-dogs/')
+        .then(res => res.json())
+        .then(dogs => {
+          if (!dogs.success) {
+            throw new Error(dogs.data);
+          }
+          this.setState({ dogs: dogs.data });
+        });
+
     }
   }
 
@@ -103,7 +87,6 @@ export default class DogList extends React.Component {
             <h4>Playdate Listings</h4>
           </TabPane>
         </TabContent>
-
       </div>
     );
   }

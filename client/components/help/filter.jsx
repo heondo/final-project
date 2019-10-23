@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import qs from 'query-string';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, CustomInput, Button } from 'reactstrap';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
@@ -12,9 +13,10 @@ class Filter extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.openInputDropdown = this.openInputDropdown.bind(this);
     this.closeInputDropdown = this.closeInputDropdown.bind(this);
+    this.resetFilterOptions = this.resetFilterOptions.bind(this);
     this.state = {
       dropdownOpen: false,
-      genderFilter: '%',
+      genderFilter: 'A',
       weightRangeFilter: {
         min: 0,
         max: 125
@@ -51,19 +53,54 @@ class Filter extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.closeInputDropdown();
+    const newQueryString = this.buildQueryString();
+    this.props.history.push(newQueryString);
+  }
+  buildQueryString() {
+    let newQueryString = '/search?';
+    const queryParams = qs.parse(location.search);
     const {
       genderFilter: gender,
       weightRangeFilter: weight,
       ageRangeFilter: age,
       energyLevelFilter: energy
     } = this.state;
-    this.props.history.push(`/filter?gender=${gender}&wmin=${weight.min}&wmax=${weight.max}&amin=${age.min}&amax=${age.max}&low=${energy.lowChecked ? 1 : 0}&med=${energy.mediumChecked ? 1 : 0}&high=${energy.highChecked ? 1 : 0}`);
+
+    queryParams.gender = gender;
+    queryParams.wmin = weight.min;
+    queryParams.wmax = weight.max;
+    queryParams.amin = age.min;
+    queryParams.amax = age.max;
+    queryParams.low = energy.lowChecked ? 1 : 0;
+    queryParams.med = energy.mediumChecked ? 1 : 0;
+    queryParams.high = energy.highChecked ? 1 : 0;
+
+    newQueryString += qs.stringify(queryParams);
+    return newQueryString;
   }
   openInputDropdown() {
     this.setState({ dropdownOpen: true });
   }
   closeInputDropdown() {
     this.setState({ dropdownOpen: false });
+  }
+  resetFilterOptions() {
+    this.setState({
+      genderFilter: 'A',
+      weightRangeFilter: {
+        min: 0,
+        max: 250
+      },
+      ageRangeFilter: {
+        min: 0,
+        max: 25
+      },
+      energyLevelFilter: {
+        lowChecked: true,
+        mediumChecked: true,
+        highChecked: true
+      }
+    });
   }
   render() {
     return (
@@ -72,7 +109,8 @@ class Filter extends React.Component {
           Filter
         </DropdownToggle>
         <DropdownMenu className="px-5 py-4" style={{ width: 'max-content' }}>
-          <h3>Filter Dogs</h3>
+          <span className="h3 ml-n3">Filter Dogs</span>
+          <Button color="link" className="p-0" style={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }} onClick={this.resetFilterOptions}>Reset Filters</Button>
 
           <DropdownItem divider />
 
@@ -102,8 +140,8 @@ class Filter extends React.Component {
                   type="radio"
                   name="genderFilter"
                   id="allRadioOption"
-                  value="%"
-                  checked={this.state.genderFilter === '%'} />
+                  value="A"
+                  checked={this.state.genderFilter === 'A'} />
                 <Label check htmlFor="otherRadioOption">All</Label>
               </FormGroup>
             </FormGroup>

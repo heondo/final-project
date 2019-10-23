@@ -1,4 +1,5 @@
 import React from 'react';
+import qs from 'query-string';
 import { withRouter } from 'react-router-dom';
 import Script from 'react-load-script';
 
@@ -53,7 +54,20 @@ class SearchDogsBar extends React.Component {
         }
       );
     }
-    this.props.history.push(`/search?lat=${coordinates.lat}&lng=${coordinates.lng}`);
+    const newQueryString = this.buildQueryString();
+    this.props.history.push(newQueryString);
+  }
+
+  buildQueryString() {
+    let newQueryString = '/search?';
+    const queryParams = qs.parse(location.search);
+    const { coordinates } = this.state;
+
+    queryParams.lat = coordinates.lat;
+    queryParams.lng = coordinates.lng;
+
+    newQueryString += qs.stringify(queryParams);
+    return newQueryString;
   }
 
   render() {
@@ -63,7 +77,7 @@ class SearchDogsBar extends React.Component {
           url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWq6apxh7IJs8njuJgCEJf5QPenKjrCYc&libraries=places"
           onLoad={this.handleScriptLoad}
         />
-        <input onChange={this.handleChange} id="autocomplete" placeholder="Search Bar Here" value={this.state.query} className="form-control"
+        <input onChange={this.handleChange} id="autocomplete" placeholder="Search Dogs by Location" value={this.state.query} className="form-control"
           style={{
             margin: '0 auto'
           }}
