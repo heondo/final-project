@@ -1,34 +1,34 @@
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
 import React from 'react';
-import { DateRangePicker } from 'react-date-range';
+import DayPicker, { DateUtils } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
-class PickDateRange extends React.Component {
+export default class PickDateRange extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSelect = this.handleSelect.bind(this);
+    this.handleDayClick = this.handleDayClick.bind(this);
   }
-  handleSelect(ranges) {
-    const { startDate, endDate } = ranges.selection;
-    this.props.handleDates(startDate, endDate);
+
+  handleDayClick(day, { selected }) {
+    const { selectedDays } = this.props;
+    if (selected) {
+      const selectedIndex = selectedDays.findIndex(selectedDay =>
+        DateUtils.isSameDay(selectedDay, day)
+      );
+      selectedDays.splice(selectedIndex, 1);
+    } else {
+      selectedDays.push(day);
+    }
+    this.props.handleDates(selectedDays);
   }
 
   render() {
-    const { startDate, endDate } = this.props;
-    const selectionRange = {
-      startDate,
-      endDate,
-      key: 'selection'
-    };
     return (
-      <DateRangePicker
-        staticRanges={[]}
-        inputRanges={[]}
-        ranges={[selectionRange]}
-        onChange={this.handleSelect}
-      />
+      <div>
+        <DayPicker
+          selectedDays={this.props.selectedDays}
+          onDayClick={this.handleDayClick}
+        />
+      </div>
     );
   }
 }
-
-export default PickDateRange;
