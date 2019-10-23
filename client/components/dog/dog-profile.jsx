@@ -133,7 +133,7 @@ export default function DogProfile(props) {
                   Listings
                 </TabPane>
                 <TabPane tabId="2">
-                  <MakePlaydate />
+                  <MakePlaydate userID={dog.user_id} dogID={dog.id}/>
                 </TabPane>
               </TabContent>
               </>

@@ -13,7 +13,6 @@ import UserProfile from './user/user-profile';
 import Error404Page from './help/error-404-page';
 import NewUserForm from './forms/new-user-form';
 import Login from './forms/login';
-import MakePlaydate from './forms/make-playdate';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,18 +33,12 @@ export default class App extends React.Component {
     this.setState({ isLoggedIn: false, userID: null });
   }
 
-  // change the view to....nearby-dogs
-  // nearby-dogs: {}
-  // dog-profile: {id: #}
-  // user-profile: {id: #}
   render() {
     const { isLoggedIn, userID } = this.state;
     return (
       <>
         <Router >
           <Header isLoggedIn={isLoggedIn} login={this.login} logout={this.logout} userID={userID}/>
-          <MakePlaydate />
-
           <Switch>
             <Route path="/dog/:id" render={props => <DogProfile {...props} userID={userID}/> }>
             </Route>
