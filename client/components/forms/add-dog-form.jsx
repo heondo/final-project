@@ -98,7 +98,7 @@ export default class AddDogForm extends React.Component {
     }
     // TODO: cancel button should route back to user's page
     return (
-      <Container>
+      <Container fluid>
         <hr />
         <Row className="justify-content-center">
           <div className="form-container w-50">
@@ -152,7 +152,7 @@ export default class AddDogForm extends React.Component {
               <FormGroup tag="fieldset" onChange={this.handleInputChange}>
                 <p className="mb-1">Gender</p>
                 <FormGroup check inline>
-                  <CustomInput
+                  <Input
                     type="radio"
                     name="genderInput"
                     id="femaleRadioOption"
@@ -161,7 +161,7 @@ export default class AddDogForm extends React.Component {
                   <Label check htmlFor="femaleRadioOption">Female</Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <CustomInput
+                  <Input
                     type="radio"
                     name="genderInput"
                     id="maleRadioOption"
@@ -170,7 +170,7 @@ export default class AddDogForm extends React.Component {
                   <Label check htmlFor="maleRadioOption">Male</Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <CustomInput
+                  <Input
                     type="radio"
                     name="genderInput"
                     id="otherRadioOption"
