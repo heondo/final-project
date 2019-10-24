@@ -21,7 +21,7 @@ export default class DogList extends React.Component {
   componentDidUpdate(nextProps) {
     this.getDogs();
   }
-  
+
   componentDidMount() {
     this.getDogs();
   }
