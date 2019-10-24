@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 22, 2019 at 10:05 PM
+-- Generation Time: Oct 24, 2019 at 11:14 AM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -389,7 +389,12 @@ INSERT INTO `breeds` (`id`, `name`) VALUES
 (354, 'HAROLD'),
 (355, '4'),
 (356, '23623'),
-(357, 'FASDFSDAF');
+(357, 'FASDFSDAF'),
+(358, 'MALTI-POO'),
+(359, 'MALTI-POO'),
+(360, 'MALTI-POO'),
+(361, 'MALTI-POO'),
+(362, 'MALTI-POO');
 
 -- --------------------------------------------------------
 
@@ -426,7 +431,21 @@ INSERT INTO `dogs` (`id`, `name`, `num_dates`, `weight`, `bio`, `user_id`, `ig_u
 (21, 'heondo', 0, 2, 'fgsdgfdgfddsdgdfgdf', 1, 'http://heondo.com', '1570489479', 'M', 1, 356, 0),
 (22, 'd', 0, 1, 'dafasdfsdafasdfsd', 1, 'http://heondo.com', '1570407201', 'NA', 1, 357, 1),
 (23, 'heondo', 0, 12, 'fdffffdgfgdfgddgf', 1, 'http://heondo.com', '1570395342', 'F', 1, 2, 0),
-(24, 'heondo', 0, 2, 'cvgnbcvbvbvbvcb', 1, 'http://heondo.com', '1570591535', 'F', 1, 1, 1);
+(24, 'heondo', 0, 2, 'cvgnbcvbvbvbvcb', 1, 'http://heondo.com', '1570591535', 'F', 1, 1, 1),
+(25, 'newest dog', 0, 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'F', 1, 29, 0),
+(26, 'newest dog', 0, 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'M', 1, 29, 0),
+(27, 'newest dog', 0, 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'M', 1, 29, 0),
+(28, 'newest dog', 0, 123, 'dfdsfsdfsdfsdsdfsdfsdf', 23, 'http://link.com', '1570564807', 'F', 1, 4, 0),
+(29, 'junior', 0, 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
+(30, 'junior', 0, 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
+(31, 'junior', 0, 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
+(32, 'junior', 0, 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
+(33, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 358, 0),
+(34, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 359, 0),
+(35, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 360, 0),
+(36, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 361, 0),
+(37, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 362, 0),
+(38, 'newest dog 2355', 0, 12, 'erefafsdfsdfasdfasdfasdf', 24, 'http://link.com', '1571348738', 'F', 1, 21, 0);
 
 -- --------------------------------------------------------
 
@@ -460,7 +479,33 @@ INSERT INTO `dog_images` (`id`, `dog_id`, `url`, `sort_ord`) VALUES
 (22, 22, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
 (23, 23, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/ios-13-stock-wallpaper-3840x2160_949874-mm-90.jpg', 0),
 (24, 23, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 1),
-(25, 24, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0);
+(25, 24, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
+(26, 25, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
+(27, 26, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
+(28, 27, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
+(29, 28, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
+(30, 28, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/GvojAhH.png', 1),
+(31, 28, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 2),
+(32, 29, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
+(33, 30, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
+(34, 31, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
+(35, 32, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
+(36, 33, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
+(37, 33, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
+(38, 33, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
+(39, 34, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
+(40, 34, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
+(41, 34, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
+(42, 35, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
+(43, 35, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
+(44, 35, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
+(45, 36, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
+(46, 36, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
+(47, 36, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
+(48, 37, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
+(49, 37, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
+(50, 37, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
+(51, 38, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -484,15 +529,31 @@ CREATE TABLE `playdates` (
 --
 
 INSERT INTO `playdates` (`id`, `dog_id`, `date`, `lat`, `lng`, `display_address`, `confirmed`, `dog_2_id`) VALUES
-(1, 12, '1571804024', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
-(2, 12, '1571804024', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
-(3, 12, '1571804032', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
-(4, 12, '1571804032', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
-(5, 12, '1571804055', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
-(6, 12, '1571804055', 33.4936391, -117.14836479999997, 'Temecula, CA, USA', 0, NULL),
-(7, 5, '1571804151', 33.7036837, -117.72236470000001, '49 Gray Dove, Irvine, CA 92618, USA', 0, NULL),
-(8, 5, '1571804151', 33.7036837, -117.72236470000001, '49 Gray Dove, Irvine, CA 92618, USA', 0, NULL),
-(9, 5, '1571804151', 33.7036837, -117.72236470000001, '49 Gray Dove, Irvine, CA 92618, USA', 0, NULL);
+(13, 38, '1571870211', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(14, 38, '1571870214', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(15, 38, '1571870253', 33.6790596, -117.74441059999998, '5th St, Irvine, CA 92618, USA', 1, 5),
+(16, 38, '1571872494', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(17, 38, '1571872494', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(18, 38, '1571872561', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(19, 38, '1570042800', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 1, 5),
+(20, 5, '1571870253', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 1, 38),
+(21, 5, '1572548400', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
+(22, 11, '1571870253', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 1, 7),
+(23, 11, '1572548400', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request`
+--
+
+CREATE TABLE `request` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `playdate_id` int(10) UNSIGNED NOT NULL,
+  `dog_id` int(10) UNSIGNED NOT NULL,
+  `accepted` tinyint(1) DEFAULT NULL,
+  `created_time` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -524,7 +585,7 @@ INSERT INTO `user` (`id`, `email`, `password`, `first`, `last`, `lat`, `lng`, `d
 (4, 'harrisonford@gmail.com', '1', 'Harrison', 'Ford', 34.0522342, -118.2436849, 'Los Angeles, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
 (5, 'test', '1', 'user', 'name', 33.7174708, -117.83114280000001, 'Orange County, CA', 'my biooooooooooo', 'https://image.shutterstock.com/image-vector/person-icon-260nw-282598823.jpg'),
 (6, 'fake@gmail.com', '$2b$10$SBGBVUXM98gFRx1OVHVMveC.DEUeko1Wq3gBVDdx4C3bmL2na6hc6', 'heondo', 'kim', 35.4675602, -97.51642759999999, 'Oklahoma City, OK, USA', 'dddddddddd', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg'),
-(23, 'hi@hi.com', '$2b$10$sABOQ2.zuYz6iTBqJX6WN.TrO/UmLKwzeBH1vGS/HloNQeVZ1.fai', 'hi', 'what', 34.1231551, 123.1251614, 'irvine california babeeeeee', 'hi', 's43.com'),
+(23, 'hi@hi.com', '$2b$10$sABOQ2.zuYz6iTBqJX6WN.TrO/UmLKwzeBH1vGS/HloNQeVZ1.fai', 'hi', 'what', 34.1231551, 123.1251614, 'irvine california babeeeeee', 'hi', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg'),
 (24, 'fakedfadsdccc@gmail.com', '$2a$10$KS7XP.o02gdFeMnb54mk0OxGsFoQAq1mIZ/.gLlE/R/OYkHE4rE76', 'er', 'guy', 33.4672256, -117.69810139999998, 'Dana Point, CA, USA', 'aefsdfsdfsdafsfsdf', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg');
 
 --
@@ -558,6 +619,12 @@ ALTER TABLE `playdates`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `request`
+--
+ALTER TABLE `request`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -572,22 +639,27 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `breeds`
 --
 ALTER TABLE `breeds`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=358;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=363;
 --
 -- AUTO_INCREMENT for table `dogs`
 --
 ALTER TABLE `dogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `dog_images`
 --
 ALTER TABLE `dog_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `playdates`
 --
 ALTER TABLE `playdates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT for table `request`
+--
+ALTER TABLE `request`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
