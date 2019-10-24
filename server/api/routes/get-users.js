@@ -28,7 +28,7 @@ router.get('/:id', (req, res, next) => {
         };
         res.status(500).json(output);
       } else {
-        let query = "SELECT u.*, GROUP_CONCAT(d.dog) as dogs FROM `user` as u LEFT JOIN ( SELECT d.`user_id`, JSON_ARRAYAGG(JSON_OBJECT('id', d.id, 'name', d.name, 'weight', d.weight, 'bio', d.bio, 'num_dates', d.num_dates, 'birth', d.birth, 'sex', d.sex, 'breed', b.name, 'energy_lvl', d.energy_lvl, 'image', di.url)) AS dog FROM`dogs` AS d LEFT JOIN(SELECT * FROM`dog_images` WHERE`sort_ord` = 0) as di ON d.`id` = di.`dog_id` JOIN`breeds` as b ON b.`id` = d.`breed` WHERE d.`user_id`=?) as d ON u.id = d.user_id WHERE u.id = ? GROUP BY u.id";
+        let query = "SELECT u.*, GROUP_CONCAT(d.dog) AS dogs FROM `user` AS u LEFT JOIN ( SELECT d.`user_id`, JSON_ARRAYAGG( JSON_OBJECT( 'id', d.id, 'name', d.name, 'weight', d.weight, 'bio', d.bio, 'birth', d.birth, 'sex', d.sex, 'breed', b.name, 'energy_lvl', d.energy_lvl, 'image', di.url, 'playdates', pd.`listingsJSON`, 'num_dates', (SELECT COUNT(*) FROM playdates p WHERE (p.dog_id = d.`id` OR p.dog_2_id=d.`id`) AND p.date < UNIX_TIMESTAMP() AND p.confirmed = 1))) AS dog FROM `dogs` AS d LEFT JOIN ( SELECT * FROM `dog_images` WHERE `sort_ord` = 0 ) AS di ON d.`id` = di.`dog_id` JOIN `breeds` AS b ON b.`id` = d.`breed` LEFT JOIN ( SELECT p.`dog_id` AS `play_dog_id`, JSON_ARRAYAGG( JSON_OBJECT( 'id', p.`id`,'dog_id', p.`dog_id`, 'date', p.`date`, 'lat', p.`lat`, 'lng', p.`lng`, 'display_address', p.`display_address`, 'confirmed', p.`confirmed` ) ) AS listingsJSON FROM `playdates` AS p GROUP BY p.`dog_id` ) AS pd ON pd.`play_dog_id` = d.`id` WHERE d.`user_id` = ? ) AS d ON u.id = d.user_id WHERE u.id = ? GROUP BY u.id";
         db.query(query, [id, id], (err, data) => {
           if (err) {
             output = {
@@ -43,14 +43,14 @@ router.get('/:id', (req, res, next) => {
             });
           } else {
             // data[0].location = JSON.parse(data[0].location);
-            data[0].dogs = (data[0].dogs) ? JSON.parse(data[0].dogs) : [];
             data[0].num_dates = 0;
+            data[0].dogs = (data[0].dogs) ? JSON.parse(data[0].dogs) : [];
             data[0].dogs.forEach(dog => {
               dog.age = calculateAge(dog.birth);
-              data[0].num_dates += dog.num_dates;
               if (!dog.image) {
                 dog.image = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
               }
+              data[0].num_dates += dog.num_dates;
             });
             res.status(200).json({
               success: true,

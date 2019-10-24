@@ -13,12 +13,12 @@ router.post('/', (req, res) => {
   selectedDays.forEach((date, index) => {
     sqlquery += (index === selectedDays.length - 1) ? '(?, ?, ?, ?, ?, 0, NULL)'
       : '(?, ?, ?, ?, ?, 0, NULL), ';
-    const unixDate = Math.round((new Date()).getTime() / 1000);
+    const unixDate = Math.round((new Date(date)).getTime() / 1000);
     insertValues.push(dog_id, unixDate, lat, lng, query);
   });
   db.query(sqlquery, insertValues, (err, data) => {
     if (err) {
-      res.status(500).json({ error: err });
+      res.status(500).json({ error: JSON.stringify(err) });
     } else {
       res.status(200).json({ success: true, data: { insertID: data.insertId } });
     }
