@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col, Media, Button } from 'reactstrap';
-// import { Link } from 'react-router-dom';
 import { calculateWeightClass, convertEnergyLevel, convertDate, formatBreedName } from '../help/functions';
 
 export default function ListingPanel(props) {
@@ -12,47 +12,49 @@ export default function ListingPanel(props) {
   return (
     <div>
       <Media>
-        {/* <Link to={`/dog/${dogInfo.id}`}> */}
 
         <Media left>
-          <Media object src={dogInfo.image} alt={dogInfo.name} style={{ 'max-width': '12rem' }} />
+          <Media object src={dogInfo.images[0]} alt={dogInfo.name} style={{ 'max-width': '12rem' }} />
         </Media>
 
         <Media body>
-          <Container>
+          <Container fluid>
             <Row>
 
-              <Col xs='auto' className="ml-3">
+              <Col xs='4' className="pl-4">
                 <h3>{dogInfo.name}</h3>
                 <h6 className="text-muted">{breed + ' - ' + weightClass}</h6>
                 <p className="mb-1">Gender: {dogInfo.sex}, Age: {dogInfo.age}, Energy Level: {energyLevel}</p>
                 <p>Playdates Attended: {dogInfo.num_dates}</p>
               </Col>
 
-              <Col xs={{ size: 'auto', offset: 1 }}>
+              <Col xs='6' className="px-2">
                 <h4>Upcoming Playdates</h4>
                 {playdates
                   .filter((playdate, index) => index <= 2)
                   .map(playdate => {
                     const displayDate = convertDate(playdate.date);
-                    return <p key={playdate.id} className="mb-1">{displayDate + ' - ' + playdate.display_address}</p>;
+                    if (playdate.confirmed) {
+                      return <p key={playdate.id} className="mb-1"><s>{displayDate + ' - ' + playdate.display_address}</s></p>;
+                    } else {
+                      return <p key={playdate.id} className="mb-1">{displayDate + ' - ' + playdate.display_address}</p>;
+                    }
                   })
                 }
               </Col>
 
-              <Col xs={{ size: 'auto', offset: 1 }} className="d-flex justify-content-center align-items-center">
-                <Button color="primary" outline>View Profile</Button>
+              <Col xs='2' className="d-flex justify-content-end align-items-center">
+                <Link to={`/dog/${dogInfo.id}`}>
+                  <Button color="primary" outline>View Profile</Button>
+                </Link>
               </Col>
 
             </Row>
           </Container>
         </Media>
 
-        {/* </Link> */}
       </Media>
       <hr />
     </div>
   );
 }
-
-// TODO: Fix indent in render

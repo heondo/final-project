@@ -110,24 +110,24 @@ export default function DogProfile(props) {
           <div className="col dogs-listings">
             <h4>{dog.name}s Listings</h4>
             {(parseInt(userID) === parseInt(dog.user_id) ? <>
-               <Nav tabs>
-                 <NavItem>
-                   <NavLink
-                     className={(activeTab === '1') ? 'active' : ''}
-                     onClick={() => { toggleTab('1'); }}
-                   >
+              <Nav tabs>
+                <NavItem>
+                  <NavLink
+                    className={(activeTab === '1') ? 'active' : ''}
+                    onClick={() => { toggleTab('1'); }}
+                  >
                   Listings
-                   </NavLink>
-                 </NavItem>
-                 <NavItem>
-                   <NavLink
-                     className={(activeTab === '2') ? 'active' : ''}
-                     onClick={() => { toggleTab('2'); }}
-                   >
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={(activeTab === '2') ? 'active' : ''}
+                    onClick={() => { toggleTab('2'); }}
+                  >
                   Make Playdate
-                   </NavLink>
-                 </NavItem>
-               </Nav>
+                  </NavLink>
+                </NavItem>
+              </Nav>
               <TabContent activeTab={activeTab}>
                 <TabPane tabId="1">
                   Listings
