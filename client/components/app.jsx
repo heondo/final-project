@@ -21,7 +21,7 @@ export default class App extends React.Component {
     this.logout = this.logout.bind(this);
     this.state = {
       isLoggedIn: true,
-      userID: 24
+      userID: 1
     };
   }
 

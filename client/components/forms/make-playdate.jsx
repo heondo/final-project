@@ -44,7 +44,13 @@ export default class MakePlaydate extends React.Component {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reqBody)
       }).then(res => res.json())
-        .then(res => res);
+        .then(res => {
+          if (res.error) {
+            throw new Error(res.error);
+          }
+          // DO SOMETHING WHEN THE PLAYDATES MADE
+        })
+        .catch(error => console.error(error));
     }
   }
 
