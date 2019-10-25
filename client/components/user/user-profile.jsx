@@ -57,6 +57,8 @@ export default function UserProfile(props) {
       .then(res => {
         if (!res.success) {
           throw new Error(res.message);
+        } else if (res.error) {
+          throw new Error(res.error.message);
         } else {
           const copyOfRequests = [...user.requests];
           copyOfRequests.forEach(req => {
