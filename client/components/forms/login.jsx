@@ -38,8 +38,8 @@ class Login extends React.Component {
         } else if (res.message === 'Password did not match') {
           this.setState({ passWordValid: false });
         } else {
-          const { user } = res;
-          this.props.login(user);
+          const { user, dogs } = res;
+          this.props.login(user, dogs);
           this.props.history.push(`/user/${user}/`);
         }
       }).catch(err => console.error(err));

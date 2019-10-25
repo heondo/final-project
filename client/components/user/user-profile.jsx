@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import UserDog from './user-dog';
+import UserRequests from './user-requests';
 
 export default function UserProfile(props) {
   const params = useParams();
@@ -38,8 +39,8 @@ export default function UserProfile(props) {
     <div className="container-fluid px-5">
       <hr />
       <div className="row">
-        <div className="col">
-          <div className="user-profile-card w-75 mx-auto d-flex flex-column oc-bg-grey p-4">
+        <div className="col-xs-12 col-lg-6">
+          <div className="user-profile-card mx-auto d-flex flex-column oc-bg-grey p-4">
             <div className="img-and-info row">
               <div className="col-5 prof-pic" style={profPic}>Prof Pic</div>
               <div className="col-6 ml-2">
@@ -53,13 +54,26 @@ export default function UserProfile(props) {
                 </ul>
               </div>
             </div>
-            <div className="bio mt-2">
+            <div className="bio my-2">
               <h5>Bio</h5>
               {user.bio}
             </div>
+            {(userID === parseInt(id))
+              ? <div className="open-requests">
+                <h4>Open Requests</h4>
+                <div className="requests-list w-100">
+                  {(user.requests)
+                    ? user.requests.map(req => {
+                      return <UserRequests key={req.request_id} request={req}/>;
+                    })
+                    : <h5>You have no open requests</h5>}
+                </div>
+              </div>
+              : undefined
+            }
           </div>
         </div>
-        <div className="col">
+        <div className="col-xs-12 col-lg-6">
           <div className="user-dogs-header w-75 mr-5 mb-3">
             {(userID === parseInt(id)) ? <h4>Your Dogs <Link to="/add-dog" className="float-right">+ New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
           </div>

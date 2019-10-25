@@ -18,8 +18,8 @@ export default class DogList extends React.Component {
     this.setState({ activeTab: tab });
   }
 
-  componentDidUpdate(nextProps) {
-    if (this.props.history.location.pathname !== nextProps.history.location.pathname) {
+  componentDidUpdate(prevProps) {
+    if (this.props.location.search !== prevProps.location.search) {
       this.getDogs();
     }
   }
@@ -40,7 +40,8 @@ export default class DogList extends React.Component {
             throw new Error(dogs.data);
           }
           this.setState({ dogs: dogs.data });
-        });
+        })
+        .catch(error => console.error(error));
     } else {
       fetch('/api/get-dogs/')
         .then(res => res.json())
@@ -49,7 +50,8 @@ export default class DogList extends React.Component {
             throw new Error(dogs.data);
           }
           this.setState({ dogs: dogs.data });
-        });
+        })
+        .catch(error => console.error(error));
 
     }
   }
