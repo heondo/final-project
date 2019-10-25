@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 24, 2019 at 11:16 AM
+-- Generation Time: Oct 24, 2019 at 07:05 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -405,7 +405,6 @@ INSERT INTO `breeds` (`id`, `name`) VALUES
 CREATE TABLE `dogs` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `num_dates` smallint(5) UNSIGNED NOT NULL,
   `weight` tinyint(3) UNSIGNED NOT NULL,
   `bio` text NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -421,31 +420,31 @@ CREATE TABLE `dogs` (
 -- Dumping data for table `dogs`
 --
 
-INSERT INTO `dogs` (`id`, `name`, `num_dates`, `weight`, `bio`, `user_id`, `ig_url`, `birth`, `sex`, `fixed`, `breed`, `energy_lvl`) VALUES
-(5, 'Aiko', 15, 15, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 1, '', '1505026800', 'F', 1, 326, 1),
-(6, 'Jasmine', 3, 7, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 2, '', '1489132800', 'NA', 1, 25, 0),
-(7, 'Westington', 6, 70, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 3, '', '1470812400', 'M', 1, 349, 2),
-(8, 'Bow', 0, 35, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 4, '', '1392451200', 'M', 0, 13, 0),
-(10, 'Tudor', 5, 13, 'This is a bio for the dog that has two dogs. And this is in fact the second dog believe it or not', 2, 'instagram.com', '1571263155', 'M', 1, 251, 2),
-(11, 'Steve', 0, 55, 'This time for sure will work', 1, 'https://gramagram.com/', '946767408', 'M', 1, 42, 0),
-(21, 'heondo', 0, 2, 'fgsdgfdgfddsdgdfgdf', 1, 'http://heondo.com', '1570489479', 'M', 1, 356, 0),
-(22, 'd', 0, 1, 'dafasdfsdafasdfsd', 1, 'http://heondo.com', '1570407201', 'NA', 1, 357, 1),
-(23, 'heondo', 0, 12, 'fdffffdgfgdfgddgf', 1, 'http://heondo.com', '1570395342', 'F', 1, 2, 0),
-(24, 'heondo', 0, 2, 'cvgnbcvbvbvbvcb', 1, 'http://heondo.com', '1570591535', 'F', 1, 1, 1),
-(25, 'newest dog', 0, 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'F', 1, 29, 0),
-(26, 'newest dog', 0, 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'M', 1, 29, 0),
-(27, 'newest dog', 0, 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'M', 1, 29, 0),
-(28, 'newest dog', 0, 123, 'dfdsfsdfsdfsdsdfsdfsdf', 23, 'http://link.com', '1570564807', 'F', 1, 4, 0),
-(29, 'junior', 0, 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
-(30, 'junior', 0, 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
-(31, 'junior', 0, 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
-(32, 'junior', 0, 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
-(33, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 358, 0),
-(34, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 359, 0),
-(35, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 360, 0),
-(36, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 361, 0),
-(37, 'junior', 0, 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 362, 0),
-(38, 'newest dog 2355', 0, 12, 'erefafsdfsdfasdfasdfasdf', 24, 'http://link.com', '1571348738', 'F', 1, 21, 0);
+INSERT INTO `dogs` (`id`, `name`, `weight`, `bio`, `user_id`, `ig_url`, `birth`, `sex`, `fixed`, `breed`, `energy_lvl`) VALUES
+(5, 'Aiko', 15, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 1, '', '1505026800', 'F', 1, 326, 1),
+(6, 'Jasmine', 7, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 2, '', '1489132800', 'NA', 1, 25, 0),
+(7, 'Westington', 70, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 3, '', '1470812400', 'M', 1, 349, 2),
+(8, 'Bow', 35, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 4, '', '1392451200', 'M', 0, 13, 0),
+(10, 'Tudor', 13, 'This is a bio for the dog that has two dogs. And this is in fact the second dog believe it or not', 2, 'instagram.com', '1571263155', 'M', 1, 251, 2),
+(11, 'Steve', 55, 'This time for sure will work', 1, 'https://gramagram.com/', '946767408', 'M', 1, 42, 0),
+(21, 'heondo', 2, 'fgsdgfdgfddsdgdfgdf', 1, 'http://heondo.com', '1570489479', 'M', 1, 356, 0),
+(22, 'd', 1, 'dafasdfsdafasdfsd', 1, 'http://heondo.com', '1570407201', 'NA', 1, 357, 1),
+(23, 'heondo', 12, 'fdffffdgfgdfgddgf', 1, 'http://heondo.com', '1570395342', 'F', 1, 2, 0),
+(24, 'heondo', 2, 'cvgnbcvbvbvbvcb', 1, 'http://heondo.com', '1570591535', 'F', 1, 1, 1),
+(25, 'newest dog', 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'F', 1, 29, 0),
+(26, 'newest dog', 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'M', 1, 29, 0),
+(27, 'newest dog', 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'M', 1, 29, 0),
+(28, 'newest dog', 123, 'dfdsfsdfsdfsdsdfsdfsdf', 23, 'http://link.com', '1570564807', 'F', 1, 4, 0),
+(29, 'junior', 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
+(30, 'junior', 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
+(31, 'junior', 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
+(32, 'junior', 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
+(33, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 358, 0),
+(34, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 359, 0),
+(35, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 360, 0),
+(36, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 361, 0),
+(37, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 362, 0),
+(38, 'newest dog 2355', 12, 'erefafsdfsdfasdfasdfasdf', 24, 'http://link.com', '1571348738', 'F', 1, 21, 0);
 
 -- --------------------------------------------------------
 
@@ -517,6 +516,7 @@ CREATE TABLE `playdates` (
   `id` int(10) UNSIGNED NOT NULL,
   `dog_id` int(10) UNSIGNED NOT NULL,
   `date` varchar(30) NOT NULL,
+  `create_date` varchar(32) NOT NULL,
   `lat` double NOT NULL,
   `lng` double NOT NULL,
   `display_address` varchar(255) NOT NULL,
@@ -528,18 +528,22 @@ CREATE TABLE `playdates` (
 -- Dumping data for table `playdates`
 --
 
-INSERT INTO `playdates` (`id`, `dog_id`, `date`, `lat`, `lng`, `display_address`, `confirmed`, `dog_2_id`) VALUES
-(13, 38, '1571870211', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(14, 38, '1571870214', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(15, 38, '1571870253', 33.6790596, -117.74441059999998, '5th St, Irvine, CA 92618, USA', 1, 5),
-(16, 38, '1571872494', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(17, 38, '1571872494', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(18, 38, '1571872561', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(19, 38, '1570042800', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 1, 5),
-(20, 5, '1571870253', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 1, 38),
-(21, 5, '1572548400', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
-(22, 11, '1571870253', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 1, 7),
-(23, 11, '1572548400', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 0, NULL);
+INSERT INTO `playdates` (`id`, `dog_id`, `date`, `create_date`, `lat`, `lng`, `display_address`, `confirmed`, `dog_2_id`) VALUES
+(13, 38, '1571870211', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(14, 38, '1571870214', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(15, 38, '1571870253', '', 33.6790596, -117.74441059999998, '5th St, Irvine, CA 92618, USA', 1, 5),
+(16, 38, '1571872494', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(17, 38, '1571872494', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(18, 38, '1571872561', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(19, 38, '1570042800', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 1, 5),
+(20, 5, '1571870253', '', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 1, 38),
+(21, 5, '1572548400', '', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
+(22, 11, '1571870253', '', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 1, 7),
+(23, 11, '1572548400', '', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 0, NULL),
+(24, 28, '1574452800', '1571943176', 33.6753521, -117.7935066, '5000 Barranca Pkwy, Irvine, CA 92604, USA', 0, NULL),
+(25, 28, '1574539200', '1571943176', 33.6753521, -117.7935066, '5000 Barranca Pkwy, Irvine, CA 92604, USA', 0, NULL),
+(26, 28, '1572116400', '1571960736', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(27, 28, '1572548400', '1571960736', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -554,6 +558,16 @@ CREATE TABLE `request` (
   `accepted` tinyint(1) DEFAULT NULL,
   `created_time` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`id`, `playdate_id`, `dog_id`, `accepted`, `created_time`) VALUES
+(1, 23, 8, 0, '1571944335'),
+(2, 25, 10, 0, '1571945572'),
+(3, 25, 5, 0, '1571945827'),
+(4, 25, 11, 0, '1571945832');
 
 -- --------------------------------------------------------
 
@@ -603,7 +617,8 @@ ALTER TABLE `breeds`
 --
 ALTER TABLE `dogs`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `dogs_fk0` (`user_id`);
+  ADD KEY `dogs_fk0` (`user_id`),
+  ADD KEY `breed` (`breed`);
 
 --
 -- Indexes for table `dog_images`
@@ -622,7 +637,8 @@ ALTER TABLE `playdates`
 -- Indexes for table `request`
 --
 ALTER TABLE `request`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `playdate_id` (`playdate_id`);
 
 --
 -- Indexes for table `user`
@@ -654,12 +670,12 @@ ALTER TABLE `dog_images`
 -- AUTO_INCREMENT for table `playdates`
 --
 ALTER TABLE `playdates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -673,13 +689,20 @@ ALTER TABLE `user`
 -- Constraints for table `dogs`
 --
 ALTER TABLE `dogs`
-  ADD CONSTRAINT `dogs_fk0` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `dogs_fk0` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `dogs_ibfk_1` FOREIGN KEY (`breed`) REFERENCES `breeds` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `dog_images`
 --
 ALTER TABLE `dog_images`
   ADD CONSTRAINT `dog_images_fk0` FOREIGN KEY (`dog_id`) REFERENCES `dogs` (`id`);
+
+--
+-- Constraints for table `request`
+--
+ALTER TABLE `request`
+  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`playdate_id`) REFERENCES `playdates` (`id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
