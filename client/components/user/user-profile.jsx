@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import update from 'immutability-helper';
 import UserDog from './user-dog';
 import UserRequests from './user-requests';
 
@@ -35,6 +36,42 @@ export default function UserProfile(props) {
     backgroundRepeat: 'no-repeat'
   };
 
+  const acceptRequest = request => {
+    // take in the request with its id
+    // make a fetch request to the request yes or no api and yeah...
+  };
+
+  const denyRequest = requestID => {
+    // take in the request with its id
+    // make a fetch request to the request yes or no api and yeah...
+    const body = JSON.stringify({
+      requestID,
+      userRes: 0
+    });
+    fetch('/api/playdate-request/deny', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (!res.success) {
+          throw new Error(res.message);
+        } else {
+          const copyOfRequests = [...user.requests];
+          copyOfRequests.forEach(req => {
+            (req.id === requestID) ? req.accepted = 0 : '';
+          });
+          const newUser = update(user, {
+            requests: { $set: copyOfRequests }
+          });
+          console.log(newUser);
+          setUser(newUser);
+        }
+      })
+      .catch(error => console.error(error));
+  };
+
   return (
     <div className="container-fluid px-5">
       <hr />
@@ -64,7 +101,7 @@ export default function UserProfile(props) {
                 <div className="requests-list w-100">
                   {(user.requests)
                     ? user.requests.map(req => {
-                      return <UserRequests key={req.request_id} request={req}/>;
+                      return <UserRequests key={req.id} request={req} denyRequest={denyRequest}/>;
                     })
                     : <h5>You have no open requests</h5>}
                 </div>

@@ -1,20 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { convertDate } from './../help/functions';
 
 export default function UserRequests(props) {
   const { id, date, name, user_id, accepted, req_energy, req_weight,
-    request_id, playdate_id, request_name, request_user, request_image,
+    dog_id, playdate_id, request_name, request_user, request_image,
     request_dog_id, display_address, num_dates } = props.request;
+
   const requestImageStyle = {
     backgroundImage: `url('${request_image}')`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    backgroundPosition: 'contain',
+    backgroundPosition: 'center',
     width: '100%',
     minWidth: '7rem',
     height: '7rem'
   };
+
+  useEffect(() => {
+    console.log('accepted has changed');
+  }, [accepted]);
+
+  const handleDeny = () => {
+    props.denyRequest(id);
+  };
+
+  function YesOrNo() {
+    return (
+      <>
+        <button className="btn btn-success d-block mb-2">
+          YES
+        </button>
+        <button className="btn btn-warning d-block mb-2" onClick={handleDeny}>
+          NO
+        </button>
+      </>
+
+    );
+  }
+
+  function Rejected() {
+    return (
+      <>
+        <button className="btn btn-secondary d-block mb-2" disabled>
+          Rejected
+        </button>
+      </>
+    );
+  }
+
+  function Accepted() {
+    return (
+      <>
+        <button className="btn btn-secondary d-block mb-2" disabled>
+          Accepted
+        </button>
+      </>
+    );
+  }
+
   return (
     <div className="requests-item row">
       <Link className='col-lg-3 d-inline-block' to={`/dog/${request_dog_id}`}>
@@ -37,8 +81,7 @@ export default function UserRequests(props) {
           </ul>
         </div>
         <div className="col-lg-2 mx-0 px-0">
-          <div className="btn btn-success d-block mb-2">YES</div>
-          <div className="btn btn-warning d-block mb-2">NO</div>
+          {(accepted === null) ? <YesOrNo /> : (accepted === 0) ? <Rejected /> : <Accepted />}
         </div>
       </div>
     </div>
