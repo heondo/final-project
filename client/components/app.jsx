@@ -21,26 +21,27 @@ export default class App extends React.Component {
     this.logout = this.logout.bind(this);
     this.state = {
       isLoggedIn: true,
-      userID: 1
+      userID: 23,
+      userDogs: []
     };
   }
 
-  login(userID) {
-    this.setState({ isLoggedIn: true, userID });
+  login(userID, dogs) {
+    this.setState({ isLoggedIn: true, userID, userDogs: dogs });
   }
 
   logout() {
-    this.setState({ isLoggedIn: false, userID: null });
+    this.setState({ isLoggedIn: false, userID: null, userDogs: null });
   }
 
   render() {
-    const { isLoggedIn, userID } = this.state;
+    const { isLoggedIn, userID, userDogs } = this.state;
     return (
       <>
         <Router >
           <Header isLoggedIn={isLoggedIn} login={this.login} logout={this.logout} userID={userID}/>
           <Switch>
-            <Route path="/dog/:id" render={props => <DogProfile {...props} userID={userID}/> }>
+            <Route path="/dog/:id" render={props => <DogProfile {...props} userID={userID} userDogs={userDogs}/> }>
             </Route>
             <Route path="/add-dog" render={props => <AddDogForm {...props} userID={userID} />}>
             </Route>
