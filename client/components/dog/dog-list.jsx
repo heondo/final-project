@@ -1,6 +1,7 @@
 import React from 'react';
 import DogCard from './dog-card';
-import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Container, Row } from 'reactstrap';
+import ListingPanel from '../listing/listing-panel';
 const qs = require('query-string');
 
 export default class DogList extends React.Component {
@@ -30,7 +31,6 @@ export default class DogList extends React.Component {
 
   getDogs() {
     const query = qs.parse(location.search);
-
     if (Object.keys(query).length) {
       const extractedQueryString = qs.extract(location.search);
       fetch('/api/get-dogs/?' + extractedQueryString)
@@ -52,14 +52,18 @@ export default class DogList extends React.Component {
           this.setState({ dogs: dogs.data });
         })
         .catch(error => console.error(error));
-
     }
+  }
+
+  findDogsWithPlaydates(allDogs) {
+    const dogsWithPlaydates = allDogs.filter(dog => dog.playdates && dog.playdates.length > 0);
+    return dogsWithPlaydates;
   }
 
   render() {
     const { dogs, activeTab } = this.state;
     return (
-      <div className="container-fluid px-5">
+      <Container fluid className="px-5">
         <Nav tabs>
           <NavItem>
             <NavLink
@@ -81,17 +85,18 @@ export default class DogList extends React.Component {
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
             <h4>{dogs.length} Dogs Nearby</h4>
-            <div className="row">
+            <Row>
               {
                 dogs.map(dog => <DogCard key={dog.id} dog={dog} />)
               }
-            </div>
+            </Row>
           </TabPane>
           <TabPane tabId="2">
-            <h4>Playdate Listings</h4>
+            <h4 className="my-3">Playdate Listings</h4>
+            {this.findDogsWithPlaydates(this.state.dogs).map(dog => <ListingPanel key={dog.id} dog={dog} />)}
           </TabPane>
         </TabContent>
-      </div>
+      </Container>
     );
   }
 }
