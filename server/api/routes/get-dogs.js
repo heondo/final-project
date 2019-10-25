@@ -82,7 +82,7 @@ router.get('/:id', (req, res, next) => {
     };
     res.status(400).json(output);
   } else {
-    db.query("SELECT d.id, d.fixed, d.name, d.weight, d.bio, d.user_id, d.birth, d.sex, d.energy_lvl, d.images, u.`display_address`, u.`first`, u.`last`, u.`lat`, u.`lng`, b.name as breed, pd.`listingsJSON` as playdates, (SELECT COUNT(*) FROM playdates p WHERE (p.dog_id = d.`id` OR p.dog_2_id=d.`id`) AND p.date < UNIX_TIMESTAMP() AND p.confirmed = 1) as num_dates FROM `user` as u JOIN (SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`sort_ord`) as images FROM `dogs` as d LEFT JOIN `dog_images` AS di ON d.`id` = di.`dog_id` WHERE d.`id`= ? GROUP BY d.`id`) as d ON u.`id` = d.`user_id` JOIN `breeds` as b on d.`breed` = b.id LEFT JOIN (SELECT p.`dog_id` as `play_dog_id`, JSON_ARRAYAGG(JSON_OBJECT('id', p.`id`,'dog_id', p.`dog_id`, 'date', p.`date`, 'lat', p.`lat`, 'lng', p.`lng`, 'display_address', p.`display_address`, 'confirmed', p.`confirmed`)) as listingsJSON FROM `playdates` as p GROUP BY p.`dog_id`) as pd ON pd.`play_dog_id` = d.`id`", [id], (err, data) => {
+    db.query("SELECT d.id, d.fixed, d.name, d.weight, d.bio, d.user_id, d.birth, d.sex, d.energy_lvl, d.images, u.`display_address`, u.`first`, u.`last`, u.`lat`, u.`lng`, b.name as breed, pd.`listingsJSON` as playdates, (SELECT COUNT(*) FROM playdates p WHERE (p.dog_id = d.`id` OR p.dog_2_id=d.`id`) AND p.date < UNIX_TIMESTAMP() AND p.confirmed = 1) as num_dates FROM `user` as u JOIN (SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`sort_ord`) as images FROM `dogs` as d LEFT JOIN `dog_images` AS di ON d.`id` = di.`dog_id` WHERE d.`id`= ? GROUP BY d.`id`) as d ON u.`id` = d.`user_id` JOIN `breeds` as b on d.`breed` = b.id LEFT JOIN (SELECT p.`dog_id` as `play_dog_id`, JSON_ARRAYAGG(JSON_OBJECT('id', p.`id`,'dog_id', p.`dog_id`, 'date', p.`date`, 'lat', p.`lat`, 'lng', p.`lng`, 'display_address', p.`display_address`, 'confirmed', p.`confirmed`, 'requested_users', r.`request_users`)) as listingsJSON FROM `playdates` as p LEFT JOIN (SELECT p.*, GROUP_CONCAT(d.user_id) as request_users FROM request as r JOIN dogs as d ON d.id = r.dog_id JOIN playdates as p on p.id = r.playdate_id GROUP BY p.id) as r ON r.`id`=p.`id` GROUP BY p.`dog_id`) as pd ON pd.`play_dog_id` = d.`id`", [id], (err, data) => {
       // query fails then status 500 error message
       if (err) {
         output = {
@@ -102,6 +102,11 @@ router.get('/:id', (req, res, next) => {
         }
         if (data[0].playdates) {
           data[0].playdates = JSON.parse(data[0].playdates);
+          data[0].playdates.forEach(play => {
+            if (play.requested_users) {
+              play.requested_users = play.requested_users.split(',');
+            }
+          });
         }
         data[0].images = data[0].images.split(',');
         data[0].age = calculateAge(data[0].birth);
