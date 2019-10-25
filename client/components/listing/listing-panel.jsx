@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Media, Button } from 'reactstrap';
+import { Container, Row, Col, Media, Button, Badge } from 'reactstrap';
 import { calculateWeightClass, convertEnergyLevel, convertDate, formatBreedName } from '../help/functions';
 
 export default function ListingPanel(props) {
@@ -35,7 +35,11 @@ export default function ListingPanel(props) {
                   .map(playdate => {
                     const displayDate = convertDate(playdate.date);
                     if (playdate.confirmed) {
-                      return <p key={playdate.id} className="mb-1"><s>{displayDate + ' - ' + playdate.display_address}</s></p>;
+                      return (
+                        <p key={playdate.id} className="mb-1">
+                          <s>{displayDate + ' - ' + playdate.display_address}</s>
+                          <Badge className="ml-2" style={{ backgroundColor: '#bfbfbf' }}>Playdate Full!</Badge>
+                        </p>);
                     } else {
                       return <p key={playdate.id} className="mb-1">{displayDate + ' - ' + playdate.display_address}</p>;
                     }
