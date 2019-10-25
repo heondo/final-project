@@ -10,11 +10,11 @@ export default function ListingPanel(props) {
   const energyLevel = convertEnergyLevel(dogInfo.energy_lvl);
   const breed = formatBreedName(dogInfo.breed);
   return (
-    <div>
+    <>
       <Media>
 
         <Media left>
-          <Media object src={dogInfo.images[0]} alt={dogInfo.name} style={{ 'max-width': '12rem' }} />
+          <Media object src={dogInfo.images[0]} alt={dogInfo.name} style={{ maxWidth: '12rem' }} />
         </Media>
 
         <Media body>
@@ -55,6 +55,6 @@ export default function ListingPanel(props) {
 
       </Media>
       <hr />
-    </div>
+    </>
   );
 }

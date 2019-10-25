@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Button, Badge } from 'reactstrap';
 import { useParams, Link } from 'react-router-dom';
 import MakePlaydate from '../forms/make-playdate';
+import { convertDate } from '../help/functions';
 
 export default function DogProfile(props) {
   const genericPic = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
@@ -68,6 +69,40 @@ export default function DogProfile(props) {
     });
   }
 
+  function PlaydatesList() {
+    if (!dog.playdates || dog.playdates.length <= 0) {
+      return <h5 className="text-muted">No upcoming playdates currently scheduled</h5>;
+    } else {
+      return (dog.playdates.map(playdate => {
+        const displayDate = convertDate(playdate.date);
+        if (playdate.confirmed) {
+          return (
+            <Row key={playdate.id} className="my-2">
+              <Col xs="9">
+                <s>{displayDate + ' - ' + playdate.display_address}</s>
+                <Badge className="ml-2" style={{ backgroundColor: '#bfbfbf' }}>Playdate Full!</Badge>
+              </Col>
+              <Col xs={{ size: 2, offset: 1 }}>
+                <Button size="sm" outline disabled>Request to Join</Button>
+              </Col>
+            </Row>
+          );
+        } else {
+          return (
+            <Row key={playdate.id} className="my-2">
+              <Col xs="9">
+                {displayDate + ' - ' + playdate.display_address}
+              </Col>
+              <Col xs={{ size: 2, offset: 1 }}>
+                <Button size="sm" color="primary" outline>Request to Join</Button>
+              </Col>
+            </Row>
+          );
+        }
+      }));
+    }
+  }
+
   return (
     <>
       <div className="dog-profile-images container-fluid px-0 mb-2">
@@ -109,39 +144,39 @@ export default function DogProfile(props) {
           </div>
           <div className="col dogs-listings">
             <h4>{dog.name}s Listings</h4>
-            {(parseInt(userID) === parseInt(dog.user_id) ? <>
-              <Nav tabs>
-                <NavItem>
-                  <NavLink
-                    className={(activeTab === '1') ? 'active' : ''}
-                    onClick={() => { toggleTab('1'); }}
-                  >
-                  Listings
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    className={(activeTab === '2') ? 'active' : ''}
-                    onClick={() => { toggleTab('2'); }}
-                  >
-                  Make Playdate
-                  </NavLink>
-                </NavItem>
-              </Nav>
-              <TabContent activeTab={activeTab}>
-                <TabPane tabId="1">
-                  Listings
-                </TabPane>
-                <TabPane tabId="2">
-                  <MakePlaydate userID={dog.user_id} dogID={dog.id}/>
-                </TabPane>
-              </TabContent>
+            {(parseInt(userID) === parseInt(dog.user_id)
+              ? <>
+                <Nav tabs>
+                  <NavItem>
+                    <NavLink
+                      className={(activeTab === '1') ? 'active' : ''}
+                      onClick={() => { toggleTab('1'); }}
+                    >
+                    Listings
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={(activeTab === '2') ? 'active' : ''}
+                      onClick={() => { toggleTab('2'); }}
+                    >
+                    Make Playdate
+                    </NavLink>
+                  </NavItem>
+                </Nav>
+                <TabContent activeTab={activeTab}>
+                  <TabPane tabId="1">
+                    <PlaydatesList />
+                  </TabPane>
+                  <TabPane tabId="2">
+                    <MakePlaydate userID={dog.user_id} dogID={dog.id}/>
+                  </TabPane>
+                </TabContent>
               </>
-              : <h5>Just the listings</h5>
+              : <PlaydatesList />
             )}
           </div>
         </div>
-
       </div>
     </>
   );
