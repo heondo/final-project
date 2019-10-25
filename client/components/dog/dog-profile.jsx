@@ -83,7 +83,10 @@ export default function DogProfile(props) {
                 <Badge className="ml-2" style={{ backgroundColor: '#bfbfbf' }}>Playdate Full!</Badge>
               </Col>
               <Col xs={{ size: 2, offset: 1 }}>
-                <Button size="sm" outline disabled>Request to Join</Button>
+                {userID === dog.user_id
+                  ? <Button size="sm" color="danger" outline>Delete Playdate</Button>
+                  : <Button size="sm" outline disabled>Request to Join</Button>
+                }
               </Col>
             </Row>
           );
@@ -94,7 +97,10 @@ export default function DogProfile(props) {
                 {displayDate + ' - ' + playdate.display_address}
               </Col>
               <Col xs={{ size: 2, offset: 1 }}>
-                <Button size="sm" color="primary" outline>Request to Join</Button>
+                {userID === dog.user_id
+                  ? <Button size="sm" color="danger" outline>Delete Playdate</Button>
+                  : <Button size="sm" color="primary" outline>Request to Join</Button>
+                }
               </Col>
             </Row>
           );
