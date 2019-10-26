@@ -9,6 +9,7 @@ router.get('/:id', (req, res) => {
   } else {
     let query = '';
     // GET FOR THIS USER, get their dogs. Get playdates and requestse associated with the dogs
+
   }
   res.json({ id });
 });
