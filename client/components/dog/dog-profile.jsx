@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Button, Badge } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { useParams, Link } from 'react-router-dom';
 import MakePlaydate from '../forms/make-playdate';
-import { convertDate } from '../help/functions';
+import PlaydatesList from '../listing/playdates-list';
 
 export default function DogProfile(props) {
   const genericPic = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
   const params = useParams();
   const { id } = params;
-  const { userID } = props;
+  const { userID, userDogs } = props;
   const [dog, setDog] = useState({});
   const [images, setImages] = useState([]);
   const [activeTab, toggleTab] = useState('1');
@@ -67,46 +67,6 @@ export default function DogProfile(props) {
       width: '100%',
       height: '100%'
     });
-  }
-
-  function PlaydatesList() {
-    if (!dog.playdates || dog.playdates.length <= 0) {
-      return <h5 className="text-muted">No upcoming playdates currently scheduled</h5>;
-    } else {
-      return (dog.playdates.map(playdate => {
-        const displayDate = convertDate(playdate.date);
-        if (playdate.confirmed) {
-          return (
-            <Row key={playdate.id} className="my-2">
-              <Col xs="9">
-                <s>{displayDate + ' - ' + playdate.display_address}</s>
-                <Badge className="ml-2" style={{ backgroundColor: '#bfbfbf' }}>Playdate Full!</Badge>
-              </Col>
-              <Col xs={{ size: 2, offset: 1 }}>
-                {userID === dog.user_id
-                  ? <Button size="sm" color="danger" outline>Delete Playdate</Button>
-                  : <Button size="sm" outline disabled>Request to Join</Button>
-                }
-              </Col>
-            </Row>
-          );
-        } else {
-          return (
-            <Row key={playdate.id} className="my-2">
-              <Col xs="9">
-                {displayDate + ' - ' + playdate.display_address}
-              </Col>
-              <Col xs={{ size: 2, offset: 1 }}>
-                {userID === dog.user_id
-                  ? <Button size="sm" color="danger" outline>Delete Playdate</Button>
-                  : <Button size="sm" color="primary" outline>Request to Join</Button>
-                }
-              </Col>
-            </Row>
-          );
-        }
-      }));
-    }
   }
 
   return (
@@ -172,14 +132,14 @@ export default function DogProfile(props) {
                 </Nav>
                 <TabContent activeTab={activeTab}>
                   <TabPane tabId="1">
-                    <PlaydatesList />
+                    <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} />
                   </TabPane>
                   <TabPane tabId="2">
                     <MakePlaydate userID={dog.user_id} dogID={dog.id}/>
                   </TabPane>
                 </TabContent>
               </>
-              : <PlaydatesList />
+              : <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} />
             )}
           </div>
         </div>
