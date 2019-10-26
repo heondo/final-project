@@ -1,4 +1,4 @@
-export function calculateWeightClass(weight) {
+function calculateWeightClass(weight) {
   const weightValue = parseInt(weight);
   if (weightValue < 10) {
     return 'XS';
@@ -22,7 +22,7 @@ L - 50-100
 XL - 100+
 */
 
-export function convertEnergyLevel(energyLevel) {
+function convertEnergyLevel(energyLevel) {
   switch (parseInt(energyLevel)) {
     case 0:
       return 'Low';
@@ -35,7 +35,7 @@ export function convertEnergyLevel(energyLevel) {
   }
 }
 
-export function convertDate(unixTimestamp) {
+function convertDate(unixTimestamp) {
   const unixTimeInMS = parseInt(unixTimestamp) * 1000;
   const dateObject = new Date(unixTimeInMS);
   const dateString = dateObject.toDateString();
@@ -43,7 +43,7 @@ export function convertDate(unixTimestamp) {
   return displayDate;
 }
 
-export function formatBreedName(breed) {
+function formatBreedName(breed) {
   const wordsArray = breed.split(' ');
   const formattedWordsArray = wordsArray.map(word => {
     const firstLetter = word[0].toUpperCase();
@@ -52,3 +52,5 @@ export function formatBreedName(breed) {
   });
   return formattedWordsArray.join(' ');
 }
+
+export { calculateWeightClass, convertEnergyLevel, convertDate, formatBreedName };

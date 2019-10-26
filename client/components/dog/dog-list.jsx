@@ -56,7 +56,7 @@ export default class DogList extends React.Component {
   }
 
   findDogsWithPlaydates(allDogs) {
-    const dogsWithPlaydates = allDogs.filter(dog => dog.playdates && dog.playdates.length > 0);
+    const dogsWithPlaydates = allDogs.filter(dog => dog.playdates && dog.playdates.length > 0 && dog.user_id !== this.props.userID);
     return dogsWithPlaydates;
   }
 
