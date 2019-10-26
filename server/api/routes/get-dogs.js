@@ -121,36 +121,4 @@ router.get('/:id', (req, res, next) => {
 
 });
 
-// router.post('/', (req, res, next) => {
-
-//   let { lat, lng } = req.body;
-//   lat = parseFloat(lat);
-//   lng = parseFloat(lng);
-//   let output;
-//   let query = 'SELECT d.id, d.fixed, d.name, d.num_dates, d.weight, d.bio, d.user_id, d.birth, d.sex, d.energy_lvl, d.images, u.`display_address`, u.`first`, u.`last`, u.`lat`, u.`lng`, u.`miles`, b.name as breed FROM (SELECT *, (ST_Distance_Sphere( point(?, ?), point(`lng`, `lat`) )*0.000621371192) as miles FROM `user` WHERE (ST_Distance_Sphere( point(?, ?), point(`lng`, `lat`) )*0.000621371192) < 50) as u JOIN (SELECT d.*, GROUP_CONCAT(di.url ORDER BY di.`sort_ord`) as images FROM `dogs` as d LEFT JOIN `dog_images` AS di ON d.`id` = di.`dog_id` GROUP BY d.`id`) as d ON u.`id` = d.`user_id` JOIN `breeds` as b on d.`breed` = b.id';
-//   db.query(query, [lng, lat, lng, lat], (err, data) => {
-//     if (err) {
-//       output = {
-//         success: false,
-//         data: err
-//       };
-//       res.status(500);
-//     } else {
-//       data.forEach(dog => {
-//         if (!dog.images) {
-//           dog.images = defaultImage;
-//         }
-//         dog.images = dog.images.split(',');
-//         dog.age = calculateAge(dog.birth);
-//       });
-//       output = {
-//         success: true,
-//         data
-//       };
-//       res.status(200);
-//     }
-//     res.json(output);
-//   });
-// });
-
 module.exports = router;

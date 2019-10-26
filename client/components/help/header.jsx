@@ -53,37 +53,29 @@ class Header extends React.Component {
     // it should render the profile drop down
     let navButtons = (this.props.isLoggedIn) ? (
       <Nav className="ml-auto font-weight-normal" navbar>
-        <NavItem>
-          <NavLink >Make Playdate</NavLink>
+        <NavItem onClick={this.toUser}>
+          <NavLink>Profile</NavLink>
         </NavItem>
-        <UncontrolledDropdown nav inNavbar>
-          <DropdownToggle nav caret>
-            Profile
-          </DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem onClick={this.toUser}>
-              Your Account
-            </DropdownItem>
-            <DropdownItem>
-              Notifications
-            </DropdownItem>
-            <DropdownItem>
-              Your dogs
-            </DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem onClick={this.logout}>
-              Log Out
-            </DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
+        <NavItem onClick={() => {
+          this.props.history.push(`/my-playdates/${this.props.userID}`);
+        }}>
+          <NavLink >Your Playdates</NavLink>
+        </NavItem>
+        <NavItem onClick={this.logout}>
+          <NavLink >Logout</NavLink>
+        </NavItem>
       </Nav>
     ) : (
       <Nav className="ml-auto font-weight-normal" navbar>
-        <NavItem>
-          <NavLink href="/login">Login</NavLink>
+        <NavItem onClick={() => {
+          this.props.history.push('/login');
+        }}>
+          <NavLink >Login</NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink href="/signup">Signup</NavLink>
+        <NavItem onClick={() => {
+          this.props.history.push('/signup');
+        }}>
+          <NavLink >Signup</NavLink>
         </NavItem>
       </Nav>
     );
