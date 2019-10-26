@@ -31,6 +31,8 @@ export default class PlaydatesListItem extends React.Component {
       .then(newRequest => {
         if (!newRequest.success) {
           throw new Error(newRequest.message);
+        } else if (newRequest.error) {
+          throw new Error(newRequest.message);
         }
         console.log('Sent request to join playdate!', newRequest);
         // TODO: do something after they make request, maybe redirect to their schedule page?

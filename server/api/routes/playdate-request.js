@@ -6,6 +6,9 @@ router.use(express.json());
 
 router.post('/add', (req, res) => {
   const { playdateID, dogID } = req.body;
+  if (!parseInt(dogID)) {
+    res.status(400).json({ error: true, message: 'Must send in a valid dog ID' });
+  }
   let query = 'INSERT INTO `request`(`playdate_id`, `dog_id`, `accepted`, `created_time`) VALUES (?, ?, 0, UNIX_TIMESTAMP())';
   db.query(query, [playdateID, dogID], (err, data) => {
     if (err) {

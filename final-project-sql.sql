@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 24, 2019 at 07:05 PM
+-- Generation Time: Oct 25, 2019 at 06:01 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -517,6 +517,7 @@ CREATE TABLE `playdates` (
   `dog_id` int(10) UNSIGNED NOT NULL,
   `date` varchar(30) NOT NULL,
   `create_date` varchar(32) NOT NULL,
+  `accepted_date` varchar(32) DEFAULT NULL,
   `lat` double NOT NULL,
   `lng` double NOT NULL,
   `display_address` varchar(255) NOT NULL,
@@ -528,22 +529,25 @@ CREATE TABLE `playdates` (
 -- Dumping data for table `playdates`
 --
 
-INSERT INTO `playdates` (`id`, `dog_id`, `date`, `create_date`, `lat`, `lng`, `display_address`, `confirmed`, `dog_2_id`) VALUES
-(13, 38, '1571870211', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(14, 38, '1571870214', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(15, 38, '1571870253', '', 33.6790596, -117.74441059999998, '5th St, Irvine, CA 92618, USA', 1, 5),
-(16, 38, '1571872494', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(17, 38, '1571872494', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(18, 38, '1571872561', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(19, 38, '1570042800', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 1, 5),
-(20, 5, '1571870253', '', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 1, 38),
-(21, 5, '1572548400', '', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
-(22, 11, '1571870253', '', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 1, 7),
-(23, 11, '1572548400', '', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 0, NULL),
-(24, 28, '1574452800', '1571943176', 33.6753521, -117.7935066, '5000 Barranca Pkwy, Irvine, CA 92604, USA', 0, NULL),
-(25, 28, '1574539200', '1571943176', 33.6753521, -117.7935066, '5000 Barranca Pkwy, Irvine, CA 92604, USA', 0, NULL),
-(26, 28, '1572116400', '1571960736', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(27, 28, '1572548400', '1571960736', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL);
+INSERT INTO `playdates` (`id`, `dog_id`, `date`, `create_date`, `accepted_date`, `lat`, `lng`, `display_address`, `confirmed`, `dog_2_id`) VALUES
+(13, 38, '1571870211', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(14, 38, '1571870214', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(15, 38, '1571870253', '', '', 33.6790596, -117.74441059999998, '5th St, Irvine, CA 92618, USA', 1, 5),
+(16, 38, '1571872494', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(17, 38, '1571872494', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(18, 38, '1571872561', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(19, 38, '1570042800', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 1, 5),
+(20, 5, '1571870253', '', '', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 1, 38),
+(21, 5, '1572548400', '', '', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
+(22, 11, '1571870253', '', '', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 1, 7),
+(23, 11, '1572548400', '', '1572043434', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 1, 28),
+(24, 28, '1574452800', '1571943176', '', 33.6753521, -117.7935066, '5000 Barranca Pkwy, Irvine, CA 92604, USA', 0, NULL),
+(25, 28, '1574539200', '1571943176', '', 33.6753521, -117.7935066, '5000 Barranca Pkwy, Irvine, CA 92604, USA', 0, NULL),
+(26, 28, '1572116400', '1571960736', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(27, 28, '1572548400', '1571960736', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(28, 23, '1572548400', '1572051594', NULL, 33.6382498, -117.81502460000002, 'Turtle Rock Viewpoint Trail, Irvine, CA 92603, USA', 0, NULL),
+(29, 23, '1572462000', '1572051594', NULL, 33.6382498, -117.81502460000002, 'Turtle Rock Viewpoint Trail, Irvine, CA 92603, USA', 0, NULL),
+(30, 23, '1572375600', '1572051594', NULL, 33.6382498, -117.81502460000002, 'Turtle Rock Viewpoint Trail, Irvine, CA 92603, USA', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -556,18 +560,20 @@ CREATE TABLE `request` (
   `playdate_id` int(10) UNSIGNED NOT NULL,
   `dog_id` int(10) UNSIGNED NOT NULL,
   `accepted` tinyint(1) DEFAULT NULL,
-  `created_time` varchar(32) NOT NULL
+  `created_time` varchar(32) NOT NULL,
+  `response_time` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`id`, `playdate_id`, `dog_id`, `accepted`, `created_time`) VALUES
-(1, 23, 8, 0, '1571944335'),
-(2, 25, 10, 0, '1571945572'),
-(3, 25, 5, 0, '1571945827'),
-(4, 25, 11, 0, '1571945832');
+INSERT INTO `request` (`id`, `playdate_id`, `dog_id`, `accepted`, `created_time`, `response_time`) VALUES
+(1, 23, 28, 1, '1571944335', '1572043434'),
+(2, 25, 10, 0, '1571945572', '1572040670'),
+(3, 25, 5, 0, '1571945827', '1572035832'),
+(4, 25, 11, 0, '1571945832', '1572041526'),
+(6, 13, 28, 0, '1572050385', NULL);
 
 -- --------------------------------------------------------
 
@@ -670,12 +676,12 @@ ALTER TABLE `dog_images`
 -- AUTO_INCREMENT for table `playdates`
 --
 ALTER TABLE `playdates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --
