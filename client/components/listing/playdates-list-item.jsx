@@ -9,7 +9,7 @@ export default class PlaydatesListItem extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleRequestToJoin = this.handleRequestToJoin.bind(this);
     this.state = {
-      selectedDog: (this.props.userDogs.length) ? this.props.userDogs[0].id : ''
+      selectedDog: (this.props.userDogs) ? this.props.userDogs[0].id : ''
     };
   }
 
@@ -80,7 +80,7 @@ export default class PlaydatesListItem extends React.Component {
                   style={{ width: 'initial' }}
                   value={this.state.selectedDog}
                   onChange={this.handleChange}>
-                  {userDogs.map(dog => <option key={dog.id} value={dog.id}>{dog.name}</option>)}
+                  {(userDogs) ? userDogs.map(dog => <option key={dog.id} value={dog.id}>{dog.name}</option>) : <div>No dogs</div>}
                 </Input>
                 <Button
                   size="sm"
