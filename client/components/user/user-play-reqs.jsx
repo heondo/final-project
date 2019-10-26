@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function UserPlayReqs(props) {
+export default function UserPlaydates(props) {
   const [playReqs, setPlayReqs] = useState([]);
 
   useEffect(() => {

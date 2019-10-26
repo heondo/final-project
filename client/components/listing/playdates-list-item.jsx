@@ -9,7 +9,7 @@ export default class PlaydatesListItem extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleRequestToJoin = this.handleRequestToJoin.bind(this);
     this.state = {
-      selectedDog: ''
+      selectedDog: (this.props.userDogs.length) ? this.props.userDogs[0].id : ''
     };
   }
 
