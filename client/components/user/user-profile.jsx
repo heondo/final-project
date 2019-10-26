@@ -36,17 +36,42 @@ export default function UserProfile(props) {
     backgroundRepeat: 'no-repeat'
   };
 
-  const acceptRequest = request => {
+  const acceptRequest = requestID => {
     // take in the request with its id
     // make a fetch request to the request yes or no api and yeah...
+    const body = JSON.stringify({
+      requestID
+    });
+    fetch('/api/playdate-request/accept', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.error) {
+          throw new Error(res.error.message);
+        } else if (!res.success) {
+          throw new Error(res.message);
+        } else {
+          const copyOfRequests = [...user.requests];
+          copyOfRequests.forEach(req => {
+            (req.id === requestID) ? req.accepted = 1 : '';
+          });
+          const newUser = update(user, {
+            requests: { $set: copyOfRequests }
+          });
+          setUser(newUser);
+        }
+      })
+      .catch(error => console.error(error));
   };
 
   const denyRequest = requestID => {
     // take in the request with its id
     // make a fetch request to the request yes or no api and yeah...
     const body = JSON.stringify({
-      requestID,
-      userRes: 0
+      requestID
     });
     fetch('/api/playdate-request/deny', {
       method: 'POST',
@@ -67,7 +92,6 @@ export default function UserProfile(props) {
           const newUser = update(user, {
             requests: { $set: copyOfRequests }
           });
-          console.log(newUser);
           setUser(newUser);
         }
       })
@@ -103,7 +127,7 @@ export default function UserProfile(props) {
                 <div className="requests-list w-100">
                   {(user.requests)
                     ? user.requests.map(req => {
-                      return <UserRequests key={req.id} request={req} denyRequest={denyRequest}/>;
+                      return <UserRequests key={req.id} request={req} denyRequest={denyRequest} acceptRequest={acceptRequest}/>;
                     })
                     : <h5>You have no open requests</h5>}
                 </div>

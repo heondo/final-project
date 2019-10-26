@@ -17,25 +17,26 @@ export default function UserRequests(props) {
     height: '7rem'
   };
 
-  useEffect(() => {
-    console.log('accepted has changed');
-  }, [accepted]);
+  useEffect(() => {}, [accepted]);
 
   const handleDeny = () => {
     props.denyRequest(id);
   };
 
+  const handleAccept = () => {
+    props.acceptRequest(id);
+  };
+
   function YesOrNo() {
     return (
       <>
-        <button className="btn btn-success d-block mb-2">
+        <button className="btn btn-success d-block mb-2" onClick={handleAccept}>
           YES
         </button>
         <button className="btn btn-warning d-block mb-2" onClick={handleDeny}>
           NO
         </button>
       </>
-
     );
   }
 
@@ -52,7 +53,7 @@ export default function UserRequests(props) {
   function Accepted() {
     return (
       <>
-        <button className="btn btn-secondary d-block mb-2" disabled>
+        <button className="btn btn-success d-block mb-2" disabled>
           Accepted
         </button>
       </>

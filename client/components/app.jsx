@@ -12,6 +12,7 @@ import DogProfile from './dog/dog-profile';
 import UserProfile from './user/user-profile';
 import Error404Page from './help/error-404-page';
 import NewUserForm from './forms/new-user-form';
+import UserPlaydates from './user/user-playdates';
 import Login from './forms/login';
 
 export default class App extends React.Component {
@@ -21,7 +22,7 @@ export default class App extends React.Component {
     this.logout = this.logout.bind(this);
     this.state = {
       isLoggedIn: true,
-      userID: 23,
+      userID: 1,
       userDogs: []
     };
   }
@@ -44,6 +45,8 @@ export default class App extends React.Component {
             <Route path="/dog/:id" render={props => <DogProfile {...props} userID={userID} userDogs={userDogs}/> }>
             </Route>
             <Route path="/add-dog" render={props => <AddDogForm {...props} userID={userID} />}>
+            </Route>
+            <Route path="/my-playdates/:id" render={props => <UserPlaydates {...props} userID={userID} />}>
             </Route>
             <Route path="/user/:id" render={props => <UserProfile {...props} userID={userID}/>}>
             </Route>
