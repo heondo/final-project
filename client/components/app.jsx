@@ -12,7 +12,7 @@ import DogProfile from './dog/dog-profile';
 import UserProfile from './user/user-profile';
 import Error404Page from './help/error-404-page';
 import NewUserForm from './forms/new-user-form';
-import UserPlaydates from './user/user-playdates';
+import UserPlayReqs from './user/user-play-reqs';
 import Login from './forms/login';
 
 export default class App extends React.Component {
@@ -46,7 +46,7 @@ export default class App extends React.Component {
             </Route>
             <Route path="/add-dog" render={props => <AddDogForm {...props} userID={userID} />}>
             </Route>
-            <Route path="/my-playdates/:id" render={props => <UserPlaydates {...props} userID={userID} />}>
+            <Route path="/my-playdates/:id" render={props => <UserPlayReqs {...props} userID={userID} />}>
             </Route>
             <Route path="/user/:id" render={props => <UserProfile {...props} userID={userID}/>}>
             </Route>
