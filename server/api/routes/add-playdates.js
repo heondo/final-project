@@ -25,4 +25,28 @@ router.post('/', (req, res) => {
   });
 });
 
+router.delete('/delete', (req, res) => {
+  const { playdateID } = req.body;
+  if (!parseInt(playdateID)) {
+    res.status(400).json({ success: false, error: 'Invalid playdate ID' });
+  } else {
+    let sqlQuery = 'DELETE FROM `playdates` WHERE `id` = ?';
+    db.query(sqlQuery, [playdateID], (err, data) => {
+      if (err) {
+        res.status(500).json({ success: false, error: JSON.stringify(err) });
+      } else if (data.affectedRows < 1) {
+        res.status(500).json({ success: false, error: 'Could not delete playdate' });
+      } else {
+        res.status(200).json({
+          success: true,
+          data: {
+            deletedPlaydateID: playdateID,
+            affectedRows: data.affectedRows
+          }
+        });
+      }
+    });
+  }
+});
+
 module.exports = router;

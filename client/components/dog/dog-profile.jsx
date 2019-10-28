@@ -12,6 +12,7 @@ export default function DogProfile(props) {
   const [dog, setDog] = useState({});
   const [images, setImages] = useState([]);
   const [activeTab, toggleTab] = useState('1');
+  const setStateCallback = newState => setDog(newState);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -132,14 +133,14 @@ export default function DogProfile(props) {
                 </Nav>
                 <TabContent activeTab={activeTab}>
                   <TabPane tabId="1">
-                    <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} />
+                    <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} setDogProfileState={setStateCallback} />
                   </TabPane>
                   <TabPane tabId="2">
                     <MakePlaydate userID={dog.user_id} dogID={dog.id}/>
                   </TabPane>
                 </TabContent>
               </>
-              : <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} />
+              : <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} setDogProfileState={setStateCallback} />
             )}
           </div>
         </div>
