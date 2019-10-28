@@ -8,8 +8,9 @@ export default class PlaydatesListItem extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleRequestToJoin = this.handleRequestToJoin.bind(this);
+    this.handleDeletePlaydate = this.handleDeletePlaydate.bind(this);
     this.state = {
-      selectedDog: (this.props.userDogs.length) ? this.props.userDogs[0].id : ''
+      selectedDog: this.props.userDogs == null || !this.props.userDogs.length ? '' : this.props.userDogs[0].id
     };
   }
 
@@ -18,14 +19,14 @@ export default class PlaydatesListItem extends React.Component {
   }
 
   handleRequestToJoin(playdateID, requestDogID) {
-    const requestBody = {
+    const postRequestBody = {
       playdateID: parseInt(playdateID),
       dogID: parseInt(requestDogID)
     };
     fetch('/api/playdate-request/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify(postRequestBody)
     })
       .then(res => res.json())
       .then(newRequest => {
@@ -42,13 +43,59 @@ export default class PlaydatesListItem extends React.Component {
       });
   }
 
-  // handleDeletePlaydate() { }
+  handleDeletePlaydate(playdateID) {
+    const deleteRequestBody = { playdateID: parseInt(playdateID) };
+    fetch('/api/add-playdates/delete', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(deleteRequestBody)
+    })
+      .then(res => res.json())
+      .then(deleteResponse => {
+        if (!deleteResponse.success) {
+          throw new Error(deleteResponse.message);
+        } else if (deleteResponse.error) {
+          throw new Error(deleteResponse.message);
+        }
+        console.log('Sent request to delete playdate!', deleteResponse);
+        const updatedPlaydatesArray = this.props.dog.playdates.filter(playdate => playdate.id !== playdateID);
+        const updatedDogData = update(this.props.dog, {
+          playdates: { $set: updatedPlaydatesArray }
+        });
+        this.props.setDogProfileState(updatedDogData);
+      })
+      .catch(error => {
+        throw new Error(error);
+      });
+  }
 
   render() {
     const { userID, userDogs, playdate, ownerID } = this.props;
     const displayDate = convertDate(playdate.date);
 
-    if (playdate.confirmed) {
+    if (userID == null || !userDogs.length) {
+      return (
+        <Row className="my-2">
+          <Col xs="9">
+            {displayDate + ' - ' + playdate.display_address}
+          </Col>
+        </Row>
+      );
+    } else if (playdate.requested_users != null && playdate.requested_users.includes(userID.toString())) {
+      return (
+        <Row className="my-2">
+          <Col xs="9">
+            <span className="text-muted">{displayDate + ' - ' + playdate.display_address}</span>
+          </Col>
+          <Col xs={{ size: 2, offset: 1 }}>
+            {userID === ownerID
+              ? <Button size="sm" color="danger" className="float-right" outline disabled>Delete Playdate</Button>
+              : <Button size="sm" className="float-right" outline disabled>Request Sent</Button>
+            }
+          </Col>
+        </Row>
+      );
+    } else if (playdate.confirmed) {
       return (
         <Row className="my-2">
           <Col xs="9">
@@ -71,7 +118,14 @@ export default class PlaydatesListItem extends React.Component {
           </Col>
           <Col xs="3">
             {userID === ownerID
-              ? <Button size="sm" color="danger" className="float-right" outline>Delete Playdate</Button>
+              ? <Button
+                size="sm"
+                color="danger"
+                className="float-right"
+                onClick={() => this.handleDeletePlaydate(playdate.id)}
+                outline>
+                  Delete Playdate
+              </Button>
               : <>
                 <Input
                   type="select"
@@ -80,7 +134,7 @@ export default class PlaydatesListItem extends React.Component {
                   style={{ width: 'initial' }}
                   value={this.state.selectedDog}
                   onChange={this.handleChange}>
-                  {(userDogs) ? userDogs.map(dog => <option key={dog.id} value={dog.id}>{dog.name}</option>) : <div>No dogs</div>}
+                  {userDogs.map(dog => <option key={dog.id} value={dog.id}>{dog.name}</option>)}
                 </Input>
                 <Button
                   size="sm"
