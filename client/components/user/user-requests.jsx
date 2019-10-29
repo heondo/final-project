@@ -75,7 +75,7 @@ export default function UserRequests(props) {
           </ul>
         </div>
         <div className="col-md-5 col-xs-5 d-flex flex-column mx-0 px-0 d-inline-block">
-          <div className="d-inline-block">Details</div>
+          <div className="d-inline">Details</div>
           <ul className="list-unstyled">
             <li>{display_address}</li>
             <li>{convertDate(date)}</li>

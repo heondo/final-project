@@ -48,7 +48,6 @@ class Header extends React.Component {
       backgroundSize: 'contain',
       backgroundRepeat: 'no-repeat'
     };
-    const { isOpen } = this.state;
     // if conditional is true, like logged in
     // it should render the profile drop down
     let navButtons = (this.props.isLoggedIn) ? (
@@ -82,7 +81,7 @@ class Header extends React.Component {
 
     return (
       <div className="container-fluid">
-        <Navbar className="d-flex" color="light" light expand="md">
+        <Navbar className="d-flex" color="light" light expand="lg">
           <NavbarBrand>
             <Link to="/" style={bgImage} className="d-inline-block align-middle"></Link>
             <h2 className="d-inline my-auto ml-3">TINDOG</h2>
@@ -90,7 +89,7 @@ class Header extends React.Component {
           <SearchDogsBar />
           <Filter />
           <NavbarToggler onClick={this.toggleNav} />
-          <Collapse isOpen={isOpen} navbar className="d-inline-block">
+          <Collapse isOpen={this.state.isOpen} navbar>
             {navButtons}
           </Collapse>
         </Navbar>

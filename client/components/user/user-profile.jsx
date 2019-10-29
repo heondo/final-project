@@ -105,7 +105,7 @@ export default function UserProfile(props) {
         <div className="col-xs-12 col-lg-6">
           <div className="user-profile-card mx-auto d-flex flex-column oc-bg-grey p-4">
             <div className="img-and-info row">
-              <div className="col-5 prof-pic" style={profPic}>Prof Pic</div>
+              <div className="col-5 prof-pic" style={profPic}></div>
               <div className="col-6 ml-2">
                 <ul className="list-unstyled mt-3">
                   <li><h4>{user.first} {user.last}</h4></li>
