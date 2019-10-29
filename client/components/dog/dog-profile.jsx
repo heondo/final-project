@@ -75,8 +75,8 @@ export default function DogProfile(props) {
       <div className="dog-profile-images container-fluid px-0 mb-2">
         <hr />
         <div className="row mx-auto" style={imgRowStyle}>
-          <div className="col" style={primStyle}></div>
-          <div className="col">
+          <div className="col-lg-6" style={primStyle}></div>
+          <div className="col-lg-6">
             <div className="row" style={smallerRows}>
               <div className="col" style={otherFour[0]}>2</div>
               <div className="col" style={otherFour[2]}>4</div>
