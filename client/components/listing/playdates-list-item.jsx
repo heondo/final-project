@@ -37,9 +37,10 @@ export default class PlaydatesListItem extends React.Component {
         }
         console.log('Sent request to join playdate!', newRequest);
         // TODO: do something after they make request, maybe redirect to their schedule page?
+        // const updatedPlaydatesArray = this.props.dog.playdates
       })
       .catch(error => {
-        throw new Error(error);
+        console.error(error);
       });
   }
 
