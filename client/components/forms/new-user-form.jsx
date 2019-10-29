@@ -1,7 +1,6 @@
 import React from 'react';
 import UserLocationInput from '../map/user-location-input';
-import ErrorModal from './../help/error-modal';
-import { Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
+import { Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput, FormFeedback } from 'reactstrap';
 
 export default class NewUserForm extends React.Component {
   constructor(props) {
@@ -10,7 +9,6 @@ export default class NewUserForm extends React.Component {
     this.updateLocation = this.updateLocation.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.modalToggle = this.modalToggle.bind(this);
     this.imageToUpload = React.createRef();
     this.state = {
       firstNameInput: '',
@@ -23,17 +21,8 @@ export default class NewUserForm extends React.Component {
         city: ''
       },
       bioInput: '',
-      errorModal: {
-        isOpen: false,
-        message: '',
-        errType: ''
-      }
-
+      validEmailInput: true
     };
-  }
-
-  modalToggle(message, errType) {
-    this.setState({ errorModal: { isOpen: !this.state.errorModal.isOpen, message, errType } });
   }
 
   updateLocation(lat, lng, city) {
@@ -42,6 +31,9 @@ export default class NewUserForm extends React.Component {
   handleInputChange(event) {
     const name = event.target.name;
     const value = event.target.value;
+    if (name === 'emailInput') {
+      this.setState({ validEmailInput: true });
+    }
     this.setState({ [name]: value });
   }
   handleSubmit(event) {
@@ -78,7 +70,7 @@ export default class NewUserForm extends React.Component {
         if (newUserData.error) {
           // catch error
           if (newUserData.error === 'email') {
-            this.modalToggle(newUserData.message, 'Email');
+            this.setState({ validEmailInput: false });
             throw new Error(newUserData.error);
           }
         }
@@ -88,14 +80,12 @@ export default class NewUserForm extends React.Component {
       .catch(error => console.error(error));
   }
   render() {
-    const { isOpen, message, errType } = this.state.errorModal;
     // TODO: cancel button should route to homepage
     return (
       <Container>
         <hr />
-        <ErrorModal className="error-modal" isOpen={isOpen} modalToggle={this.modalToggle} message={message} errType={errType}/>
         <Row className="justify-content-center">
-          <div className="form-container w-50">
+          <div className="form-container input-forms">
             <h4>New User</h4>
             <Form encType="multipart/form-data" onSubmit={this.handleSubmit}>
               <Row form>
@@ -130,7 +120,7 @@ export default class NewUserForm extends React.Component {
 
               <FormGroup>
                 <Label htmlFor="emailInput">Email</Label>
-                <Input
+                {(this.state.validEmailInput) ? <Input
                   type="email"
                   id="emailInput"
                   name="emailInput"
@@ -138,6 +128,16 @@ export default class NewUserForm extends React.Component {
                   value={this.state.emailInput}
                   onChange={this.handleInputChange}
                   required />
+                  : <Input
+                    type="email"
+                    id="emailInput"
+                    name="emailInput"
+                    placeholder="Email Address"
+                    value={this.state.emailInput}
+                    onChange={this.handleInputChange}
+                    invalid
+                    required />}
+                <FormFeedback>This email is already taken :(</FormFeedback>
               </FormGroup>
 
               <FormGroup>

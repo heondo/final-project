@@ -51,7 +51,7 @@ class Login extends React.Component {
       <Container>
         <hr />
         <Row className="justify-content-center">
-          <div className="form-container w-50">
+          <div className="form-container input-forms">
             <h4>Login</h4>
             <Form onSubmit={this.handleSubmit}>
               <FormGroup>
@@ -101,7 +101,9 @@ class Login extends React.Component {
               </FormGroup>
               <FormGroup className="d-flex justify-content-end">
                 <Button type="submit" color="primary" outline className="mx-2">Log In</Button>
-                <Button color="secondary" outline className="mx-2">Cancel</Button>
+                <Button color="secondary" outline className="mx-2" onClick={() => {
+                  this.props.history.push(`/`);
+                }}>Cancel</Button>
               </FormGroup>
             </Form>
           </div>

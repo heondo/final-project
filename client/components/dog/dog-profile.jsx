@@ -47,11 +47,11 @@ export default function DogProfile(props) {
   }, []);
 
   const imgRowStyle = {
-    height: '50vh'
+    height: '40vh'
   };
 
   const smallerRows = {
-    height: '50%'
+    height: '20vh'
   };
 
   const primStyle = {
@@ -80,26 +80,26 @@ export default function DogProfile(props) {
       <div className="dog-profile-images container-fluid px-0 mb-2">
         <hr />
         <div className="row mx-auto" style={imgRowStyle}>
-          <div className="col-lg-6" style={primStyle}></div>
-          <div className="col-lg-6">
+          <div className="col-sm-6" style={primStyle}></div>
+          <div className="col-sm-6">
             <div className="row" style={smallerRows}>
-              <div className="col" style={otherFour[0]}>2</div>
-              <div className="col" style={otherFour[2]}>4</div>
+              <div className="col d-none d-sm-block" style={otherFour[0]}>2</div>
+              <div className="col d-none d-md-block" style={otherFour[2]}>4</div>
             </div>
             <div className="row" style={smallerRows}>
-              <div className="col" style={otherFour[1]}>3</div>
-              <div className="col" style={otherFour[3]}>5</div>
+              <div className="col d-none d-sm-block" style={otherFour[1]}>3</div>
+              <div className="col d-none d-md-block" style={otherFour[3]}>5</div>
             </div>
           </div>
         </div>
       </div>
       <div className="container-fluid px-5">
         <div className="row">
-          <div className="col dog-information">
+          <div className="col-md-6 dog-information mb-2">
             <h2 className="d-inline">{dog.name} - </h2>
             <h3 className="d-inline-block">{dog.breed}</h3>
-            <Link to={`/user/${dog.user_id}`} className="float-right btn">{dog.first} {dog.last}</Link>
-            <div className="font-weight-light">Location:
+            <Link to={`/user/${dog.user_id}`} className="float-right btn dog-to-user">{dog.first} {dog.last}</Link>
+            <div className="font-weight-light mb-2">Location:
               <h6 className="d-inline mb-1"> {dog.display_address}</h6>
             </div>
             <h5>Details: </h5>
@@ -114,7 +114,7 @@ export default function DogProfile(props) {
             <h3>About {dog.name}</h3>
             <div>{dog.bio}</div>
           </div>
-          <div className="col dogs-listings">
+          <div className="col-md-6 dogs-listings">
             <h4>{dog.name}s Listings</h4>
             {(parseInt(userID) === parseInt(dog.user_id)
               ? <>

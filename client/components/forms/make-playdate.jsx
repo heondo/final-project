@@ -64,11 +64,28 @@ export default class MakePlaydate extends React.Component {
     return (
       <>
         <h4 className="mb-1">Make Listings</h4>
-        <PlaydateLocation className="mb-1" handleLocationChange={this.handleLocationChange} handleLocationSelect={this.handleLocationSelect} query={this.state.query} validLocation={this.state.validLocation}/>
-        <PickDateRange handleDates={this.handleDates} selectedDays={this.state.selectedDays}/>
-        <Button className="d-block" onClick={this.handleSubmit}>
-          Create Playdates
-        </Button>
+        <div className="row">
+          <div className="col-lg-8">
+            <PlaydateLocation className="mb-1" handleLocationChange={this.handleLocationChange} handleLocationSelect={this.handleLocationSelect} query={this.state.query} validLocation={this.state.validLocation} />
+            <PickDateRange handleDates={this.handleDates} selectedDays={this.state.selectedDays} />
+            <Button className="d-inline-block mr-2" onClick={this.handleSubmit}>
+              Create Playdates
+            </Button>
+            <Button className="d-inline-block" onClick={() => {
+              this.setState({ selectedDays: [] });
+            }}>
+              Clear Dates
+            </Button>
+          </div>
+          <div className="col-lg-4">
+            <div>Selected Dates:</div>
+            {this.state.selectedDays.map(day => day.getTime()).sort().map(day => {
+              const someDate = new Date(day);
+              return <div key={day}>{someDate.toLocaleDateString()}</div>;
+            })}
+          </div>
+        </div>
+
       </>
 
     );

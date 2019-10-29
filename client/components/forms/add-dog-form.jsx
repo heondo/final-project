@@ -104,7 +104,7 @@ export default class AddDogForm extends React.Component {
       <Container fluid>
         <hr />
         <Row className="justify-content-center">
-          <div className="form-container w-50">
+          <div className="form-container input-forms">
             <h4>Add New Dog</h4>
             <Form encType="multipart/form-data" onSubmit={this.handleSubmit}>
               <FormGroup>
