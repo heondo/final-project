@@ -5,10 +5,11 @@ import { calculateWeightClass, convertEnergyLevel, convertDate, formatBreedName 
 
 export default function ListingPanel(props) {
   const { dog: dogInfo } = props;
-  const playdates = dogInfo.playdates;
+  const playdates = dogInfo.playdates.sort((a, b) => (a.date > b.date) ? 1 : -1);
   const weightClass = calculateWeightClass(dogInfo.weight);
   const energyLevel = convertEnergyLevel(dogInfo.energy_lvl);
   const breed = formatBreedName(dogInfo.breed);
+  const maxPlaydatesToDisplay = 3;
   return (
     <>
       <Media>
@@ -31,7 +32,7 @@ export default function ListingPanel(props) {
               <Col xs='6' className="px-2">
                 <h4>Upcoming Playdates</h4>
                 {playdates
-                  .filter((playdate, index) => index <= 2)
+                  .filter((playdate, index) => index <= maxPlaydatesToDisplay - 1)
                   .map(playdate => {
                     const displayDate = convertDate(playdate.date);
                     if (playdate.confirmed) {
