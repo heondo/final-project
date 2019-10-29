@@ -1,8 +1,8 @@
-.dog-list-card {
+.dog-list-card, .dog-to-user {
   transition: background-color 0.5s ease;
 }
 
-.dog-list-card:hover {
+.dog-list-card:hover, .dog-to-user:hover {
   background-color: rgb(240, 240, 240);
 }
 
@@ -73,8 +73,28 @@
   background-color: #ddd;
 }
 
+.success-playdate {
+  background-color: #50C878;
+}
+
+.success-request {
+  background-color: rgb(73, 177, 108);
+}
+
+.open-playdate {
+  background-color: #dbcdc2;
+}
+
+.open-request {
+  background-color: rgb(199, 186, 176);
+}
+
+.denied-request {
+  background-color: #e75252;
+}
+
 .oc-bg-red {
-  background-color: #ed3f3e;
+  background-color: #e75252;
 }
 
 .oc-bg-pink {
@@ -108,4 +128,14 @@
 
 .rdrDefinedRangesWrapper {
   display: none
+}
+
+.input-forms {
+  width: 60%
+}
+
+@media (max-width: 480px) {
+  .input-forms {
+    width: 80%;
+  }
 }

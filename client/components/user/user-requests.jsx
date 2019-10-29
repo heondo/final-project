@@ -24,7 +24,7 @@ export default function UserRequests(props) {
   };
 
   const handleAccept = () => {
-    props.acceptRequest(id);
+    props.acceptRequest(id, playdate_id);
   };
 
   function YesOrNo() {

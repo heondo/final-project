@@ -36,7 +36,7 @@ export default function UserProfile(props) {
     backgroundRepeat: 'no-repeat'
   };
 
-  const acceptRequest = requestID => {
+  const acceptRequest = (requestID, playdateID) => {
     // take in the request with its id
     // make a fetch request to the request yes or no api and yeah...
     const body = JSON.stringify({
@@ -57,6 +57,7 @@ export default function UserProfile(props) {
           const copyOfRequests = [...user.requests];
           copyOfRequests.forEach(req => {
             (req.id === requestID) ? req.accepted = 1 : '';
+            (req.id !== requestID && parseInt(req.playdate_id) === parseInt(playdateID)) ? req.accepted = 0 : '';
           });
           const newUser = update(user, {
             requests: { $set: copyOfRequests }
@@ -109,8 +110,8 @@ export default function UserProfile(props) {
               <div className="col-6 ml-2">
                 <ul className="list-unstyled mt-3">
                   <li><h4>{user.first} {user.last}</h4></li>
-                  <li className="row">
-                    <span className="d-inline-block ml-3">Location:</span>
+                  <li>
+                    <span className="d-inline-block">Location:</span>
                     <span className="d-inline col pl-1 mb-2">{user.display_address}</span>
                   </li>
                   <li><h6>Total Dates: {user.num_dates}</h6></li>

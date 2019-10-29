@@ -95,10 +95,10 @@ export default function DogProfile(props) {
       </div>
       <div className="container-fluid px-5">
         <div className="row">
-          <div className="col-md-6 dog-information">
+          <div className="col-md-6 dog-information mb-2">
             <h2 className="d-inline">{dog.name} - </h2>
             <h3 className="d-inline-block">{dog.breed}</h3>
-            <Link to={`/user/${dog.user_id}`} className="float-right btn">{dog.first} {dog.last}</Link>
+            <Link to={`/user/${dog.user_id}`} className="float-right btn dog-to-user">{dog.first} {dog.last}</Link>
             <div className="font-weight-light mb-2">Location:
               <h6 className="d-inline mb-1"> {dog.display_address}</h6>
             </div>

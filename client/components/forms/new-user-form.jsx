@@ -85,7 +85,7 @@ export default class NewUserForm extends React.Component {
       <Container>
         <hr />
         <Row className="justify-content-center">
-          <div className="form-container w-50">
+          <div className="form-container input-forms">
             <h4>New User</h4>
             <Form encType="multipart/form-data" onSubmit={this.handleSubmit}>
               <Row form>

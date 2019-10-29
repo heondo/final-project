@@ -78,17 +78,22 @@ router.post('/accept', (req, res) => {
                     message: 'Could not update playdate'
                   });
                 } else {
-                  db.commit(function (err) {
-                    if (err) {
-                      db.rollback(function () {
-                        res.status(500).json({ error: 'Could not complete update of request and playdate' });
-                      });
-                    } else {
-                      res.status(200).json({
-                        success: true,
-                        message: `${data2.affectedRows} playdate row was successfully updated`
-                      });
+                  db.query('UPDATE `request` SET `accepted`=0, `response_time`=UNIX_TIMESTAMP() WHERE `id`!= ?', [parseInt(requestID)], (err4, data3) => {
+                    if (err4) {
+                      res.status(500).json({ error: err4.message }).end();
                     }
+                    db.commit(function (err5) {
+                      if (err5) {
+                        db.rollback(function () {
+                          res.status(500).json({ error: 'Could not complete update of request and playdate' });
+                        });
+                      } else {
+                        res.status(200).json({
+                          success: true,
+                          message: `${data2.affectedRows} playdate row was successfully updated and ${data3.affectedRows} other requests were rejected`
+                        });
+                      }
+                    });
                   });
                 }
               });
