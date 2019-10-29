@@ -11,7 +11,7 @@ export default class MakePlaydate extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLocationSelect = this.handleLocationSelect.bind(this);
     this.state = {
-      selectedDays: [new Date()],
+      selectedDays: [],
       query: '',
       coordinates: {},
       validLocation: null
