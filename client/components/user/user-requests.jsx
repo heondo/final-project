@@ -30,10 +30,10 @@ export default function UserRequests(props) {
   function YesOrNo() {
     return (
       <>
-        <button className="btn btn-success d-block mb-2" onClick={handleAccept}>
+        <button className="btn btn-success d-inline-block mb-2" onClick={handleAccept}>
           YES
         </button>
-        <button className="btn btn-warning d-block mb-2" onClick={handleDeny}>
+        <button className="btn btn-warning d-inline-block mb-2" onClick={handleDeny}>
           NO
         </button>
       </>
@@ -62,11 +62,11 @@ export default function UserRequests(props) {
 
   return (
     <div className="requests-item row">
-      <Link className='col-lg-3 d-inline-block' to={`/dog/${request_dog_id}`}>
+      <Link className='col-md-2 d-inline-block' to={`/dog/${request_dog_id}`}>
         <div className="requester" style={requestImageStyle} ></div>
       </Link>
-      <div className="row col-lg-9">
-        <div className="col-lg-5 mx-0 px-0">
+      <div className="row col-md-10">
+        <div className="col-md-5 col-xs-12 mx-0 px-0">
           <p className="mb-0"><strong>{request_name}</strong> wants to meet <strong>{name}</strong></p>
           <ul className="list-unstyled">
             <li>Energy: {req_energy}</li>
@@ -74,14 +74,14 @@ export default function UserRequests(props) {
             <li>Playdates Attended: {num_dates}</li>
           </ul>
         </div>
-        <div className="col-lg-5 d-flex flex-column mx-0 px-0">
-          <div>Details</div>
+        <div className="col-md-5 col-xs-5 d-flex flex-column mx-0 px-0 d-inline-block">
+          <div className="d-inline-block">Details</div>
           <ul className="list-unstyled">
             <li>{display_address}</li>
             <li>{convertDate(date)}</li>
           </ul>
         </div>
-        <div className="col-lg-2 mx-0 px-0">
+        <div className="col-md-2 col-xs-5 mx-0 px-0">
           {(accepted === null) ? <YesOrNo /> : (accepted === 0) ? <Rejected /> : <Accepted />}
         </div>
       </div>

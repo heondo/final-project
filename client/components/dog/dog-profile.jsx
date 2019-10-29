@@ -14,9 +14,7 @@ export default function DogProfile(props) {
   const [activeTab, toggleTab] = useState('1');
   const setStateCallback = newState => setDog(newState);
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
+  const getDog = signal => {
     fetch(`/api/get-dogs/${id}`, { signal })
       .then(res => res.json())
       .then(dog => {
@@ -34,7 +32,14 @@ export default function DogProfile(props) {
         }
         setImages(pics);
         setDog(dog.data);
+        toggleTab('1');
       });
+  };
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+    getDog(signal);
 
     return function cleanup() {
       abortController.abort();
@@ -75,8 +80,8 @@ export default function DogProfile(props) {
       <div className="dog-profile-images container-fluid px-0 mb-2">
         <hr />
         <div className="row mx-auto" style={imgRowStyle}>
-          <div className="col" style={primStyle}></div>
-          <div className="col">
+          <div className="col-lg-6" style={primStyle}></div>
+          <div className="col-lg-6">
             <div className="row" style={smallerRows}>
               <div className="col" style={otherFour[0]}>2</div>
               <div className="col" style={otherFour[2]}>4</div>
@@ -136,7 +141,7 @@ export default function DogProfile(props) {
                     <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} setDogProfileState={setStateCallback} />
                   </TabPane>
                   <TabPane tabId="2">
-                    <MakePlaydate userID={dog.user_id} dogID={dog.id}/>
+                    <MakePlaydate userID={dog.user_id} dogID={dog.id} getDog={getDog}/>
                   </TabPane>
                 </TabContent>
               </>

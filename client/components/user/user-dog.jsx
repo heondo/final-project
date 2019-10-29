@@ -18,7 +18,7 @@ export default class UserDog extends React.Component {
       padding: '.25rem'
     };
     return (
-      <div className="col-lg-6">
+      <div className="col-md-6">
         <Card style={cardStyle} className="dog-list-card mb-3">
           <Link to={`/dog/${dog.id}`}>
             <CardImg top width="100%" src={dog.image} alt={`Photo of ${dog.name}`} />

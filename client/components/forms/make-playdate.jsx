@@ -10,8 +10,9 @@ export default class MakePlaydate extends React.Component {
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLocationSelect = this.handleLocationSelect.bind(this);
+    this.handleGetDog = this.handleGetDog.bind(this);
     this.state = {
-      selectedDays: [new Date()],
+      selectedDays: [],
       query: '',
       coordinates: {},
       validLocation: null
@@ -28,6 +29,10 @@ export default class MakePlaydate extends React.Component {
 
   handleLocationSelect(query, coordinates) {
     this.setState({ query, coordinates, validLocation: null });
+  }
+
+  handleGetDog() {
+    this.props.getDog();
   }
 
   handleSubmit() {
@@ -48,6 +53,7 @@ export default class MakePlaydate extends React.Component {
           if (res.error) {
             throw new Error(res.error);
           }
+          this.handleGetDog();
           // DO SOMETHING WHEN THE PLAYDATES MADE
         })
         .catch(error => console.error(error));

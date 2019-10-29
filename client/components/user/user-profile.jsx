@@ -99,7 +99,7 @@ export default function UserProfile(props) {
   };
 
   return (
-    <div className="container-fluid px-5">
+    <div className="container-fluid px-3">
       <hr />
       <div className="row">
         <div className="col-xs-12 col-lg-6">

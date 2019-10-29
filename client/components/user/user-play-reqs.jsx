@@ -56,11 +56,11 @@ export default function UserPlayReqs(props) {
 
     if (data.accepted === null) {
       return (
-        <div className="row">
+        <div className="row justify-content-center">
           <div className="col-lg-1" style={ownerDogStyle}></div>
           <div className="col-lg-3">
             <p>{`${data.other_dog_name} has not responded to meet with ${data.dog_name}`}
-              <br/><br />Request Pending</p>
+              <br /><br /><strong>Request Pending</strong></p>
           </div>
           <div className="col-lg-1" style={otherDogStyle} onClick={() => {
             history.push(`/dog/${data.other_dog_id}`);
