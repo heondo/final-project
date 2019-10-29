@@ -76,9 +76,14 @@ export default class PlaydatesListItem extends React.Component {
     if (userID == null || !userDogs.length) {
       return (
         <Row className="my-2">
-          <Col xs="9">
-            {displayDate + ' - ' + playdate.display_address}
-          </Col>
+          {playdate.confirmed
+            ? <Col xs="9">
+              {displayDate + ' - ' + playdate.display_address}
+            </Col>
+            : <Col xs="9">
+              <s>{displayDate + ' - ' + playdate.display_address}</s>
+              <Badge className="ml-2" style={{ backgroundColor: '#bfbfbf' }}>Playdate Full!</Badge>
+            </Col>}
         </Row>
       );
     } else if (playdate.requested_users != null && playdate.requested_users.includes(userID.toString())) {
