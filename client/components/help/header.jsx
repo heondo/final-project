@@ -42,7 +42,7 @@ class Header extends React.Component {
 
   render() {
     const bgImage = {
-      backgroundImage: 'url("./assets/pet-logo.svg")',
+      backgroundImage: 'url("./assets/images/pet-logo.svg")',
       minHeight: '50px',
       width: '50px',
       backgroundSize: 'contain',

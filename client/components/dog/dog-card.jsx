@@ -20,15 +20,16 @@ export default class DogCard extends React.Component {
     const cardBodyStyle = {
       padding: '.25rem'
     };
+    const energy = convertEnergyLevel(dog.energy_lvl);
     return (
-      <div className="col-lg-3 col-md-4 col-sm-6">
+      <div className="col-xl-3 col-lg-4 col-sm-6">
         <Card style={cardStyle} className="dog-list-card mb-3">
           <Link to={`/dog/${dog.id}`}>
             <DogSmCarousel items={dog.images} />
             <CardBody style={cardBodyStyle}>
               <CardTitle className="mb-1 position-relative">
                 <span className="font-weight-bold">
-                  {dog.name}
+                  {dog.name} {' '}
                 </span>
                 <span className="">
                   - {startCase(toLower(dog.breed))}
@@ -39,16 +40,18 @@ export default class DogCard extends React.Component {
               </CardTitle>
               <CardSubtitle className="d-flex w-100 justify-content-between">
                 <span>
-                  <i className="fas fa-birthday-cake" title="Age"></i> {dog.age},
+                  <i className="fas fa-birthday-cake" title="Age"></i> {dog.age}
                 </span>
                 <span >
                   {dog.display_address}
                 </span>
               </CardSubtitle>
-              <CardText className="d-flex dog-card-last-row">
+              <CardText className="dog-card-last-row">
                 <span>
                   <i className="fas fa-bolt" title="Energy Level"></i>
-                  {' '}{convertEnergyLevel(dog.energy_lvl)}
+                  {' '}{
+                    (energy === 'Medium') ? 'Med' : energy
+                  }
                 </span>
                 <span>
                   <i className="fas fa-transgender-alt" title="Gender"></i>
@@ -56,9 +59,12 @@ export default class DogCard extends React.Component {
                 </span>
                 <span>
                   <i className="fas fa-calendar-day" title="Number of Dates"></i>
-                  {' '}{dog.num_dates}
+                  {' '}{dog.num_dates} dates
                 </span>
-                {(dog.miles) ? <p>{dog.miles.toFixed(2)} miles</p> : undefined} </CardText>
+                <span className="float-right miles">
+                  {(dog.miles || dog.miles === 0) ? <p>{dog.miles.toFixed(1)} mi</p> : undefined}
+                </span>
+              </CardText>
             </CardBody>
           </Link>
         </Card>

@@ -1,3 +1,20 @@
+@font-face {
+  font-family: "Chivo";
+  src: url('./assets/fonts/Chivo/Chivo-Regular.ttf');
+}
+
+@font-face {
+  font-family: "Overpass";
+  src: url('./assets/fonts/Overpass/Overpass-Regular.ttf');
+}
+* {
+  font-family: "Overpass"
+}
+
+h1,h2,h3,h4,h5 {
+  font-family: "Chivo"
+}
+
 .dog-list-card, .dog-to-user {
   transition: background-color 0.5s ease;
 }
@@ -11,6 +28,11 @@
     color: inherit;
     cursor: pointer;
 }
+
+.nav-item a {
+  cursor: pointer;
+}
+
 
 .react-autosuggest__container {
   position: relative;
@@ -148,10 +170,16 @@
   margin-left: 2rem;
 } */
 
-.dog-card-last-row span {
-  margin-right: 1.5rem;
+.dog-card-last-row span:not(.miles):not(:nth-child(3)) {
+  margin-right: 1.3rem;
 }
 
+
+@media (max-width: 635px) {
+  .dog-card-last-row span:not(.miles):not(:nth-child(3)) {
+    margin-right: .5rem;
+  }
+}
 
 @media (max-width: 575px) {
   .input-forms {
@@ -161,15 +189,9 @@
   .dog-total-info {
     padding: 0 1rem;
   }
-
-  .dog-card-last-row span {
-  margin-right: 0;
-}
-
-  .dog-card-last-row {
-    justify-content: space-between;
+  .dog-card-last-row span:not(.miles):not(:nth-child(3)) {
+    margin-right: 1.7rem;
   }
-}
 
 .capitalize {
     text-transform: capitalize;
