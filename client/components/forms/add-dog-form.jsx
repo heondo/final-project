@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Row, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 import DOBPicker from '../help/dob-picker';
 import AutofillBreed from './autofill-breed';
@@ -9,6 +10,7 @@ export default class AddDogForm extends React.Component {
     this.newImageURLs = null;
     this.updateDOB = this.updateDOB.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleImageSelect = this.handleImageSelect.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.imagesToUpload = React.createRef();
     this.changeBreedState = this.changeBreedState.bind(this);
@@ -18,11 +20,12 @@ export default class AddDogForm extends React.Component {
       breedInput: '',
       weightInput: '',
       dobInput: '',
-      genderInput: 'M',
+      genderInput: 'NA',
       fixedInput: '0',
       energyLevelInput: '',
       descriptionInput: '',
-      igInput: ''
+      igInput: '',
+      imageInput: ''
     };
   }
 
@@ -34,25 +37,28 @@ export default class AddDogForm extends React.Component {
     this.setState({ dobInput: date });
   }
   handleInputChange(event) {
-    const { target } = event;
+    // const { target } = event;
     const name = event.target.name;
     const value = event.target.value;
     // console.log(name, value);
     this.setState({ [name]: value });
   }
+  handleImageSelect() {
+    const fileList = this.imagesToUpload.current.files;
+    let filenames = fileList[0].name;
+    if (fileList.length > 1) {
+      for (let i = 1; i < fileList.length; i++) {
+        filenames += ', ' + fileList[i].name;
+      }
+    }
+    this.setState({ imageInput: filenames });
+  }
   handleSubmit(event) {
     event.preventDefault();
-    console.log('State as of submit button click:', this.state);
-    console.log('Array of image objects:', this.imagesToUpload.current.files);
-
     this.makeRequestToUploadDogImage();
   }
   makeRequestToUploadDogImage() {
     let formData = new FormData();
-    // formData.append('imageInput', this.imagesToUpload.current.files[0]);
-    // this.imagesToUpload.current.files.forEach(file => {
-    //   formData.append('imageInput', file);
-    // });
     for (let file of this.imagesToUpload.current.files) {
       formData.append('imageInput', file);
     }
@@ -62,7 +68,6 @@ export default class AddDogForm extends React.Component {
     })
       .then(response => response.json())
       .then(dogImageURLs => {
-        console.log('Res from upload-dog-image:', dogImageURLs);
         this.newImageURLs = dogImageURLs.imageURLs;
         this.makeRequestToAddDog(this.props.userID);
       })
@@ -77,7 +82,6 @@ export default class AddDogForm extends React.Component {
     } else {
       addDogRequestBody.fixedInput = 0;
     }
-    console.log('addDogRequestBody', addDogRequestBody);
     fetch('/api/add-dog/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -85,10 +89,7 @@ export default class AddDogForm extends React.Component {
     })
       .then(response => response.json())
       .then(addedDogData => {
-        console.log('Res from add-dog:', addedDogData);
         this.props.history.push(`/dog/${addedDogData.insertDogData.insertId}`);
-        // if (addedDogData.success) { // TODO: need to redirect to newly created dog page here
-        // }
       })
       .catch(error => console.error(error));
   }
@@ -99,7 +100,10 @@ export default class AddDogForm extends React.Component {
     } else if (this.state.genderInput === 'M') {
       fixedText = 'Neutered';
     }
-    // TODO: cancel button should route back to user's page
+    let uploadPlaceholderText = 'Choose file(s)';
+    if (this.state.imageInput) {
+      uploadPlaceholderText = this.state.imageInput;
+    }
     return (
       <Container fluid>
         <hr />
@@ -249,13 +253,22 @@ export default class AddDogForm extends React.Component {
               </FormGroup>
 
               <FormGroup>
-                <Label htmlFor="imageInput">Upload Image</Label>
-                <CustomInput type="file" name="imageInput" id="imageInput" multiple innerRef={this.imagesToUpload} />
+                <Label htmlFor="imageInput">Upload Images</Label>
+                <CustomInput
+                  type="file"
+                  name="imageInput"
+                  id="imageInput"
+                  label={uploadPlaceholderText}
+                  multiple
+                  innerRef={this.imagesToUpload}
+                  onChange={this.handleImageSelect} />
               </FormGroup>
 
               <FormGroup className="d-flex justify-content-end">
                 <Button type="submit" color="primary" outline className="mx-2">Add Dog</Button>
-                <Button color="secondary" outline>Cancel</Button>
+                <Link to={`/user/${this.props.userID}`}>
+                  <Button color="secondary" outline>Cancel</Button>
+                </Link>
               </FormGroup>
             </Form>
           </div>

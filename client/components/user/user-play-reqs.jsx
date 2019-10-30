@@ -35,9 +35,9 @@ export default function UserPlayReqs(props) {
 
   const whichTypeDate = playOrReq => {
     if ('request_id' in playOrReq) {
-      return <><Request data={playOrReq} /><hr/></>;
+      return <><Request data={playOrReq} /><hr className="w-75" /></>;
     } else {
-      return <><CreatedPlaydate data={playOrReq} /> <hr /></>;
+      return <><CreatedPlaydate data={playOrReq} /><hr className="w-75" /></>;
     }
   };
 
@@ -65,18 +65,19 @@ export default function UserPlayReqs(props) {
     if (data.accepted === null) {
       return (
         <div className="row justify-content-center">
-          <div className="col-lg-1" style={ownerDogStyle}></div>
-          <div className="col-lg-3">
+          <div className="col-lg-1 col-2" style={ownerDogStyle}></div>
+          <div className="col-lg-3 col-6">
             <p>{`${data.other_dog_name} has not responded to meet with ${data.dog_name}`}
               <br /><br /><div className="open-request badge">Request Pending</div></p>
           </div>
-          <div className="col-lg-1" style={otherDogStyle} onClick={() => {
+          <div className="col-lg-1 col-2" style={otherDogStyle} onClick={() => {
             history.push(`/dog/${data.other_dog_id}`);
           }}></div>
-          <div className="col-lg-2">
-            Meeting on {convertDate(data.date)}
+          <div className="w-100 d-block d-md-none"></div>
+          <div className="col-lg-2 col-6">
+            Meeting Date: <br /> {convertDate(data.date)}
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-2 col-6">
             Meeting Location: <br /> {data.display_address}
           </div>
         </div>
@@ -84,18 +85,19 @@ export default function UserPlayReqs(props) {
     } else if (data.accepted === 0) {
       return (
         <div className="row justify-content-center">
-          <div className="col-lg-1" style={ownerDogStyle} ></div>
-          <div className="col-lg-3">
+          <div className="col-lg-1 col-2" style={ownerDogStyle} ></div>
+          <div className="col-lg-3 col-6">
             <p>{`${data.other_dog_name} does not wish to meet with ${data.dog_name} :(`}
               <br /><br /><div className="denied-request badge">Request Denied</div></p>
           </div>
-          <div className="col-lg-1" style={otherDogStyle} onClick={() => {
+          <div className="col-lg-1 col-2" style={otherDogStyle} onClick={() => {
             history.push(`/dog/${data.other_dog_id}`);
           }}></div>
-          <div className="col-lg-2">
-            Meeting on {convertDate(data.date)}
+          <div className="w-100 d-block d-md-none"></div>
+          <div className="col-lg-2 col-6">
+            Meeting Date: <br /> {convertDate(data.date)}
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-2 col-6">
             Meeting Location: <br /> {data.display_address}
           </div>
         </div>
@@ -103,18 +105,19 @@ export default function UserPlayReqs(props) {
     } else if (data.accepted === 1) {
       return (
         <div className="row justify-content-center">
-          <div className="col-lg-1" style={ownerDogStyle}></div>
-          <div className="col-lg-3">
+          <div className="col-lg-1 col-2" style={ownerDogStyle}></div>
+          <div className="col-lg-3 col-6">
             <p>{`${data.other_dog_name} has agreed to meet with ${data.dog_name}!`}
               <br /><br/><div className="success-request badge">Request Accepted</div></p>
           </div>
-          <div className="col-lg-1" style={otherDogStyle} onClick={() => {
+          <div className="col-lg-1 col-2" style={otherDogStyle} onClick={() => {
             history.push(`/dog/${data.other_dog_id}`);
           }}></div>
-          <div className="col-lg-2">
-            Meeting on {convertDate(data.date)}
+          <div className="w-100 d-block d-md-none"></div>
+          <div className="col-lg-2 col-6">
+            Meeting Date: <br /> {convertDate(data.date)}
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-2 col-6">
             Meeting Location: <br /> {data.display_address}
           </div>
         </div>
@@ -146,40 +149,42 @@ export default function UserPlayReqs(props) {
 
     return (data.confirmed)
       ? <div className="row justify-content-center">
-        <div className="col-lg-1" style={ownerDogStyle}></div>
-        <div className="col-lg-3">
+        <div className="col-lg-1 col-2" style={ownerDogStyle}></div>
+        <div className="col-lg-3 col-6">
           <div>{`${data.dog_name} is meeting with ${data.req_dog_name}`}
             <br /><br /><div className="success-playdate badge">Playdate Confirmed</div></div>
         </div>
-        <div className="col-lg-1" style={otherDogStyle} onClick={() => {
+        <div className="col-lg-1 col-2" style={otherDogStyle} onClick={() => {
           history.push(`/dog/${data.req_dog_id}`);
         }}></div>
-        <div className="col-lg-2">
-          Meeting on {convertDate(data.date)}
+        <div className="w-100 d-block d-md-none"></div>
+        <div className="col-lg-2 col-6">
+          Meeting Date: <br /> {convertDate(data.date)}
         </div>
-        <div className="col-lg-2">
+        <div className="col-lg-2 col-6">
           Meeting Location: <br /> {data.display_address}
         </div>
       </div>
       : <div className="row justify-content-center">
-        <div className="col-lg-1" style={ownerDogStyle}></div>
-        <div className="col-lg-3">{`${data.dog_name} is not meeting with anyone...yet!`}
+        <div className="col-lg-1 col-2" style={ownerDogStyle}></div>
+        <div className="col-lg-3 col-6">{`${data.dog_name} is not meeting with anyone... yet!`}
           <br /><br /><div className="open-playdate badge">Playdate Still Open</div></div>
-        <div className="col-lg-1" style={otherDogStyle}></div>
-        <div className="col-lg-2">
-          Meeting on {convertDate(data.date)}
+        <div className="col-lg-1 col-2" style={otherDogStyle}></div>
+        <div className="w-100 d-block d-md-none"></div>
+        <div className="col-lg-2 col-6">
+          Meeting Date: <br /> {convertDate(data.date)}
         </div>
-        <div className="col-lg-2">
-          Meeting Location: <br/> {data.display_address}
+        <div className="col-lg-2 col-6">
+          Meeting Location: <br /> {data.display_address}
         </div>
       </div>;
   };
 
   return (
-    <div className="container-fluid px-5 text-center">
+    <div className="container-fluid text-center">
       <hr />
       <h4 className="mb-4 mx-auto">My Playdates and Requests</h4>
-      <div className="d-flex flex-column">
+      <div className="container-fluid d-flex flex-column">
         {
           (playReqs) ? playReqs.map(pr => {
             return whichTypeDate(pr);
