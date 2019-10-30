@@ -93,6 +93,7 @@ export default function DogProfile(props) {
           </div>
         </div>
       </div>
+      <hr/>
       <div className="container-fluid dog-total-info">
         <div className="row">
           <div className="col-md-6 dog-information mb-2">
