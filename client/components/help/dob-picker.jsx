@@ -8,7 +8,6 @@ export default function DOBPicker(props) {
     <DatePicker
       selected={startDate}
       onChange={date => {
-        console.log(date, typeof date);
         props.updateDOBCallback(date.getTime() / 1000);
         setStartDate(date);
       }}

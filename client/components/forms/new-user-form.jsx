@@ -49,16 +49,14 @@ export default class NewUserForm extends React.Component {
     })
       .then(response => response.json())
       .then(profilePicURL => {
-        console.log('Res from upload-user-image:', profilePicURL);
         this.newImageURL = profilePicURL.imageURL;
         this.makeRequestToAddUser();
       })
       .catch(error => console.error(error));
   }
   makeRequestToAddUser() {
-    let addUserRequestBody = this.state;
+    let addUserRequestBody = JSON.parse(JSON.stringify(this.state));
     addUserRequestBody.imageURL = this.newImageURL;
-    console.log('addUserRequestBody', addUserRequestBody);
     fetch('/api/add-user/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -66,7 +64,6 @@ export default class NewUserForm extends React.Component {
     })
       .then(response => response.json())
       .then(newUserData => {
-        console.log('Res from add-user:', newUserData);
         if (newUserData.error) {
           // catch error
           if (newUserData.error === 'email') {
@@ -74,8 +71,7 @@ export default class NewUserForm extends React.Component {
             throw new Error(newUserData.error);
           }
         }
-        // if (newUserData.success) { // TODO: need to redirect to add dog form here
-        // }
+        this.props.history.push(`/user/${newUserData.insertId}`);
       })
       .catch(error => console.error(error));
   }

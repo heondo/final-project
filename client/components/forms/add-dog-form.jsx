@@ -100,12 +100,12 @@ export default class AddDogForm extends React.Component {
     } else if (this.state.genderInput === 'M') {
       fixedText = 'Neutered';
     }
-    let uploadPlaceholderText = 'Choose file(s)';
+    let uploadPlaceholderText = 'Choose File(s)';
     if (this.state.imageInput) {
       uploadPlaceholderText = this.state.imageInput;
     }
     return (
-      <Container fluid>
+      <Container>
         <hr />
         <Row className="justify-content-center">
           <div className="form-container input-forms">
