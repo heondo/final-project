@@ -20,6 +20,7 @@ export default function UserProfile(props) {
         if (!user.success) {
           throw new Error(user.data);
         }
+        user.user.requests = user.user.requests.filter(a => a.date > Date.now() / 1000).sort((a, b) => (a.date > b.date) ? 1 : -1);
         setUser(user.user);
       });
     return function cleanup() {
@@ -100,10 +101,10 @@ export default function UserProfile(props) {
   };
 
   return (
-    <div className="container-fluid px-3">
+    <div className="container-fluid px-5">
       <hr />
       <div className="row">
-        <div className="col-xs-12 col-lg-6">
+        <div className="col-xl-6">
           <div className="user-profile-card mx-auto d-flex flex-column oc-bg-grey p-4">
             <div className="img-and-info row">
               <div className="col-5 prof-pic" style={profPic}></div>
@@ -137,7 +138,7 @@ export default function UserProfile(props) {
             }
           </div>
         </div>
-        <div className="col-xs-12 col-lg-6">
+        <div className="col-xl-6">
           <div className="user-dogs-header w-75 mr-5 mb-3">
             {(userID === parseInt(id)) ? <h4>Your Dogs <Link to="/add-dog" className="float-right">+ New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
           </div>

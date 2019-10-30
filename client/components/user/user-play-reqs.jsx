@@ -16,7 +16,14 @@ export default function UserPlayReqs(props) {
           throw new Exception(res.message);
         }
         console.log(Date.now());
-        let newArr = res.playdates.concat(res.requests).filter(a => a.date > Date.now() / 1000).sort((a, b) => (a.date > b.date) ? 1 : -1);
+        let newArr = res.playdates.concat(res.requests).filter(a => {
+          if (a.response_time) {
+            if ((Date.now() / 1000) - a.response_time > 172800) {
+              return false;
+            }
+          }
+          return a.date > Date.now() / 1000;
+        }).sort((a, b) => (a.date > b.date) ? 1 : -1);
         setPlayReqs(newArr);
       })
       .catch(error => { console.error(error); });

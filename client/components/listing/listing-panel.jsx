@@ -22,14 +22,14 @@ export default function ListingPanel(props) {
           <Container fluid>
             <Row>
 
-              <Col xs='4' className="pl-4">
+              <Col lg='4' className="pl-4">
                 <h3>{dogInfo.name}</h3>
                 <h6 className="text-muted">{breed + ' - ' + weightClass}</h6>
                 <p className="mb-1">Gender: {dogInfo.sex}, Age: {dogInfo.age}, Energy Level: {energyLevel}</p>
                 <p>Playdates Attended: {dogInfo.num_dates}</p>
               </Col>
 
-              <Col xs='6' className="px-2">
+              <Col lg='6' className="px-2">
                 <h4>Upcoming Playdates</h4>
                 {playdates
                   .filter((playdate, index) => index <= maxPlaydatesToDisplay - 1)
@@ -48,7 +48,7 @@ export default function ListingPanel(props) {
                 }
               </Col>
 
-              <Col xs='2' className="d-flex justify-content-end align-items-center">
+              <Col lg='2' className="d-flex justify-content-end align-items-center">
                 <Link to={`/dog/${dogInfo.id}`}>
                   <Button color="primary" outline>View Profile</Button>
                 </Link>
