@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { convertDate } from './../help/functions';
+import { convertDate, convertEnergyLevel } from './../help/functions';
 
 export default function UserRequests(props) {
   const { id, date, name, user_id, accepted, req_energy, req_weight,
@@ -13,8 +13,7 @@ export default function UserRequests(props) {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     width: '100%',
-    minWidth: '7rem',
-    height: '7rem'
+    height: '100%'
   };
 
   useEffect(() => {}, [accepted]);
@@ -68,13 +67,13 @@ export default function UserRequests(props) {
       <div className="col-md-4 mx-0 px-0">
         <p className="mb-0"><strong>{request_name}</strong> wants to meet <strong>{name}</strong></p>
         <ul className="list-unstyled">
-          <li>Energy: {req_energy}</li>
-          <li>Weight: {req_weight}</li>
-          <li>Playdates Attended: {num_dates}</li>
+          <li><i className="fas fa-bolt" title="Energy Level"></i> {convertEnergyLevel(req_energy)}</li>
+          <li><i className="fas fa-dumbbell" title="weight"></i> {req_weight} lbs</li>
+          <li><i className="fas fa-calendar-day" title="Number of Dates"></i> {num_dates} dates</li>
         </ul>
       </div>
       <div className="col-md-4 col-8 d-flex flex-column mx-0 px-0 d-inline-block">
-        <div className="d-inline">Details</div>
+        <div className="d-inline user-req-details">Details</div>
         <ul className="list-unstyled">
           <li>{display_address}</li>
           <li>{convertDate(date)}</li>

@@ -151,8 +151,8 @@ export default function UserPlayReqs(props) {
       ? <div className="row justify-content-center">
         <div className="col-lg-1 col-2" style={ownerDogStyle}></div>
         <div className="col-lg-3 col-6">
-          <p>{`${data.dog_name} is meeting with ${data.req_dog_name}`}
-            <br /><br /><div className="success-playdate badge">Playdate Confirmed</div></p>
+          <div>{`${data.dog_name} is meeting with ${data.req_dog_name}`}
+            <br /><br /><div className="success-playdate badge">Playdate Confirmed</div></div>
         </div>
         <div className="col-lg-1 col-2" style={otherDogStyle} onClick={() => {
           history.push(`/dog/${data.req_dog_id}`);

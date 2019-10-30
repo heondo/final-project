@@ -7,7 +7,11 @@ const calculateAge = birthday => { // birthday is a date
   birthday = new Date(parseFloat(birthday * 1000));
   var ageDifMs = Date.now() - birthday;
   var ageDate = new Date(ageDifMs); // miliseconds from epoch
-  return Math.abs(ageDate.getUTCFullYear() - 1970);
+  let output = Math.abs(ageDate.getUTCFullYear() - 1970);
+  if (!output) {
+    return Math.round(ageDifMs / 2592000000) + ' mos';
+  }
+  return output + ' yrs';
 };
 
 const calculateUnixAge = ageInYears => {
@@ -48,7 +52,6 @@ router.get('/', (req, res, next) => {
       };
       res.status(500);
     } else {
-      const now = Date.now() / 1000;
       data.forEach(dog => {
         if (!dog.images) {
           dog.images = defaultImage;
