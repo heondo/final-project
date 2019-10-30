@@ -81,6 +81,12 @@
   background-color: rgb(73, 177, 108);
 }
 
+.carousel-indicators li {
+  width: 8px;
+  height: 8px;
+  margin: 0 6px
+}
+
 .open-playdate {
   background-color: #dbcdc2;
 }
@@ -134,8 +140,17 @@
   width: 60%
 }
 
+.dog-total-info {
+    padding: 0 3rem;
+  }
+
+
 @media (max-width: 480px) {
   .input-forms {
     width: 80%;
+  }
+
+  .dog-total-info {
+    padding: 0 1rem;
   }
 }

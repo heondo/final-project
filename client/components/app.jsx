@@ -22,7 +22,7 @@ export default class App extends React.Component {
     this.logout = this.logout.bind(this);
     this.state = {
       isLoggedIn: true,
-      userID: 2,
+      userID: 1,
       userDogs: []
     };
   }

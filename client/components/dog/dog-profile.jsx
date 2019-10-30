@@ -93,7 +93,7 @@ export default function DogProfile(props) {
           </div>
         </div>
       </div>
-      <div className="container-fluid px-5">
+      <div className="container-fluid dog-total-info">
         <div className="row">
           <div className="col-md-6 dog-information mb-2">
             <h2 className="d-inline">{dog.name} - </h2>

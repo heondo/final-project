@@ -30,7 +30,7 @@ export default function UserRequests(props) {
   function YesOrNo() {
     return (
       <>
-        <button className="btn btn-success d-inline-block mb-2" onClick={handleAccept}>
+        <button className="btn btn-success d-inline-block mb-2 mr-1" onClick={handleAccept}>
           YES
         </button>
         <button className="btn btn-warning d-inline-block mb-2" onClick={handleDeny}>
@@ -62,28 +62,26 @@ export default function UserRequests(props) {
 
   return (
     <div className="requests-item row">
-      <Link className='col-md-2 d-inline-block' to={`/dog/${request_dog_id}`}>
+      <Link className='col-md-2' to={`/dog/${request_dog_id}`}>
         <div className="requester" style={requestImageStyle} ></div>
       </Link>
-      <div className="row col-md-10">
-        <div className="col-md-5 col-xs-12 mx-0 px-0">
-          <p className="mb-0"><strong>{request_name}</strong> wants to meet <strong>{name}</strong></p>
-          <ul className="list-unstyled">
-            <li>Energy: {req_energy}</li>
-            <li>Weight: {req_weight}</li>
-            <li>Playdates Attended: {num_dates}</li>
-          </ul>
-        </div>
-        <div className="col-md-5 col-xs-5 d-flex flex-column mx-0 px-0 d-inline-block">
-          <div className="d-inline">Details</div>
-          <ul className="list-unstyled">
-            <li>{display_address}</li>
-            <li>{convertDate(date)}</li>
-          </ul>
-        </div>
-        <div className="col-md-2 col-xs-5 mx-0 px-0">
-          {(accepted === null) ? <YesOrNo /> : (accepted === 0) ? <Rejected /> : <Accepted />}
-        </div>
+      <div className="col-md-4 mx-0 px-0">
+        <p className="mb-0"><strong>{request_name}</strong> wants to meet <strong>{name}</strong></p>
+        <ul className="list-unstyled">
+          <li>Energy: {req_energy}</li>
+          <li>Weight: {req_weight}</li>
+          <li>Playdates Attended: {num_dates}</li>
+        </ul>
+      </div>
+      <div className="col-md-4 col-8 d-flex flex-column mx-0 px-0 d-inline-block">
+        <div className="d-inline">Details</div>
+        <ul className="list-unstyled">
+          <li>{display_address}</li>
+          <li>{convertDate(date)}</li>
+        </ul>
+      </div>
+      <div className="col-md-1 col-3 my-auto mx-0 px-0 float-right d-flex justify-content-center">
+        {(accepted === null) ? <YesOrNo /> : (accepted === 0) ? <Rejected /> : <Accepted />}
       </div>
     </div>
   );

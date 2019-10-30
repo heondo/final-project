@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 25, 2019 at 06:01 PM
+-- Generation Time: Oct 29, 2019 at 05:51 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -424,27 +424,7 @@ INSERT INTO `dogs` (`id`, `name`, `weight`, `bio`, `user_id`, `ig_url`, `birth`,
 (5, 'Aiko', 15, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 1, '', '1505026800', 'F', 1, 326, 1),
 (6, 'Jasmine', 7, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 2, '', '1489132800', 'NA', 1, 25, 0),
 (7, 'Westington', 70, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 3, '', '1470812400', 'M', 1, 349, 2),
-(8, 'Bow', 35, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 4, '', '1392451200', 'M', 0, 13, 0),
-(10, 'Tudor', 13, 'This is a bio for the dog that has two dogs. And this is in fact the second dog believe it or not', 2, 'instagram.com', '1571263155', 'M', 1, 251, 2),
-(11, 'Steve', 55, 'This time for sure will work', 1, 'https://gramagram.com/', '946767408', 'M', 1, 42, 0),
-(21, 'heondo', 2, 'fgsdgfdgfddsdgdfgdf', 1, 'http://heondo.com', '1570489479', 'M', 1, 356, 0),
-(22, 'd', 1, 'dafasdfsdafasdfsd', 1, 'http://heondo.com', '1570407201', 'NA', 1, 357, 1),
-(23, 'heondo', 12, 'fdffffdgfgdfgddgf', 1, 'http://heondo.com', '1570395342', 'F', 1, 2, 0),
-(24, 'heondo', 2, 'cvgnbcvbvbvbvcb', 1, 'http://heondo.com', '1570591535', 'F', 1, 1, 1),
-(25, 'newest dog', 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'F', 1, 29, 0),
-(26, 'newest dog', 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'M', 1, 29, 0),
-(27, 'newest dog', 250, 'Golden retriever is the best', 2, 'http://link.com', '1412193282', 'M', 1, 29, 0),
-(28, 'newest dog', 123, 'dfdsfsdfsdfsdsdfsdfsdf', 23, 'http://link.com', '1570564807', 'F', 1, 4, 0),
-(29, 'junior', 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
-(30, 'junior', 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
-(31, 'junior', 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
-(32, 'junior', 12, 'dddddddddddddddddddddddddddd', 23, 'http://link.com', '1571083397', 'F', 1, 13, 1),
-(33, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 358, 0),
-(34, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 359, 0),
-(35, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 360, 0),
-(36, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 361, 0),
-(37, 'junior', 23, 'rdedcdddddddddddddddddddddddddddddddddddddddddd', 23, 'http://link.com', '1570570735', 'F', 1, 362, 0),
-(38, 'newest dog 2355', 12, 'erefafsdfsdfasdfasdfasdf', 24, 'http://link.com', '1571348738', 'F', 1, 21, 0);
+(8, 'Bow', 35, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 4, '', '1392451200', 'M', 0, 13, 0);
 
 -- --------------------------------------------------------
 
@@ -471,40 +451,7 @@ INSERT INTO `dog_images` (`id`, `dog_id`, `url`, `sort_ord`) VALUES
 (5, 7, 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12225014/Rottweiler-MP.jpg', 0),
 (6, 7, 'https://vetstreet-brightspot.s3.amazonaws.com/a5/16f550a7fb11e0a0d50050568d634f/file/Rottweiler-2-645mk062811.jpg', 1),
 (7, 8, 'https://thesmartcanine.com/wp-content/uploads/2019/05/chipin-chihuahua-mix.jpg', 0),
-(8, 8, 'https://thesmartcanine.com/wp-content/uploads/2019/02/chihuahua-dachshund-mix-looks.jpg', 1),
-(9, 11, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/EOlgQaD.jpg', 0),
-(10, 11, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/evbIIyE.jpg', 1),
-(21, 21, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
-(22, 22, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
-(23, 23, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/ios-13-stock-wallpaper-3840x2160_949874-mm-90.jpg', 0),
-(24, 23, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 1),
-(25, 24, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
-(26, 25, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
-(27, 26, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
-(28, 27, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
-(29, 28, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/dragon-s-journey-2880x1800_7678-mm-90.jpg', 0),
-(30, 28, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/GvojAhH.png', 1),
-(31, 28, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 2),
-(32, 29, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
-(33, 30, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
-(34, 31, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
-(35, 32, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg', 0),
-(36, 33, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
-(37, 33, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
-(38, 33, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
-(39, 34, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
-(40, 34, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
-(41, 34, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
-(42, 35, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
-(43, 35, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
-(44, 35, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
-(45, 36, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
-(46, 36, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
-(47, 36, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
-(48, 37, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/q25fqaeoaqt31.jpg', 0),
-(49, 37, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/zmylmfcv2kq31.jpg', 1),
-(50, 37, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 2),
-(51, 38, 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/6oYJ8Tr.jpg', 0);
+(8, 8, 'https://thesmartcanine.com/wp-content/uploads/2019/02/chihuahua-dachshund-mix-looks.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -530,24 +477,21 @@ CREATE TABLE `playdates` (
 --
 
 INSERT INTO `playdates` (`id`, `dog_id`, `date`, `create_date`, `accepted_date`, `lat`, `lng`, `display_address`, `confirmed`, `dog_2_id`) VALUES
-(13, 38, '1571870211', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(14, 38, '1571870214', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(15, 38, '1571870253', '', '', 33.6790596, -117.74441059999998, '5th St, Irvine, CA 92618, USA', 1, 5),
-(16, 38, '1571872494', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(17, 38, '1571872494', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(18, 38, '1571872561', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(19, 38, '1570042800', '', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 1, 5),
-(20, 5, '1571870253', '', '', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 1, 38),
-(21, 5, '1572548400', '', '', 33.65101609999999, -117.74391029999998, '670 Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
-(22, 11, '1571870253', '', '', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 1, 7),
-(23, 11, '1572548400', '', '1572043434', 37.6818688, -121.76847320000002, 'Livermore, CA, USA', 1, 28),
-(24, 28, '1574452800', '1571943176', '', 33.6753521, -117.7935066, '5000 Barranca Pkwy, Irvine, CA 92604, USA', 0, NULL),
-(25, 28, '1574539200', '1571943176', '', 33.6753521, -117.7935066, '5000 Barranca Pkwy, Irvine, CA 92604, USA', 0, NULL),
-(26, 28, '1572116400', '1571960736', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(27, 28, '1572548400', '1571960736', '', 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
-(28, 23, '1572548400', '1572051594', NULL, 33.6382498, -117.81502460000002, 'Turtle Rock Viewpoint Trail, Irvine, CA 92603, USA', 0, NULL),
-(29, 23, '1572462000', '1572051594', NULL, 33.6382498, -117.81502460000002, 'Turtle Rock Viewpoint Trail, Irvine, CA 92603, USA', 0, NULL),
-(30, 23, '1572375600', '1572051594', NULL, 33.6382498, -117.81502460000002, 'Turtle Rock Viewpoint Trail, Irvine, CA 92603, USA', 0, NULL);
+(31, 5, '1574452800', '1572368556', NULL, 33.6348748, -117.7404808, '9200 Irvine Center Dr #200, Irvine, CA 92618, USA', 0, NULL),
+(32, 5, '1574539200', '1572368556', '1572387492', 33.6348748, -117.7404808, '9200 Irvine Center Dr #200, Irvine, CA 92618, USA', 1, 8),
+(33, 5, '1573934400', '1572368556', NULL, 33.6348748, -117.7404808, '9200 Irvine Center Dr #200, Irvine, CA 92618, USA', 0, NULL),
+(34, 7, '1576699200', '1572368803', NULL, 33.6882824, -117.82277999999997, '4 Civic Center Plaza, Irvine, CA 92606, USA', 0, NULL),
+(35, 7, '1575316800', '1572368803', NULL, 33.6882824, -117.82277999999997, '4 Civic Center Plaza, Irvine, CA 92606, USA', 0, NULL),
+(36, 7, '1575230400', '1572368803', NULL, 33.6882824, -117.82277999999997, '4 Civic Center Plaza, Irvine, CA 92606, USA', 0, NULL),
+(37, 7, '1577649600', '1572368803', '1572388110', 33.6882824, -117.82277999999997, '4 Civic Center Plaza, Irvine, CA 92606, USA', 1, 8),
+(38, 6, '1572548400', '1572368899', NULL, 33.6527972, -117.7821788, '35 Shady Canyon Dr, Irvine, CA 92603, USA', 0, NULL),
+(39, 6, '1570906800', '1572368899', NULL, 33.6527972, -117.7821788, '35 Shady Canyon Dr, Irvine, CA 92603, USA', 0, NULL),
+(40, 6, '1570302000', '1572368899', '1572369087', 33.6527972, -117.7821788, '35 Shady Canyon Dr, Irvine, CA 92603, USA', 1, 8),
+(41, 8, '1570042800', '1572369054', NULL, 33.6713725, -117.83774399999999, '3395 Michelson Dr, Irvine, CA 92612, USA', 0, NULL),
+(42, 8, '1570129200', '1572369054', NULL, 33.6713725, -117.83774399999999, '3395 Michelson Dr, Irvine, CA 92612, USA', 0, NULL),
+(43, 8, '1572548400', '1572369054', NULL, 33.6713725, -117.83774399999999, '3395 Michelson Dr, Irvine, CA 92612, USA', 0, NULL),
+(44, 8, '1573416000', '1572369054', '1572386398', 33.6713725, -117.83774399999999, '3395 Michelson Dr, Irvine, CA 92612, USA', 1, 5),
+(45, 6, '1575144000', '1572374570', NULL, 33.63018949999999, -117.79721430000001, '100 Shady Canyon Dr, Irvine, CA 92603, USA', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -569,11 +513,17 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `playdate_id`, `dog_id`, `accepted`, `created_time`, `response_time`) VALUES
-(1, 23, 28, 1, '1571944335', '1572043434'),
-(2, 25, 10, 0, '1571945572', '1572040670'),
-(3, 25, 5, 0, '1571945827', '1572035832'),
-(4, 25, 11, 0, '1571945832', '1572041526'),
-(6, 13, 28, 0, '1572050385', NULL);
+(8, 33, 7, 0, '1572368773', '1572388110'),
+(9, 35, 6, 0, '1572368925', '1572388110'),
+(10, 38, 8, 0, '1572369061', '1572388110'),
+(11, 40, 8, 0, '1572369069', '1572388110'),
+(12, 34, 6, 0, '1572369179', '1572388110'),
+(13, 44, 5, 0, '1572386386', '1572388110'),
+(14, 32, 8, 0, '1572387469', '1572388110'),
+(15, 37, 8, 1, '1572388043', '1572388110'),
+(16, 37, 5, 0, '1572388062', '1572388110'),
+(17, 37, 6, 0, '1572388093', '1572388110'),
+(18, 33, 8, NULL, '1572389052', NULL);
 
 -- --------------------------------------------------------
 
@@ -599,14 +549,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `first`, `last`, `lat`, `lng`, `display_address`, `bio`, `image`) VALUES
-(1, 'lay-adison@gmail.com', '1', 'Adison', 'Lay', 33.6845673, -117.82650490000003, 'Irvine, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
-(2, 'john', '1', 'John', 'Smith', 37.7749295, -122.41941550000001, 'San Francisco, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
-(3, 'kim-heondo@gmail.com', '1', 'Heondo', 'Kim', 33.74200049999999, -117.82363909999998, 'Tustin, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
-(4, 'harrisonford@gmail.com', '1', 'Harrison', 'Ford', 34.0522342, -118.2436849, 'Los Angeles, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
-(5, 'test', '1', 'user', 'name', 33.7174708, -117.83114280000001, 'Orange County, CA', 'my biooooooooooo', 'https://image.shutterstock.com/image-vector/person-icon-260nw-282598823.jpg'),
-(6, 'fake@gmail.com', '$2b$10$SBGBVUXM98gFRx1OVHVMveC.DEUeko1Wq3gBVDdx4C3bmL2na6hc6', 'heondo', 'kim', 35.4675602, -97.51642759999999, 'Oklahoma City, OK, USA', 'dddddddddd', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg'),
-(23, 'hi@hi.com', '$2b$10$sABOQ2.zuYz6iTBqJX6WN.TrO/UmLKwzeBH1vGS/HloNQeVZ1.fai', 'hi', 'what', 34.1231551, 123.1251614, 'irvine california babeeeeee', 'hi', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg'),
-(24, 'fakedfadsdccc@gmail.com', '$2a$10$KS7XP.o02gdFeMnb54mk0OxGsFoQAq1mIZ/.gLlE/R/OYkHE4rE76', 'er', 'guy', 33.4672256, -117.69810139999998, 'Dana Point, CA, USA', 'aefsdfsdfsdafsfsdf', 'https://final-project-dog-images.s3.us-east-2.amazonaws.com/this-wallpaper-is-not-available-4k-3840%C3%972160.jpg');
+(1, '1@t.com', '$2a$10$KS7XP.o02gdFeMnb54mk0OxGsFoQAq1mIZ/.gLlE/R/OYkHE4rE76', 'Adison', 'Lay', 33.6845673, -117.82650490000003, 'Irvine, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
+(2, '2@t.com', '$2a$10$KS7XP.o02gdFeMnb54mk0OxGsFoQAq1mIZ/.gLlE/R/OYkHE4rE76', 'John', 'Smith', 37.7749295, -122.41941550000001, 'San Francisco, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
+(3, '3@t.com', '$2a$10$KS7XP.o02gdFeMnb54mk0OxGsFoQAq1mIZ/.gLlE/R/OYkHE4rE76', 'Heondo', 'Kim', 33.74200049999999, -117.82363909999998, 'Tustin, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg'),
+(4, '4@t.com', '$2a$10$KS7XP.o02gdFeMnb54mk0OxGsFoQAq1mIZ/.gLlE/R/OYkHE4rE76', 'Harrison', 'Ford', 34.0522342, -118.2436849, 'Los Angeles, CA', 'My name is adison lay what is up and i need to write a lot of stuff to make this bio page have a purpose in the first place', 'https://icon-library.net/images/person-image-icon/person-image-icon-7.jpg');
 
 --
 -- Indexes for dumped tables
@@ -676,17 +622,17 @@ ALTER TABLE `dog_images`
 -- AUTO_INCREMENT for table `playdates`
 --
 ALTER TABLE `playdates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- Constraints for dumped tables
 --
@@ -702,7 +648,7 @@ ALTER TABLE `dogs`
 -- Constraints for table `dog_images`
 --
 ALTER TABLE `dog_images`
-  ADD CONSTRAINT `dog_images_fk0` FOREIGN KEY (`dog_id`) REFERENCES `dogs` (`id`);
+  ADD CONSTRAINT `dog_images_fk0` FOREIGN KEY (`dog_id`) REFERENCES `dogs` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `request`
