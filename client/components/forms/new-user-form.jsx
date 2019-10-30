@@ -9,6 +9,7 @@ export default class NewUserForm extends React.Component {
     this.newImageURL = null;
     this.updateLocation = this.updateLocation.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleImageSelect = this.handleImageSelect.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.imageToUpload = React.createRef();
     this.state = {
@@ -22,6 +23,7 @@ export default class NewUserForm extends React.Component {
         city: ''
       },
       bioInput: '',
+      imageInput: '',
       validEmailInput: true
     };
   }
@@ -36,6 +38,9 @@ export default class NewUserForm extends React.Component {
       this.setState({ validEmailInput: true });
     }
     this.setState({ [name]: value });
+  }
+  handleImageSelect() {
+    this.setState({ imageInput: this.imageToUpload.current.files[0].name });
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -77,6 +82,10 @@ export default class NewUserForm extends React.Component {
       .catch(error => console.error(error));
   }
   render() {
+    let uploadPlaceholderText = 'Choose File';
+    if (this.state.imageInput) {
+      uploadPlaceholderText = this.state.imageInput;
+    }
     return (
       <Container>
         <hr />
@@ -174,7 +183,13 @@ export default class NewUserForm extends React.Component {
 
               <FormGroup>
                 <Label htmlFor="profilePicInput">Upload Profile Picture</Label>
-                <CustomInput type="file" name="profilePicInput" id="profilePicInput" innerRef={this.imageToUpload} />
+                <CustomInput
+                  type="file"
+                  name="profilePicInput"
+                  id="profilePicInput"
+                  label={uploadPlaceholderText}
+                  innerRef={this.imageToUpload}
+                  onChange={this.handleImageSelect} />
               </FormGroup>
 
               <FormGroup className="d-flex justify-content-end">
