@@ -93,7 +93,9 @@ export default class DogList extends React.Component {
           </TabPane>
           <TabPane tabId="2">
             <h4 className="my-3">Playdate Listings</h4>
-            {this.findDogsWithPlaydates(this.state.dogs).map(dog => <ListingPanel key={dog.id} dog={dog} />)}
+            <Container fluid>
+              {this.findDogsWithPlaydates(this.state.dogs).map(dog => <ListingPanel key={dog.id} dog={dog} />)}
+            </Container>
           </TabPane>
         </TabContent>
       </Container>
