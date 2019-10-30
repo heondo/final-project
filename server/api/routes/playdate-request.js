@@ -69,7 +69,7 @@ router.post('/accept', (req, res) => {
                 message: 'Could not update request'
               });
             } else {
-              db.query('UPDATE `playdates` SET `confirmed`=1, `dog_2_id`=@Dog2ID, `accepted_date`=UNIX_TIMESTAMP() WHERE id=@LastUpdateID AND `confirmed`=0', (err3, data2) => {
+              db.query('UPDATE `playdates` SET `confirmed`=1, `dog_2_id`=@Dog2ID, `accepted_date`=UNIX_TIMESTAMP() WHERE `id`=@LastUpdateID AND `confirmed`=0', (err3, data2) => {
                 if (err3) {
                   res.status(500).json({ error: err3.message });
                 } else if (!data2.affectedRows) {
@@ -78,7 +78,7 @@ router.post('/accept', (req, res) => {
                     message: 'Could not update playdate'
                   });
                 } else {
-                  db.query('UPDATE `request` SET `accepted`=0, `response_time`=UNIX_TIMESTAMP() WHERE `id`!= ?', [parseInt(requestID)], (err4, data3) => {
+                  db.query('UPDATE `request` SET `accepted`=0, `response_time`=UNIX_TIMESTAMP() WHERE `id`!= ? and `playdate_id`=@LastUpdateID', [parseInt(requestID)], (err4, data3) => {
                     if (err4) {
                       res.status(500).json({ error: err4.message }).end();
                     }

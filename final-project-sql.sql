@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 29, 2019 at 05:51 PM
+-- Generation Time: Oct 29, 2019 at 06:56 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -477,21 +477,11 @@ CREATE TABLE `playdates` (
 --
 
 INSERT INTO `playdates` (`id`, `dog_id`, `date`, `create_date`, `accepted_date`, `lat`, `lng`, `display_address`, `confirmed`, `dog_2_id`) VALUES
-(31, 5, '1574452800', '1572368556', NULL, 33.6348748, -117.7404808, '9200 Irvine Center Dr #200, Irvine, CA 92618, USA', 0, NULL),
-(32, 5, '1574539200', '1572368556', '1572387492', 33.6348748, -117.7404808, '9200 Irvine Center Dr #200, Irvine, CA 92618, USA', 1, 8),
-(33, 5, '1573934400', '1572368556', NULL, 33.6348748, -117.7404808, '9200 Irvine Center Dr #200, Irvine, CA 92618, USA', 0, NULL),
-(34, 7, '1576699200', '1572368803', NULL, 33.6882824, -117.82277999999997, '4 Civic Center Plaza, Irvine, CA 92606, USA', 0, NULL),
-(35, 7, '1575316800', '1572368803', NULL, 33.6882824, -117.82277999999997, '4 Civic Center Plaza, Irvine, CA 92606, USA', 0, NULL),
-(36, 7, '1575230400', '1572368803', NULL, 33.6882824, -117.82277999999997, '4 Civic Center Plaza, Irvine, CA 92606, USA', 0, NULL),
-(37, 7, '1577649600', '1572368803', '1572388110', 33.6882824, -117.82277999999997, '4 Civic Center Plaza, Irvine, CA 92606, USA', 1, 8),
-(38, 6, '1572548400', '1572368899', NULL, 33.6527972, -117.7821788, '35 Shady Canyon Dr, Irvine, CA 92603, USA', 0, NULL),
-(39, 6, '1570906800', '1572368899', NULL, 33.6527972, -117.7821788, '35 Shady Canyon Dr, Irvine, CA 92603, USA', 0, NULL),
-(40, 6, '1570302000', '1572368899', '1572369087', 33.6527972, -117.7821788, '35 Shady Canyon Dr, Irvine, CA 92603, USA', 1, 8),
-(41, 8, '1570042800', '1572369054', NULL, 33.6713725, -117.83774399999999, '3395 Michelson Dr, Irvine, CA 92612, USA', 0, NULL),
-(42, 8, '1570129200', '1572369054', NULL, 33.6713725, -117.83774399999999, '3395 Michelson Dr, Irvine, CA 92612, USA', 0, NULL),
-(43, 8, '1572548400', '1572369054', NULL, 33.6713725, -117.83774399999999, '3395 Michelson Dr, Irvine, CA 92612, USA', 0, NULL),
-(44, 8, '1573416000', '1572369054', '1572386398', 33.6713725, -117.83774399999999, '3395 Michelson Dr, Irvine, CA 92612, USA', 1, 5),
-(45, 6, '1575144000', '1572374570', NULL, 33.63018949999999, -117.79721430000001, '100 Shady Canyon Dr, Irvine, CA 92603, USA', 0, NULL);
+(46, 5, '1577563200', '1572400490', NULL, 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
+(47, 5, '1577822400', '1572400490', NULL, 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
+(48, 5, '1577649600', '1572400490', NULL, 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
+(49, 5, '1573934400', '1572400490', NULL, 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
+(50, 5, '1573329600', '1572400490', '1572400536', 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -513,17 +503,8 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `playdate_id`, `dog_id`, `accepted`, `created_time`, `response_time`) VALUES
-(8, 33, 7, 0, '1572368773', '1572388110'),
-(9, 35, 6, 0, '1572368925', '1572388110'),
-(10, 38, 8, 0, '1572369061', '1572388110'),
-(11, 40, 8, 0, '1572369069', '1572388110'),
-(12, 34, 6, 0, '1572369179', '1572388110'),
-(13, 44, 5, 0, '1572386386', '1572388110'),
-(14, 32, 8, 0, '1572387469', '1572388110'),
-(15, 37, 8, 1, '1572388043', '1572388110'),
-(16, 37, 5, 0, '1572388062', '1572388110'),
-(17, 37, 6, 0, '1572388093', '1572388110'),
-(18, 33, 8, NULL, '1572389052', NULL);
+(19, 50, 6, 0, '1572400504', '1572400536'),
+(20, 50, 7, 1, '1572400522', '1572400536');
 
 -- --------------------------------------------------------
 
@@ -622,12 +603,12 @@ ALTER TABLE `dog_images`
 -- AUTO_INCREMENT for table `playdates`
 --
 ALTER TABLE `playdates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `user`
 --
