@@ -77,7 +77,8 @@ export default class NewUserForm extends React.Component {
             throw new Error(newUserData.error);
           }
         }
-        this.props.history.push(`/user/${newUserData.insertId}`);
+        this.props.login(newUserData.data.insertId, []);
+        this.props.history.push(`/user/${newUserData.data.insertId}`);
       })
       .catch(error => console.error(error));
   }

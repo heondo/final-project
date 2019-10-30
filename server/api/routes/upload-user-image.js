@@ -19,9 +19,6 @@ const upload = multer({
     bucket: 'final-project-dog-images',
     acl: 'public-read',
     metadata: function (req, file, cb) {
-      console.log('Metadata file:', file);
-      console.log('Metadata request (keys only)', Object.keys(req));
-      console.log('Metadata request body', req.body);
       cb(null, Object.assign({}, req.body));
     },
     key: function (req, file, cb) {
@@ -43,7 +40,6 @@ router.post('/', function (req, res) {
       });
     }
     let url = req.file.location;
-    console.log(url);
     return res.json({ 'imageURL': url });
   });
 });
