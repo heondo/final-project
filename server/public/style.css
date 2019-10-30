@@ -145,7 +145,7 @@
   }
 
 
-@media (max-width: 480px) {
+@media (max-width: 575px) {
   .input-forms {
     width: 80%;
   }

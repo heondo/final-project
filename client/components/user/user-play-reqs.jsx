@@ -176,7 +176,7 @@ export default function UserPlayReqs(props) {
   };
 
   return (
-    <div className="container-fluid mx-5 text-center">
+    <div className="container-fluid px-5 text-center">
       <hr />
       <h4 className="mb-4 mx-auto">My Playdates and Requests</h4>
       <div className="d-flex flex-column">
