@@ -144,6 +144,14 @@
     padding: 0 3rem;
   }
 
+/* .user-req-details {
+  margin-left: 2rem;
+} */
+
+.dog-card-last-row span {
+  margin-right: 1.5rem;
+}
+
 
 @media (max-width: 575px) {
   .input-forms {
@@ -153,4 +161,23 @@
   .dog-total-info {
     padding: 0 1rem;
   }
+
+  .dog-card-last-row span {
+  margin-right: 0;
 }
+
+  .dog-card-last-row {
+    justify-content: space-between;
+  }
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+/*
+.dog-total-info {
+  background-image: url('./assets/pawprints.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+} */
