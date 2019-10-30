@@ -9,7 +9,7 @@ router.post('/add', (req, res) => {
   if (!parseInt(dogID)) {
     res.status(400).json({ error: true, message: 'Must send in a valid dog ID' });
   } else {
-    let query = 'INSERT INTO `request`(`playdate_id`, `dog_id`, `created_time`) VALUES (?, ?, UNIX_TIMESTAMP())';
+    let query = 'INSERT INTO `request`(`playdate_id`, `dog_id`, `created_time`) VALUES (?, ?, UNIX_TIMESTAMP()) ON DUPLICATE KEY UPDATE `id` = `id`';
     db.query(query, [playdateID, dogID], (err, data) => {
       if (err) {
         res.status(500).json({ error: true, message: err.message });

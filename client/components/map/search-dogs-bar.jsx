@@ -2,6 +2,7 @@ import React from 'react';
 import qs from 'query-string';
 import { withRouter } from 'react-router-dom';
 import Script from 'react-load-script';
+import { Input, InputGroup, InputGroupAddon, Button } from 'reactstrap';
 
 class SearchDogsBar extends React.Component {
   constructor(props) {
@@ -77,11 +78,19 @@ class SearchDogsBar extends React.Component {
           url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWq6apxh7IJs8njuJgCEJf5QPenKjrCYc&libraries=places"
           onLoad={this.handleScriptLoad}
         />
-        <input onChange={this.handleChange} id="autocomplete" placeholder="Search Dogs by Location" value={this.state.query} className="form-control"
-          style={{
-            margin: '0 auto'
-          }}
-        />
+        <InputGroup>
+          <Input
+            onChange={this.handleChange}
+            id="autocomplete"
+            placeholder="Search Dogs by Location"
+            value={this.state.query}
+            className="form-control"
+            style={{ margin: '0 auto' }}
+          />
+          <InputGroupAddon addonType="append">
+            <Button color="secondary">Go</Button>
+          </InputGroupAddon>
+        </InputGroup>
       </div>
     );
   }

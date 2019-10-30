@@ -108,7 +108,7 @@ class Filter extends React.Component {
         <DropdownToggle caret onClick={this.state.dropdownOpen ? this.closeInputDropdown : this.openInputDropdown}>
           Filter
         </DropdownToggle>
-        <DropdownMenu className="px-5 py-4" style={{ width: 'max-content' }}>
+        <DropdownMenu right className="px-5 py-4" style={{ width: 'max-content' }}>
           <span className="h3 ml-n3">Filter Dogs</span>
           <Button color="link" className="p-0" style={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }} onClick={this.resetFilterOptions}>Reset Filters</Button>
 
