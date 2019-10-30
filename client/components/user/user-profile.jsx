@@ -105,7 +105,7 @@ export default function UserProfile(props) {
       <hr />
       <div className="row">
         <div className="col-xl-6">
-          <div className="user-profile-card mx-auto d-flex flex-column oc-bg-grey p-4">
+          <div className="user-profile-card mx-auto d-flex flex-column p-4">
             <div className="img-and-info row">
               <div className="col-5 prof-pic" style={profPic}></div>
               <div className="col-6 ml-2">

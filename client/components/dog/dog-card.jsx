@@ -4,6 +4,8 @@ import {
   CardTitle, CardSubtitle
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { startCase, toLower } from 'lodash';
+import { convertEnergyLevel } from './../help/functions';
 import DogSmCarousel from './dog-sm-carousel';
 
 export default class DogCard extends React.Component {
@@ -24,9 +26,39 @@ export default class DogCard extends React.Component {
           <Link to={`/dog/${dog.id}`}>
             <DogSmCarousel items={dog.images} />
             <CardBody style={cardBodyStyle}>
-              <CardTitle className="mb-1"><p className="d-inline font-weight-bold">{dog.name}</p> - {dog.weight} {dog.breed}</CardTitle>
-              <CardSubtitle># Dates: {dog.num_dates}, {dog.display_address}</CardSubtitle>
-              <CardText>Energy: {dog.energy_lvl}, Sex: {dog.sex}, Age: {dog.age} {(dog.miles) ? <p className="float-right">{dog.miles.toFixed(2)} miles</p> : undefined} </CardText>
+              <CardTitle className="mb-1 position-relative">
+                <span className="font-weight-bold">
+                  {dog.name}
+                </span>
+                <span className="">
+                  - {startCase(toLower(dog.breed))}
+                </span>
+                <span className="float-right">
+                  <i className="fas fa-dumbbell" title="Weight"></i> {dog.weight} lbs
+                </span>
+              </CardTitle>
+              <CardSubtitle className="d-flex w-100 justify-content-between">
+                <span>
+                  <i className="fas fa-birthday-cake" title="Age"></i> {dog.age},
+                </span>
+                <span >
+                  {dog.display_address}
+                </span>
+              </CardSubtitle>
+              <CardText className="d-flex dog-card-last-row">
+                <span>
+                  <i className="fas fa-bolt" title="Energy Level"></i>
+                  {' '}{convertEnergyLevel(dog.energy_lvl)}
+                </span>
+                <span>
+                  <i className="fas fa-transgender-alt" title="Gender"></i>
+                  {' '}{dog.sex}
+                </span>
+                <span>
+                  <i className="fas fa-calendar-day" title="Number of Dates"></i>
+                  {' '}{dog.num_dates}
+                </span>
+                {(dog.miles) ? <p>{dog.miles.toFixed(2)} miles</p> : undefined} </CardText>
             </CardBody>
           </Link>
         </Card>
