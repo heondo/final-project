@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import UserLocationInput from '../map/user-location-input';
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput, FormFeedback } from 'reactstrap';
 
@@ -76,7 +77,6 @@ export default class NewUserForm extends React.Component {
       .catch(error => console.error(error));
   }
   render() {
-    // TODO: cancel button should route to homepage
     return (
       <Container>
         <hr />
@@ -133,7 +133,7 @@ export default class NewUserForm extends React.Component {
                     onChange={this.handleInputChange}
                     invalid
                     required />}
-                <FormFeedback>This email is already taken :(</FormFeedback>
+                <FormFeedback>This email address is already taken</FormFeedback>
               </FormGroup>
 
               <FormGroup>
@@ -179,7 +179,9 @@ export default class NewUserForm extends React.Component {
 
               <FormGroup className="d-flex justify-content-end">
                 <Button type="submit" color="primary" outline className="mx-2">Sign Up</Button>
-                <Button color="secondary" outline>Cancel</Button>
+                <Link to={`/`}>
+                  <Button color="secondary" outline>Cancel</Button>
+                </Link>
               </FormGroup>
             </Form>
           </div>
