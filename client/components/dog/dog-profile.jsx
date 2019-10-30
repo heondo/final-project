@@ -108,8 +108,8 @@ export default function DogProfile(props) {
             <h5>Details: </h5>
             <div className="dog-info-specs d-flex flex-wrap mb-1">
               <div className="mr-5"><i className="fas fa-transgender-alt" title="Gender"></i> {dog.sex}</div>
-              <div className="mr-5"><i className="fas fa-dumbbell" title="Weight"></i> {dog.weight} lbs</div>
               <div className="mr-5"><i className="fas fa-birthday-cake" title="Age"></i> {dog.age}</div>
+              <div className="mr-5"><i className="fas fa-dumbbell" title="Weight"></i> {dog.weight} lbs</div>
               <div className="mr-5"><i className="fas fa-calendar-day" title="Number of Dates"></i> {dog.num_dates} dates</div>
               <div className="mr-5"><i className="fas fa-bolt" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}</div>
               <div className="mr-5"><i className="fas fa-hand-scissors" title="Neutered/Spayed"></i> {dog.fixed}</div>

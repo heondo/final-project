@@ -136,7 +136,7 @@ export default function UserPlayReqs(props) {
       height: '100px'
     };
 
-    let reqDogImage = (data.req_dog_url) ? data.req_dog_url : './../assets/unknown-dog.png';
+    let reqDogImage = (data.req_dog_url) ? data.req_dog_url : './../assets/images/unknown-dog.png';
     const otherDogStyle = {
       backgroundImage: "url('" + reqDogImage + "')",
       backgroundSize: (data.req_dog_url) ? 'cover' : 'contain',

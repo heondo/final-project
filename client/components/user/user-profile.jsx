@@ -37,6 +37,14 @@ export default function UserProfile(props) {
     backgroundRepeat: 'no-repeat'
   };
 
+  const userCardStyle = {
+    maxWidth: '850px',
+    backgroundImage: `url("/assets/images/paw-print.png")`,
+    backgroundSize: 'contain',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  };
+
   const acceptRequest = (requestID, playdateID) => {
     // take in the request with its id
     // make a fetch request to the request yes or no api and yeah...
@@ -101,10 +109,10 @@ export default function UserProfile(props) {
   };
 
   return (
-    <div className="container-fluid px-5">
+    <div className="container-fluid dog-total-info">
       <hr />
       <div className="row">
-        <div className="col-xl-6">
+        <div className="col-xl-6" style={userCardStyle}>
           <div className="user-profile-card mx-auto d-flex flex-column p-4">
             <div className="img-and-info row">
               <div className="col-5 prof-pic" style={profPic}></div>

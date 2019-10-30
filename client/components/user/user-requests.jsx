@@ -13,6 +13,7 @@ export default function UserRequests(props) {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     width: '100%',
+    minHeight: '100px',
     height: '100%'
   };
 
@@ -79,7 +80,7 @@ export default function UserRequests(props) {
           <li>{convertDate(date)}</li>
         </ul>
       </div>
-      <div className="col-md-1 col-3 my-auto mx-0 px-0 float-right d-flex justify-content-center">
+      <div className="col-md-2 col-3 my-auto mx-0 px-0 float-right d-flex justify-content-center">
         {(accepted === null) ? <YesOrNo /> : (accepted === 0) ? <Rejected /> : <Accepted />}
       </div>
     </div>
