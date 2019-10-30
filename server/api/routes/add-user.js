@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
                 res.status(500).json({ error: err });
               }
             } else {
-              res.json({ success: true, message: `User created with id ${data.insertId}` });
+              res.json({ success: true, data, message: `User created with id ${data.insertId}` });
             }
           });
         }

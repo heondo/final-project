@@ -24,11 +24,10 @@ router.post('/', function (req, res) {
 
 function addImageAndDog(req, res, body, breedID) {
   let output = {};
-  const insertDogQuery = 'INSERT INTO `dogs` (`name`, `num_dates`, `weight`, `bio`, `user_id`, `ig_url`, `birth`, `sex`, `fixed`, `breed`, `energy_lvl`) ' +
-    'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+  const insertDogQuery = 'INSERT INTO `dogs` (`name`, `weight`, `bio`, `user_id`, `ig_url`, `birth`, `sex`, `fixed`, `breed`, `energy_lvl`) ' +
+    'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
   const insertValues = [
     body.nameInput,
-    0,
     parseInt(body.weightInput),
     body.descriptionInput,
     parseInt(body.userID),

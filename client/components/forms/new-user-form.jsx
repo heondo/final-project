@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import UserLocationInput from '../map/user-location-input';
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput, FormFeedback } from 'reactstrap';
 
@@ -8,6 +9,7 @@ export default class NewUserForm extends React.Component {
     this.newImageURL = null;
     this.updateLocation = this.updateLocation.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleImageSelect = this.handleImageSelect.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.imageToUpload = React.createRef();
     this.state = {
@@ -21,6 +23,7 @@ export default class NewUserForm extends React.Component {
         city: ''
       },
       bioInput: '',
+      imageInput: '',
       validEmailInput: true
     };
   }
@@ -36,6 +39,9 @@ export default class NewUserForm extends React.Component {
     }
     this.setState({ [name]: value });
   }
+  handleImageSelect() {
+    this.setState({ imageInput: this.imageToUpload.current.files[0].name });
+  }
   handleSubmit(event) {
     event.preventDefault();
     this.makeRequestToUploadUserImage();
@@ -49,16 +55,14 @@ export default class NewUserForm extends React.Component {
     })
       .then(response => response.json())
       .then(profilePicURL => {
-        console.log('Res from upload-user-image:', profilePicURL);
         this.newImageURL = profilePicURL.imageURL;
         this.makeRequestToAddUser();
       })
       .catch(error => console.error(error));
   }
   makeRequestToAddUser() {
-    let addUserRequestBody = this.state;
+    let addUserRequestBody = JSON.parse(JSON.stringify(this.state));
     addUserRequestBody.imageURL = this.newImageURL;
-    console.log('addUserRequestBody', addUserRequestBody);
     fetch('/api/add-user/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -66,7 +70,6 @@ export default class NewUserForm extends React.Component {
     })
       .then(response => response.json())
       .then(newUserData => {
-        console.log('Res from add-user:', newUserData);
         if (newUserData.error) {
           // catch error
           if (newUserData.error === 'email') {
@@ -74,13 +77,16 @@ export default class NewUserForm extends React.Component {
             throw new Error(newUserData.error);
           }
         }
-        // if (newUserData.success) { // TODO: need to redirect to add dog form here
-        // }
+        this.props.login(newUserData.data.insertId, []);
+        this.props.history.push(`/user/${newUserData.data.insertId}`);
       })
       .catch(error => console.error(error));
   }
   render() {
-    // TODO: cancel button should route to homepage
+    let uploadPlaceholderText = 'Choose File';
+    if (this.state.imageInput) {
+      uploadPlaceholderText = this.state.imageInput;
+    }
     return (
       <Container>
         <hr />
@@ -137,7 +143,7 @@ export default class NewUserForm extends React.Component {
                     onChange={this.handleInputChange}
                     invalid
                     required />}
-                <FormFeedback>This email is already taken :(</FormFeedback>
+                <FormFeedback>This email address is already taken</FormFeedback>
               </FormGroup>
 
               <FormGroup>
@@ -178,12 +184,20 @@ export default class NewUserForm extends React.Component {
 
               <FormGroup>
                 <Label htmlFor="profilePicInput">Upload Profile Picture</Label>
-                <CustomInput type="file" name="profilePicInput" id="profilePicInput" innerRef={this.imageToUpload} />
+                <CustomInput
+                  type="file"
+                  name="profilePicInput"
+                  id="profilePicInput"
+                  label={uploadPlaceholderText}
+                  innerRef={this.imageToUpload}
+                  onChange={this.handleImageSelect} />
               </FormGroup>
 
               <FormGroup className="d-flex justify-content-end">
                 <Button type="submit" color="primary" outline className="mx-2">Sign Up</Button>
-                <Button color="secondary" outline>Cancel</Button>
+                <Link to={`/`}>
+                  <Button color="secondary" outline>Cancel</Button>
+                </Link>
               </FormGroup>
             </Form>
           </div>

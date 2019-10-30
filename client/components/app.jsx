@@ -52,7 +52,7 @@ export default class App extends React.Component {
             </Route>
             <Route path="/login" render={props => <Login {...props} login={this.login}/>}>
             </Route>
-            <Route path="/signup" render={props => <NewUserForm {...props} />}>
+            <Route path="/signup" render={props => <NewUserForm {...props} login={this.login} />}>
             </Route>
             <Route key="search-dogs" path="/search" render={props => <DogList {...props} userID={userID} />} />
             <Route key="home-page" exact path="/" render={props => <DogList {...props} userID={userID} />} />
