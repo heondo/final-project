@@ -35,9 +35,31 @@ export default class PlaydatesListItem extends React.Component {
         } else if (newRequest.error) {
           throw new Error(newRequest.message);
         }
-        console.log('Sent request to join playdate!', newRequest);
-        // TODO: do something after they make request, maybe redirect to their schedule page?
-        // const updatedPlaydatesArray = this.props.dog.playdates
+        let playdateIndex = null;
+        let updatedPlaydatesArray = null;
+        let updatedDogData = null;
+        for (let i in this.props.dog.playdates) {
+          if (this.props.dog.playdates[i].id === parseInt(playdateID)) {
+            playdateIndex = i;
+          }
+        }
+        if (this.props.dog.playdates[playdateIndex].requested_users == null) {
+          const updatedRequestedUsers = [this.props.userID.toString()];
+          updatedPlaydatesArray = update(this.props.dog.playdates, {
+            [playdateIndex]: { requested_users: { $set: updatedRequestedUsers } }
+          });
+          updatedDogData = update(this.props.dog, {
+            playdates: { $set: updatedPlaydatesArray }
+          });
+        } else {
+          updatedPlaydatesArray = update(this.props.dog.playdates, {
+            [playdateIndex]: { requested_users: { $push: [this.props.userID.toString()] } }
+          });
+          updatedDogData = update(this.props.dog, {
+            playdates: { $set: updatedPlaydatesArray }
+          });
+        }
+        this.props.setDogProfileState(updatedDogData);
       })
       .catch(error => {
         console.error(error);
@@ -58,7 +80,6 @@ export default class PlaydatesListItem extends React.Component {
         } else if (deleteResponse.error) {
           throw new Error(deleteResponse.message);
         }
-        console.log('Sent request to delete playdate!', deleteResponse);
         const updatedPlaydatesArray = this.props.dog.playdates.filter(playdate => playdate.id !== playdateID);
         const updatedDogData = update(this.props.dog, {
           playdates: { $set: updatedPlaydatesArray }
@@ -79,11 +100,11 @@ export default class PlaydatesListItem extends React.Component {
         <Row className="my-2">
           {playdate.confirmed
             ? <Col xs="9">
-              {displayDate + ' - ' + playdate.display_address}
-            </Col>
-            : <Col xs="9">
               <s>{displayDate + ' - ' + playdate.display_address}</s>
               <Badge className="ml-2" style={{ backgroundColor: '#bfbfbf' }}>Playdate Full!</Badge>
+            </Col>
+            : <Col xs="9">
+              {displayDate + ' - ' + playdate.display_address}
             </Col>}
         </Row>
       );
