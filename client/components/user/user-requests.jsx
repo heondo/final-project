@@ -13,6 +13,7 @@ export default function UserRequests(props) {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     paddingBottom: '30%',
+    borderRadius: '3px',
     width: '100%',
     minHeight: '100px'
   };

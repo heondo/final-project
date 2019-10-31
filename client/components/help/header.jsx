@@ -91,8 +91,10 @@ class Header extends React.Component {
     return (
       <div className="container-fluid">
         <Navbar className="d-flex header-bar" color="light" light expand="lg">
-          <NavbarBrand className="header-logo">
-            <Link to="/" style={bgImage} className="d-inline-block align-middle"></Link>
+          <NavbarBrand className="header-logo" onClick={() => {
+            this.props.history.push('/');
+          }}>
+            <span style={bgImage} className="d-inline-block align-middle"></span>
             <h2 className="d-inline my-auto ml-3">TINDOG</h2>
           </NavbarBrand>
           <SearchDogsBar/>

@@ -15,7 +15,7 @@ export default function ListingPanel(props) {
       <Row>
         <Col md="2">
           <Link to={`/dog/${dogInfo.id}`}>
-            <img src={dogInfo.images[0]} alt={dogInfo.name} style={{ maxWidth: '100%' }} />
+            <img src={dogInfo.images[0]} alt={dogInfo.name} style={{ maxWidth: '100%', borderRadius: '3px' }} />
           </Link>
         </Col>
 

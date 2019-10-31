@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Carousel,
   CarouselItem,
@@ -49,7 +50,9 @@ const DogSmCarousel = props => {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <div style={imgSize}></div>
+        <Link to={`/dog/${props.dogID}`}>
+          <div style={imgSize}></div>
+        </Link>
       </CarouselItem>
     );
     // let imgSize = {
@@ -71,8 +74,14 @@ const DogSmCarousel = props => {
   return (
     <Carousel
       activeIndex={activeIndex}
-      next={next}
-      previous={prev}
+      next={e => {
+        e.stopPropagation();
+        next();
+      }}
+      previous={e => {
+        e.stopPropagation();
+        prev();
+      }}
       interval={false}
       keyboard={false}
       slide={true}

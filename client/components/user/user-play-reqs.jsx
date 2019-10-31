@@ -48,6 +48,7 @@ export default function UserPlayReqs(props) {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
+      borderRadius: '3px',
       width: '100px',
       height: '100px'
     };
@@ -57,6 +58,7 @@ export default function UserPlayReqs(props) {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
+      borderRadius: '3px',
       width: '100px',
       height: '100px',
       cursor: 'pointer'
@@ -132,6 +134,7 @@ export default function UserPlayReqs(props) {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
+      borderRadius: '3px',
       width: '100px',
       height: '100px'
     };
@@ -142,6 +145,7 @@ export default function UserPlayReqs(props) {
       backgroundSize: (data.req_dog_url) ? 'cover' : 'contain',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
+      borderRadius: '3px',
       width: '100px',
       height: '100px',
       cursor: (data.req_dog_url) ? 'pointer' : 'default'
