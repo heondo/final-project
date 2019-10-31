@@ -63,19 +63,19 @@ export default class MakePlaydate extends React.Component {
   render() {
     return (
       <>
-        <h4 className="mb-1">Make Listings</h4>
+        <h4 className="my-1">Create Playdate Listings</h4>
         <div className="row">
           <div className="col-lg-8">
             <PlaydateLocation className="mb-1" handleLocationChange={this.handleLocationChange} handleLocationSelect={this.handleLocationSelect} query={this.state.query} validLocation={this.state.validLocation} />
             <PickDateRange handleDates={this.handleDates} selectedDays={this.state.selectedDays} />
-            <Button className="d-inline-block mr-2" onClick={this.handleSubmit}>
+            <button className="oc-bg-blue oc-btn-blue btn btn-sm active d-inline-block mr-2" onClick={this.handleSubmit}>
               Create Playdates
-            </Button>
-            <Button className="d-inline-block" onClick={() => {
+            </button>
+            <button className="oc-bg-grey oc-btn-grey btn btn-sm active d-inline-block" onClick={() => {
               this.setState({ selectedDays: [] });
             }}>
               Clear Dates
-            </Button>
+            </button>
           </div>
           <div className="col-lg-4">
             <div>Selected Dates:</div>

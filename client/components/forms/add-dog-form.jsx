@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
+import { Container, Row, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 import DOBPicker from '../help/dob-picker';
 import AutofillBreed from './autofill-breed';
 
@@ -262,9 +262,9 @@ export default class AddDogForm extends React.Component {
               </FormGroup>
 
               <FormGroup className="d-flex justify-content-end">
-                <Button type="submit" color="primary" outline className="mx-2">Add Dog</Button>
+                <button type="submit" className="oc-bg-blue oc-btn-blue btn active mx-2">Add Dog</button>
                 <Link to={`/user/${this.props.userID}`}>
-                  <Button color="secondary" outline>Cancel</Button>
+                  <button className="oc-bg-grey oc-btn-grey btn active">Cancel</button>
                 </Link>
               </FormGroup>
             </Form>

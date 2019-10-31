@@ -1,6 +1,6 @@
 import React from 'react';
 import update from 'immutability-helper';
-import { Row, Col, Button, Badge, Input } from 'reactstrap';
+import { Row, Col, Badge, Input } from 'reactstrap';
 import { convertDate } from '../help/functions';
 
 export default class PlaydatesListItem extends React.Component {
@@ -116,8 +116,8 @@ export default class PlaydatesListItem extends React.Component {
           </Col>
           <Col xs={{ size: 2, offset: 1 }}>
             {userID === ownerID
-              ? <Button size="sm" color="danger" className="float-right" outline disabled>Delete Playdate</Button>
-              : <Button size="sm" className="float-right" outline disabled>Request Sent</Button>
+              ? <button className="oc-bg-red btn btn-sm float-right" disabled>Delete Playdate</button>
+              : <button className="oc-bg-blue btn btn-sm float-right" disabled>Request Sent</button>
             }
           </Col>
         </Row>
@@ -131,8 +131,8 @@ export default class PlaydatesListItem extends React.Component {
           </Col>
           <Col xs={{ size: 2, offset: 1 }}>
             {userID === ownerID
-              ? <Button size="sm" color="danger" className="float-right" outline disabled>Delete Playdate</Button>
-              : <Button size="sm" className="float-right" outline disabled>Request to Join</Button>
+              ? <button className="oc-bg-red btn btn-sm float-right" disabled>Delete Playdate</button>
+              : <button className="oc-bg-blue btn btn-sm float-right" disabled>Request to Join</button>
             }
           </Col>
         </Row>
@@ -145,14 +145,11 @@ export default class PlaydatesListItem extends React.Component {
           </Col>
           <Col xs="4">
             {userID === ownerID
-              ? <Button
-                size="sm"
-                color="danger"
-                className="float-right"
-                onClick={() => this.handleDeletePlaydate(playdate.id)}
-                outline>
+              ? <button
+                className="oc-bg-red oc-btn-red btn btn-sm active float-right"
+                onClick={() => this.handleDeletePlaydate(playdate.id)}>
                   Delete Playdate
-              </Button>
+              </button>
               : <div className="d-flex justify-content-end">
                 <Input
                   type="select"
@@ -163,14 +160,11 @@ export default class PlaydatesListItem extends React.Component {
                   onChange={this.handleChange}>
                   {userDogs.map(dog => <option key={dog.id} value={dog.id}>{dog.name}</option>)}
                 </Input>
-                <Button
-                  size="sm"
-                  color="primary"
-                  className="d-inline ml-1"
-                  onClick={() => this.handleRequestToJoin(playdate.id, this.state.selectedDog)}
-                  outline>
+                <button
+                  className="oc-bg-blue oc-btn-blue btn btn-sm active d-inline ml-1"
+                  onClick={() => this.handleRequestToJoin(playdate.id, this.state.selectedDog)}>
                     Request to Join
-                </Button>
+                </button>
               </div>
             }
           </Col>

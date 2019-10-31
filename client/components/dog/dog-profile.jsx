@@ -112,13 +112,13 @@ export default function DogProfile(props) {
               <div className="mr-5"><i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {dog.weight} lbs</div>
               <div className="mr-5"><i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates</div>
               <div className="mr-5"><i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}</div>
-              <div className="mr-5"><i className="fas fa-hand-scissors" title="Neutered/Spayed"></i> {dog.fixed}</div>
+              <div className="mr-5"><i className="fas fa-hand-scissors" title="Neutered/Spayed"></i> {dog.fixed ? 'Yes' : 'No'}</div>
             </div>
             <h3>About {dog.name}</h3>
             <div>{dog.bio}</div>
           </div>
           <div className="col-md-6 dogs-listings">
-            <h4>{dog.name}s Listings</h4>
+            <h4>{dog.name}&apos;s Listings</h4>
             {(parseInt(userID) === parseInt(dog.user_id)
               ? <>
                 <Nav tabs>
