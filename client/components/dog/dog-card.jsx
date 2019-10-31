@@ -3,12 +3,21 @@ import {
   Card, CardText, CardBody,
   CardTitle, CardSubtitle
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { startCase, toLower } from 'lodash';
 import { convertEnergyLevel } from './../help/functions';
 import DogSmCarousel from './dog-sm-carousel';
 
-export default class DogCard extends React.Component {
+class DogCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toDog = this.toDog.bind(this);
+  }
+
+  toDog() {
+    this.props.history.push(`/dog/${this.props.dog.id}`);
+  }
+
   render() {
     const { dog } = this.props;
     const cardStyle = {
@@ -24,8 +33,8 @@ export default class DogCard extends React.Component {
     return (
       <div className="col-xl-3 col-lg-4 col-sm-6">
         <Card style={cardStyle} className="dog-list-card mb-3">
+          <DogSmCarousel items={dog.images} dogID={dog.id}/>
           <Link to={`/dog/${dog.id}`}>
-            <DogSmCarousel items={dog.images} />
             <CardBody style={cardBodyStyle}>
               <CardTitle className="mb-1 position-relative">
                 <span className="font-weight-bold">
@@ -72,3 +81,5 @@ export default class DogCard extends React.Component {
     );
   }
 }
+
+export default withRouter(DogCard);
