@@ -22,7 +22,7 @@ export default function UserPlayReqs(props) {
               return false;
             }
           }
-          return a.date > Date.now() / 1000;
+          return (a.date > Date.now() / 1000 || ((Date.now() / 1000) - a.date < 172800 * 4));
         }).sort((a, b) => (a.date > b.date) ? 1 : -1);
         setPlayReqs(newArr);
       })
