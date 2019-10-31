@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 29, 2019 at 06:56 PM
+-- Generation Time: Oct 31, 2019 at 10:20 AM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -424,7 +424,7 @@ INSERT INTO `dogs` (`id`, `name`, `weight`, `bio`, `user_id`, `ig_url`, `birth`,
 (5, 'Aiko', 15, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 1, '', '1505026800', 'F', 1, 326, 1),
 (6, 'Jasmine', 7, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 2, '', '1489132800', 'NA', 1, 25, 0),
 (7, 'Westington', 70, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 3, '', '1470812400', 'M', 1, 349, 2),
-(8, 'Bow', 35, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 4, '', '1392451200', 'M', 0, 13, 0);
+(8, 'Bow', 35, 'This is a long little biography of my dog that is however long the user wants it to be. Go go go go go.', 4, '', '1565395200', 'M', 0, 13, 0);
 
 -- --------------------------------------------------------
 
@@ -481,7 +481,12 @@ INSERT INTO `playdates` (`id`, `dog_id`, `date`, `create_date`, `accepted_date`,
 (47, 5, '1577822400', '1572400490', NULL, 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
 (48, 5, '1577649600', '1572400490', NULL, 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
 (49, 5, '1573934400', '1572400490', NULL, 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 0, NULL),
-(50, 5, '1573329600', '1572400490', '1572400536', 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 1, 7);
+(50, 5, '1573329600', '1572400490', '1572400536', 33.65039899999999, -117.7461166, 'Spectrum Center Dr, Irvine, CA 92618, USA', 1, 7),
+(51, 6, '1576699200', '1572410337', NULL, 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(52, 6, '1575316800', '1572410337', NULL, 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(53, 6, '1575230400', '1572410337', NULL, 33.6845673, -117.82650490000003, 'Irvine, CA, USA', 0, NULL),
+(54, 5, '1571943600', '1572487131', '1572487449', 33.6407045, -117.83667350000002, '101 Russell Pl, Irvine, CA 92617, USA', 1, 7),
+(55, 5, '1571598000', '1572487131', '1572487449', 33.6407045, -117.83667350000002, '101 Russell Pl, Irvine, CA 92617, USA', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -504,7 +509,10 @@ CREATE TABLE `request` (
 
 INSERT INTO `request` (`id`, `playdate_id`, `dog_id`, `accepted`, `created_time`, `response_time`) VALUES
 (19, 50, 6, 0, '1572400504', '1572400536'),
-(20, 50, 7, 1, '1572400522', '1572400536');
+(20, 50, 7, 1, '1572400522', '1572400536'),
+(21, 53, 8, NULL, '1572480470', NULL),
+(22, 55, 8, 1, '1572487152', '1572487449'),
+(23, 54, 7, 1, '1572487168', '1572487449');
 
 -- --------------------------------------------------------
 
@@ -593,27 +601,27 @@ ALTER TABLE `breeds`
 -- AUTO_INCREMENT for table `dogs`
 --
 ALTER TABLE `dogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `dog_images`
 --
 ALTER TABLE `dog_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `playdates`
 --
 ALTER TABLE `playdates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
