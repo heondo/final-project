@@ -12,9 +12,9 @@ export default function UserRequests(props) {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    paddingBottom: '30%',
     width: '100%',
-    minHeight: '100px',
-    height: '100%'
+    minHeight: '100px'
   };
 
   useEffect(() => {}, [accepted]);
@@ -62,19 +62,19 @@ export default function UserRequests(props) {
 
   return (
     <div className="requests-item row">
-      <Link className='col-md-2' to={`/dog/${request_dog_id}`}>
+      <Link className='col-md-2 col-5' to={`/dog/${request_dog_id}`}>
         <div className="requester" style={requestImageStyle} ></div>
       </Link>
-      <div className="col-md-4 mx-0 px-0">
+      <div className="col-md-4 col-6 mx-0 px-0">
         <p className="mb-0"><strong>{request_name}</strong> wants to meet <strong>{name}</strong></p>
         <ul className="list-unstyled">
-          <li><i className="fas fa-bolt" title="Energy Level"></i> {convertEnergyLevel(req_energy)}</li>
-          <li><i className="fas fa-dumbbell" title="weight"></i> {req_weight} lbs</li>
-          <li><i className="fas fa-calendar-day" title="Number of Dates"></i> {num_dates} dates</li>
+          <li><i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(req_energy)}</li>
+          <li><i className="fas fa-dumbbell oc-weight-color" title="weight"></i> {req_weight} lbs</li>
+          <li><i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {num_dates} dates</li>
         </ul>
       </div>
-      <div className="col-md-4 col-8 d-flex flex-column mx-0 px-0 d-inline-block">
-        <div className="d-inline user-req-details">Details</div>
+      <div className="col-md-4 col-8 d-flex flex-column mx-0 px-2 d-inline-block">
+        <div className="d-inline user-req-details"><strong>Details</strong></div>
         <ul className="list-unstyled">
           <li>{display_address}</li>
           <li>{convertDate(date)}</li>

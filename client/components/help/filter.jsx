@@ -104,8 +104,8 @@ class Filter extends React.Component {
   }
   render() {
     return (
-      <UncontrolledDropdown isOpen={this.state.dropdownOpen} inNavbar className="mx-2">
-        <div className="oc-bg-grey dropdown-toggle btn" caret onClick={this.state.dropdownOpen ? this.closeInputDropdown : this.openInputDropdown}
+      <UncontrolledDropdown isOpen={this.state.dropdownOpen} inNavbar className="mx-2 filter-navbar">
+        <div className="oc-bg-grey dropdown-toggle btn" caret={'true'} onClick={this.state.dropdownOpen ? this.closeInputDropdown : this.openInputDropdown}
           aria-haspopup={true}
           aria-expanded={false}
         >

@@ -33,11 +33,11 @@ export default function UserPlayReqs(props) {
     };
   }, []);
 
-  const whichTypeDate = playOrReq => {
+  const whichTypeDate = (playOrReq, index) => {
     if ('request_id' in playOrReq) {
-      return <><Request data={playOrReq} /><hr className="w-75" /></>;
+      return <div key={index}><Request data={playOrReq} /><hr className="w-75" /></div>;
     } else {
-      return <><CreatedPlaydate data={playOrReq} /><hr className="w-75" /></>;
+      return <div key={index}><CreatedPlaydate data={playOrReq} /><hr className="w-75" /></div>;
     }
   };
 
@@ -181,13 +181,16 @@ export default function UserPlayReqs(props) {
   };
 
   return (
-    <div className="container-fluid text-center">
+    <div className="container-fluid text-center dog-total-info">
       <hr />
-      <h4 className="mb-4 mx-auto">My Playdates and Requests</h4>
-      <div className="container-fluid d-flex flex-column">
+      <h4 className="mb-4 mx-auto" style={{
+        textDecorationLine: 'underline',
+        textDecorationStyle: 'double'
+      }}>My Playdates and Requests</h4>
+      <div className="d-flex flex-column">
         {
-          (playReqs) ? playReqs.map(pr => {
-            return whichTypeDate(pr);
+          (playReqs) ? playReqs.map((pr, index) => {
+            return whichTypeDate(pr, index);
           }) : <h5>No upcoming playdates or requests</h5>
         }
       </div>

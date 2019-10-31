@@ -35,10 +35,13 @@ export default function ListingPanel(props) {
               (energyLevel === 'Medium') ? 'Med' : energyLevel
             }
           </span>
-          <p>Playdates Attended: {dogInfo.num_dates}</p>
+          <div>
+            <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i>
+            {' '}{dogInfo.num_dates} dates attended
+          </div>
         </Col>
 
-        <Col md='5'>
+        <Col md='5' className="upcoming-playdates">
           <h4>Upcoming Playdates</h4>
           {playdates
             .filter((playdate, index) => index <= maxPlaydatesToDisplay - 1)

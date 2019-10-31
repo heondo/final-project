@@ -90,15 +90,15 @@ class Header extends React.Component {
 
     return (
       <div className="container-fluid">
-        <Navbar className="d-flex" color="light" light expand="lg">
-          <NavbarBrand>
+        <Navbar className="d-flex header-bar" color="light" light expand="lg">
+          <NavbarBrand className="header-logo">
             <Link to="/" style={bgImage} className="d-inline-block align-middle"></Link>
             <h2 className="d-inline my-auto ml-3">TINDOG</h2>
           </NavbarBrand>
-          <SearchDogsBar />
-          <Filter />
-          <NavbarToggler onClick={this.toggleNav} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <SearchDogsBar/>
+          <Filter/>
+          <NavbarToggler onClick={this.toggleNav}/>
+          <Collapse isOpen={this.state.isOpen} navbar className="collapsed-navbar-flex">
             {navButtons}
           </Collapse>
         </Navbar>
