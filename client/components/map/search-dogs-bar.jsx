@@ -88,7 +88,7 @@ class SearchDogsBar extends React.Component {
             style={{ margin: '0 auto' }}
           />
           <InputGroupAddon addonType="append">
-            <Button color="secondary">Go</Button>
+            <div className="btn oc-bg-grey">Go</div>
           </InputGroupAddon>
         </InputGroup>
       </div>

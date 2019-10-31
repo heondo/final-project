@@ -30,6 +30,7 @@ export default function UserProfile(props) {
 
   const profPic = {
     width: '100%',
+    paddingBottom: '30%',
     minHeight: 'auto',
     borderRadius: '50%',
     backgroundImage: `url("${user.image}")`,

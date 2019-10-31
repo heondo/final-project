@@ -42,7 +42,7 @@ class Header extends React.Component {
 
   render() {
     const bgImage = {
-      backgroundImage: 'url("./assets/images/pet-logo.svg")',
+      backgroundImage: 'url("/assets/images/pet-logo.svg")',
       minHeight: '50px',
       width: '50px',
       backgroundSize: 'contain',
@@ -52,15 +52,22 @@ class Header extends React.Component {
     // it should render the profile drop down
     let navButtons = (this.props.isLoggedIn) ? (
       <Nav className="ml-auto font-weight-normal" navbar>
-        <NavItem onClick={this.toUser}>
+        <NavItem onClick={() => {
+          this.toUser();
+          this.toggleNav();
+        }}>
           <NavLink>Profile</NavLink>
         </NavItem>
         <NavItem onClick={() => {
           this.props.history.push(`/my-playdates/${this.props.userID}`);
+          this.toggleNav();
         }}>
           <NavLink >Your Playdates</NavLink>
         </NavItem>
-        <NavItem onClick={this.logout}>
+        <NavItem onClick={() => {
+          this.logout();
+          this.toggleNav();
+        }}>
           <NavLink >Logout</NavLink>
         </NavItem>
       </Nav>
@@ -68,11 +75,13 @@ class Header extends React.Component {
       <Nav className="ml-auto font-weight-normal" navbar>
         <NavItem onClick={() => {
           this.props.history.push('/login');
+          this.toggleNav();
         }}>
           <NavLink >Login</NavLink>
         </NavItem>
         <NavItem onClick={() => {
           this.props.history.push('/signup');
+          this.toggleNav();
         }}>
           <NavLink >Signup</NavLink>
         </NavItem>
