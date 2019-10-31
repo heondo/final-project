@@ -12,7 +12,7 @@
 }
 
 #root  > div:nth-child(2) {
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 
 h1,h2,h3,h4,h5 {
@@ -35,6 +35,16 @@ h1,h2,h3,h4,h5 {
 
 .nav-item a, .btn, .dog-list-card, .navbar-brand {
   cursor: pointer;
+}
+
+.navbar-toggler{
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url('/assets/images/menu.svg');
 }
 
 
@@ -198,7 +208,7 @@ h1,h2,h3,h4,h5 {
     margin-top: .4rem;
   }
   #root  > div:nth-child(2) {
-  margin-top: 8rem;
+  margin-top: 8.2rem;
 }
 }
 
