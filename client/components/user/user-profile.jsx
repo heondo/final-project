@@ -148,7 +148,7 @@ export default function UserProfile(props) {
         </div>
         <div className="col-xl-6">
           <div className="user-dogs-header w-75 mr-5 mb-3">
-            {(userID === parseInt(id)) ? <h4>Your Dogs <Link to="/add-dog" className="float-right">+ New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
+            {(userID === parseInt(id)) ? <h4>Your Dogs <Link to="/add-dog" className="float-right text-decoration-none">+New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
           </div>
           <div className="users-dogs d-flex flex-wrap">
             {
