@@ -140,10 +140,10 @@ export default class PlaydatesListItem extends React.Component {
     } else {
       return (
         <Row className="my-2">
-          <Col xs="9">
+          <Col xs="8">
             {displayDate + ' - ' + playdate.display_address}
           </Col>
-          <Col xs="3">
+          <Col xs="4">
             {userID === ownerID
               ? <Button
                 size="sm"
@@ -153,7 +153,7 @@ export default class PlaydatesListItem extends React.Component {
                 outline>
                   Delete Playdate
               </Button>
-              : <>
+              : <div className="d-flex justify-content-end">
                 <Input
                   type="select"
                   bsSize="sm"
@@ -166,12 +166,12 @@ export default class PlaydatesListItem extends React.Component {
                 <Button
                   size="sm"
                   color="primary"
-                  className="float-right"
+                  className="d-inline ml-1"
                   onClick={() => this.handleRequestToJoin(playdate.id, this.state.selectedDog)}
                   outline>
                     Request to Join
                 </Button>
-              </>
+              </div>
             }
           </Col>
         </Row>
