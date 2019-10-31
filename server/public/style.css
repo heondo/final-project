@@ -224,6 +224,8 @@ h1,h2,h3,h4,h5 {
     width: 80%;
   }
 
+
+
   .dog-total-info {
     padding: 0 1rem;
   }
@@ -239,6 +241,7 @@ h1,h2,h3,h4,h5 {
   }
   .search-navbar {
     order: 100;
+    width: 75vw;
   }
   .header-logo {
     order: 1;
