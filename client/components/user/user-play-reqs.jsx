@@ -187,10 +187,7 @@ export default function UserPlayReqs(props) {
   return (
     <div className="container-fluid text-center dog-total-info">
       <hr />
-      <h4 className="mb-4 mx-auto" style={{
-        textDecorationLine: 'underline',
-        textDecorationStyle: 'double'
-      }}>My Playdates and Requests</h4>
+      <h4 className="mb-4 mx-auto">My Playdates and Requests</h4>
       <div className="d-flex flex-column">
         {
           (playReqs) ? playReqs.map((pr, index) => {
