@@ -30,10 +30,10 @@ export default function UserRequests(props) {
   function YesOrNo() {
     return (
       <>
-        <button className="btn success-request d-inline-block mb-2 mr-1" onClick={handleAccept}>
+        <button className="btn oc-btn-green success-request d-inline-block active mb-2 mr-1" onClick={handleAccept}>
           YES
         </button>
-        <button className="btn denied-request d-inline-block mb-2" onClick={handleDeny}>
+        <button className="btn oc-btn-red denied-request d-inline-block active mb-2" onClick={handleDeny}>
           NO
         </button>
       </>

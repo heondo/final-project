@@ -62,12 +62,12 @@ export default function ListingPanel(props) {
 
         <Col md='2' className="d-none d-md-flex justify-content-end align-items-center">
           <Link to={`/dog/${dogInfo.id}`}>
-            <Button color="primary" outline>View Profile</Button>
+            <button className="oc-bg-grey oc-btn-grey btn active" aria-pressed="true">View Profile</button>
           </Link>
         </Col>
         <Col md='2' className="d-flex d-md-none justify-content-center align-items-center">
           <Link to={`/dog/${dogInfo.id}`} className="mt-3">
-            <Button color="primary" outline>View Profile</Button>
+            <button className="oc-bg-grey oc-btn-grey btn active" aria-pressed="true">View Profile</button>
           </Link>
         </Col>
 

@@ -240,3 +240,19 @@ h1,h2,h3,h4,h5 {
   background-size: contain;
   background-repeat: no-repeat;
 } */
+
+.oc-btn-grey:hover {
+  background-color: #e2d8b6;
+}
+
+.oc-btn-red:hover {
+  background-color: #d8735a;
+}
+
+.oc-btn-green:hover {
+  background-color: #43a363;
+}
+
+.oc-btn-blue:hover {
+  background-color: #acd2cd;
+}

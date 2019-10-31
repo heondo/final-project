@@ -105,14 +105,15 @@ class Filter extends React.Component {
   render() {
     return (
       <UncontrolledDropdown isOpen={this.state.dropdownOpen} inNavbar className="mx-2 filter-navbar">
-        <div className="oc-bg-grey dropdown-toggle btn" caret={'true'} onClick={this.state.dropdownOpen ? this.closeInputDropdown : this.openInputDropdown}
+        <button className="oc-bg-grey oc-btn-grey dropdown-toggle btn active" caret={'true'} onClick={this.state.dropdownOpen ? this.closeInputDropdown : this.openInputDropdown}
           aria-haspopup={true}
           aria-expanded={false}
+          aria-pressed="true"
         >
           Filter
-        </div>
+        </button>
         <DropdownMenu right className="px-5 py-4" style={{ width: 'max-content' }}>
-          <span className="h3 ml-n3">Filter Dogs</span>
+          <span className="h4 ml-n3">Filter Dogs</span>
           <Button color="link" className="p-0" style={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }} onClick={this.resetFilterOptions}>Reset Filters</Button>
 
           <DropdownItem divider />
@@ -203,8 +204,8 @@ class Filter extends React.Component {
             <DropdownItem divider />
 
             <FormGroup className="float-right">
-              <Button type="submit" color="primary" outline className="mx-2">Apply Filters</Button>
-              <Button color="secondary" outline onClick={this.closeInputDropdown}>Close</Button>
+              <button type="submit" className="oc-bg-blue oc-btn-blue btn btn-sm active mx-2">Apply Filters</button>
+              <button className="oc-bg-grey oc-btn-grey btn btn-sm active" onClick={this.closeInputDropdown}>Close</button>
             </FormGroup>
           </Form>
         </DropdownMenu>

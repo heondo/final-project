@@ -118,7 +118,7 @@ export default function DogProfile(props) {
             <div>{dog.bio}</div>
           </div>
           <div className="col-md-6 dogs-listings">
-            <h4>{dog.name}s Listings</h4>
+            <h4>{dog.name}'s Listings</h4>
             {(parseInt(userID) === parseInt(dog.user_id)
               ? <>
                 <Nav tabs>

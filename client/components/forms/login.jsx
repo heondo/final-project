@@ -100,10 +100,10 @@ class Login extends React.Component {
                 <FormFeedback>Incorrect Password</FormFeedback>
               </FormGroup>
               <FormGroup className="d-flex justify-content-end">
-                <Button type="submit" color="primary" outline className="mx-2">Log In</Button>
-                <Button color="secondary" outline className="mx-2" onClick={() => {
+                <button type="submit" className="oc-bg-blue oc-btn-blue btn active mx-2">Log In</button>
+                <button className="oc-bg-grey oc-btn-grey btn active" onClick={() => {
                   this.props.history.push(`/`);
-                }}>Cancel</Button>
+                }}>Cancel</button>
               </FormGroup>
             </Form>
           </div>
