@@ -99,11 +99,11 @@ export default class PlaydatesListItem extends React.Component {
       return (
         <Row className="my-2">
           {playdate.confirmed
-            ? <Col md="9">
+            ? <Col md="10">
               <s>{displayDate + ' - ' + playdate.display_address}</s>
               <Badge className="ml-2" style={{ backgroundColor: '#bfbfbf' }}>Playdate Full!</Badge>
             </Col>
-            : <Col md="9">
+            : <Col md="10">
               {displayDate + ' - ' + playdate.display_address}
             </Col>}
         </Row>

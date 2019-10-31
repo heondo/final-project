@@ -106,7 +106,7 @@ class Header extends React.Component {
           </NavbarBrand>
           <SearchDogsBar/>
           <Filter/>
-          <NavbarToggler onClick={this.toggleNav}/>
+          <NavbarToggler onClick={this.toggleNav} style={{ zIndex: '5000' }}/>
           <Collapse isOpen={this.state.isOpen} navbar className="collapsed-navbar-flex">
             {navButtons}
           </Collapse>
