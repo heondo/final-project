@@ -22,11 +22,26 @@ export default function ListingPanel(props) {
         <Col md='3'>
           <h3>{dogInfo.name}</h3>
           <h6 className="text-muted">{breed + ' - ' + weightClass}</h6>
-          <p className="mb-1">Gender: {dogInfo.sex}, Age: {dogInfo.age}, Energy Level: {energyLevel}</p>
-          <p>Playdates Attended: {dogInfo.num_dates}</p>
+          <span className="mr-2">
+            <i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {dogInfo.age}
+          </span>
+          <span className="mr-2">
+            <i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i>
+            {' '}{dogInfo.sex}
+          </span>
+          <span>
+            <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i>
+            {' '}{
+              (energyLevel === 'Medium') ? 'Med' : energyLevel
+            }
+          </span>
+          <div>
+            <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i>
+            {' '}{dogInfo.num_dates} dates attended
+          </div>
         </Col>
 
-        <Col md='5'>
+        <Col md='5' className="upcoming-playdates">
           <h4>Upcoming Playdates</h4>
           {playdates
             .filter((playdate, index) => index <= maxPlaydatesToDisplay - 1)

@@ -29,19 +29,19 @@ export default class UserDog extends React.Component {
                 <p className="d-inline font-weight-bold">
                   {dog.name}
                 </p> - {capitalize(dog.breed)} <span className="float-right">
-                  <i className="fas fa-dumbbell" title="Weight"></i> {dog.weight} lbs</span>
+                  <i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {dog.weight} lbs</span>
               </CardTitle>
               <CardSubtitle>
-                <i className="fas fa-birthday-cake" title="Age"></i> {dog.age}</CardSubtitle>
+                <i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {dog.age}</CardSubtitle>
               <CardText>
-                <span className="mr-2">
-                  <i className="fas fa-transgender-alt" title="Gender"></i> {dog.sex},
+                <span className="mr-3">
+                  <i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i> {dog.sex},
                 </span>
-                <span className="mr-2">
-                  <i className="fas fa-calendar-day" title="Number of Dates"></i> {dog.num_dates} dates,
+                <span className="mr-3">
+                  <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates,
                 </span>
-                <span className="mr-2">
-                  <i className="fas fa-bolt" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}
+                <span className="mr-3">
+                  <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}
                 </span>
               </CardText>
             </CardBody>

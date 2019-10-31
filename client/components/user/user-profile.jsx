@@ -30,7 +30,9 @@ export default function UserProfile(props) {
 
   const profPic = {
     width: '100%',
-    minHeight: '150px',
+    paddingBottom: '30%',
+    minHeight: 'auto',
+    borderRadius: '50%',
     backgroundImage: `url("${user.image}")`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
@@ -115,8 +117,8 @@ export default function UserProfile(props) {
         <div className="col-xl-6" style={userCardStyle}>
           <div className="user-profile-card mx-auto d-flex flex-column p-4">
             <div className="img-and-info row">
-              <div className="col-5 prof-pic" style={profPic}></div>
-              <div className="col-6 ml-2">
+              <div className="col-3 prof-pic" style={profPic}></div>
+              <div className="col-8 ml-2">
                 <ul className="list-unstyled mt-3">
                   <li><h4>{user.first} {user.last}</h4></li>
                   <li>

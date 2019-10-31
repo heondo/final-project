@@ -85,12 +85,12 @@ export default function DogProfile(props) {
           <div className="col-sm-6" style={primStyle}></div>
           <div className="col-sm-6">
             <div className="row" style={smallerRows}>
-              <div className="col d-none d-sm-block" style={otherFour[0]}>2</div>
-              <div className="col d-none d-md-block" style={otherFour[2]}>4</div>
+              <div className="col d-none d-sm-block" style={otherFour[0]}></div>
+              <div className="col d-none d-md-block" style={otherFour[2]}></div>
             </div>
             <div className="row" style={smallerRows}>
-              <div className="col d-none d-sm-block" style={otherFour[1]}>3</div>
-              <div className="col d-none d-md-block" style={otherFour[3]}>5</div>
+              <div className="col d-none d-sm-block" style={otherFour[1]}></div>
+              <div className="col d-none d-md-block" style={otherFour[3]}></div>
             </div>
           </div>
         </div>
@@ -107,11 +107,11 @@ export default function DogProfile(props) {
             </div>
             <h5>Details: </h5>
             <div className="dog-info-specs d-flex flex-wrap mb-1">
-              <div className="mr-5"><i className="fas fa-transgender-alt" title="Gender"></i> {dog.sex}</div>
-              <div className="mr-5"><i className="fas fa-birthday-cake" title="Age"></i> {dog.age}</div>
-              <div className="mr-5"><i className="fas fa-dumbbell" title="Weight"></i> {dog.weight} lbs</div>
-              <div className="mr-5"><i className="fas fa-calendar-day" title="Number of Dates"></i> {dog.num_dates} dates</div>
-              <div className="mr-5"><i className="fas fa-bolt" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}</div>
+              <div className="mr-5"><i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i> {dog.sex}</div>
+              <div className="mr-5"><i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {dog.age}</div>
+              <div className="mr-5"><i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {dog.weight} lbs</div>
+              <div className="mr-5"><i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates</div>
+              <div className="mr-5"><i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}</div>
               <div className="mr-5"><i className="fas fa-hand-scissors" title="Neutered/Spayed"></i> {dog.fixed}</div>
             </div>
             <h3>About {dog.name}</h3>
