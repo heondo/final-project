@@ -63,7 +63,7 @@ export default class DogList extends React.Component {
   render() {
     const { dogs, activeTab } = this.state;
     return (
-      <Container fluid className="dog-total-info">
+      <Container fluid className="dog-total-info dog-listings">
         <Nav tabs>
           <NavItem>
             <NavLink
