@@ -34,13 +34,13 @@ export default class UserDog extends React.Component {
               <CardSubtitle>
                 <i className="fas fa-birthday-cake" title="Age"></i> {dog.age}</CardSubtitle>
               <CardText>
-                <span className="mr-2">
+                <span className="mr-3">
                   <i className="fas fa-transgender-alt" title="Gender"></i> {dog.sex},
                 </span>
-                <span className="mr-2">
+                <span className="mr-3">
                   <i className="fas fa-calendar-day" title="Number of Dates"></i> {dog.num_dates} dates,
                 </span>
-                <span className="mr-2">
+                <span className="mr-3">
                   <i className="fas fa-bolt" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}
                 </span>
               </CardText>

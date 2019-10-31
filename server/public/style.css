@@ -110,48 +110,56 @@ h1,h2,h3,h4,h5 {
 }
 
 .open-playdate {
-  background-color: #dbcdc2;
+  background-color: #ECE5CE;
 }
 
 .open-request {
-  background-color: rgb(199, 186, 176);
+  background-color: rgb(219, 213, 191);
 }
 
 .denied-request {
-  background-color: #e75252;
+  background-color: #E08E79;
 }
 
 .oc-bg-red {
-  background-color: #e75252;
+  background-color: #E08E79;
 }
 
-.oc-bg-pink {
-  background-color: #FA8767;
+.oc-bg-brown {
+  background-color: #774F38;
 }
 
-.oc-bg-yellow {
-  background-color: #f1be3e;
+.oc-bg-orange {
+  background-color: #F1D4AF;
+}
+
+.oc-bg-blue {
+  background-color: #C5E0DC;
 }
 
 .oc-bg-grey {
-  background-color: #cfc2b9;
+  background-color: #ECE5CE;
 }
 
 
 .oc-txt-red {
-  color: #ed3f3e;
+  color: #E08E79;
 }
 
-.oc-txt-pink {
-  color: #FA8767;
+.oc-txt-brown {
+  color: #774F38;
 }
 
-.oc-txt-yellow {
-  color: #f1be3e;
+.oc-txt-orange {
+  color: #F1D4AF;
+}
+
+.oc-txt-blue {
+  color: #C5E0DC;
 }
 
 .oc-txt-grey {
-  color: #cfc2b9;
+  color: #ECE5CE;
 }
 
 .rdrDefinedRangesWrapper {

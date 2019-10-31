@@ -30,10 +30,10 @@ export default function UserRequests(props) {
   function YesOrNo() {
     return (
       <>
-        <button className="btn btn-success d-inline-block mb-2 mr-1" onClick={handleAccept}>
+        <button className="btn success-request d-inline-block mb-2 mr-1" onClick={handleAccept}>
           YES
         </button>
-        <button className="btn btn-warning d-inline-block mb-2" onClick={handleDeny}>
+        <button className="btn denied-request d-inline-block mb-2" onClick={handleDeny}>
           NO
         </button>
       </>
@@ -43,7 +43,7 @@ export default function UserRequests(props) {
   function Rejected() {
     return (
       <>
-        <button className="btn btn-secondary d-block mb-2" disabled>
+        <button className="btn denied-request d-block mb-2" disabled>
           Rejected
         </button>
       </>
@@ -53,7 +53,7 @@ export default function UserRequests(props) {
   function Accepted() {
     return (
       <>
-        <button className="btn btn-success d-block mb-2" disabled>
+        <button className="btn success-request d-block mb-2" disabled>
           Accepted
         </button>
       </>
