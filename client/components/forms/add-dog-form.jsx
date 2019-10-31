@@ -157,37 +157,34 @@ export default class AddDogForm extends React.Component {
                 <DOBPicker updateDOBCallback={this.updateDOB} />
               </FormGroup>
 
-              <FormGroup tag="fieldset" onClick={this.handleInputChange}>
-                <p className="mb-1">Gender</p>
+              <FormGroup tag="fieldset" onChange={this.handleInputChange}>
+                <p className="mb-1">{fixedText + '?'}</p>
                 <FormGroup check inline>
-                  <Input
+                  <CustomInput
                     type="radio"
                     name="genderInput"
-                    id="femaleRadioOption"
-                    value="F"
-                    checked={this.state.genderInput === 'F'}
-                  />
-                  <Label check htmlFor="femaleRadioOption">Female</Label>
+                    id="maleGenderOption"
+                    value="1"
+                    checked={this.state.genderInput === 'M'} />
+                  <Label check htmlFor="maleGenderOption">Yes</Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <Input
+                  <CustomInput
                     type="radio"
                     name="genderInput"
-                    id="maleRadioOption"
-                    value="M"
-                    checked={this.state.genderInput === 'M'}
-                  />
-                  <Label check htmlFor="maleRadioOption">Male</Label>
+                    id="femaleGenderOption"
+                    value="0"
+                    checked={this.state.genderInput === 'F'} />
+                  <Label check htmlFor="femaleGenderOption">No</Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <Input
+                  <CustomInput
                     type="radio"
                     name="genderInput"
-                    id="otherRadioOption"
-                    value="NA"
-                    checked={this.state.genderInput === 'NA'}
-                  />
-                  <Label check htmlFor="otherRadioOption">Prefer Not to Say</Label>
+                    id="naGenderOption"
+                    value="0"
+                    checked={this.state.fixedInput === 'NA'} />
+                  <Label check htmlFor="naGenderOption">Prefer not to say</Label>
                 </FormGroup>
               </FormGroup>
 

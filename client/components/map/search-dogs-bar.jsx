@@ -73,7 +73,7 @@ class SearchDogsBar extends React.Component {
 
   render() {
     return (
-      <div style={{ minWidth: '50vw' }}>
+      <div style={{ maxWidth: '65%', minWidth: '50%' }} className="search-navbar">
         <Script
           url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWq6apxh7IJs8njuJgCEJf5QPenKjrCYc&libraries=places"
           onLoad={this.handleScriptLoad}
@@ -88,7 +88,7 @@ class SearchDogsBar extends React.Component {
             style={{ margin: '0 auto' }}
           />
           <InputGroupAddon addonType="append">
-            <Button color="secondary">Go</Button>
+            <div className="btn oc-bg-grey">Go</div>
           </InputGroupAddon>
         </InputGroup>
       </div>

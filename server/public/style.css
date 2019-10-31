@@ -29,7 +29,7 @@ h1,h2,h3,h4,h5 {
     cursor: pointer;
 }
 
-.nav-item a {
+.nav-item a, .btn {
   cursor: pointer;
 }
 
@@ -141,6 +141,9 @@ h1,h2,h3,h4,h5 {
   background-color: #ECE5CE;
 }
 
+.oc-weight-color {
+  color: rgb(163, 157, 139);
+}
 
 .oc-txt-red {
   color: #E08E79;
@@ -182,6 +185,12 @@ h1,h2,h3,h4,h5 {
   margin-right: 1.3rem;
 }
 
+@media (max-width: 768px){
+  .upcoming-playdates {
+    margin-top: .4rem;
+  }
+}
+
 
 @media (max-width: 635px) {
   .dog-card-last-row span:not(.miles):not(:nth-child(3)) {
@@ -201,8 +210,24 @@ h1,h2,h3,h4,h5 {
     margin-right: 1.7rem;
   }
 
-.capitalize {
+  .capitalize {
     text-transform: capitalize;
+  }
+  .navbar-toggler {
+    order: 1;
+  }
+  .search-navbar {
+    order: 100;
+  }
+  .header-logo {
+    order: 1;
+  }
+  .filter-navbar {
+    order: 105;
+  }
+  .collapsed-navbar-flex {
+    order: 106;
+  }
 }
 /*
 .dog-total-info {

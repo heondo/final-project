@@ -35,12 +35,12 @@ export default class DogCard extends React.Component {
                   - {startCase(toLower(dog.breed))}
                 </span>
                 <span className="float-right">
-                  <i className="fas fa-dumbbell" title="Weight"></i> {dog.weight} lbs
+                  <i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {dog.weight} lbs
                 </span>
               </CardTitle>
               <CardSubtitle className="d-flex w-100 justify-content-between">
                 <span>
-                  <i className="fas fa-birthday-cake" title="Age"></i> {dog.age}
+                  <i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {' '}{dog.age}
                 </span>
                 <span >
                   {dog.display_address}
@@ -48,17 +48,17 @@ export default class DogCard extends React.Component {
               </CardSubtitle>
               <CardText className="dog-card-last-row">
                 <span>
-                  <i className="fas fa-bolt" title="Energy Level"></i>
+                  <i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i>
+                  {' '}{dog.sex}
+                </span>
+                <span>
+                  <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i>
                   {' '}{
                     (energy === 'Medium') ? 'Med' : energy
                   }
                 </span>
                 <span>
-                  <i className="fas fa-transgender-alt" title="Gender"></i>
-                  {' '}{dog.sex}
-                </span>
-                <span>
-                  <i className="fas fa-calendar-day" title="Number of Dates"></i>
+                  <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i>
                   {' '}{dog.num_dates} dates
                 </span>
                 <span className="float-right miles">
