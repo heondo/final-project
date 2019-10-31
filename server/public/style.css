@@ -11,9 +11,7 @@
   font-family: "Overpass"
 }
 
-#root  > div:nth-child(2) {
-  margin-top: 6rem;
-}
+
 
 h1,h2,h3,h4,h5 {
   font-family: "Chivo"
@@ -203,12 +201,24 @@ h1,h2,h3,h4,h5 {
   margin-right: 1.3rem;
 }
 
+#root  > div:nth-child(2):not(.dog-listings) {
+  margin-top: 6rem;
+}
+
+#root .dog-listings {
+  margin-top: 5.3rem;
+}
+
 @media (max-width: 759px){
   .upcoming-playdates {
     margin-top: .4rem;
   }
-  #root  > div:nth-child(2) {
+  #root  > div:nth-child(2):not(.dog-listings) {
   margin-top: 8.2rem;
+}
+
+#root .dog-listings {
+  margin-top: 7.8rem;
 }
 }
 
