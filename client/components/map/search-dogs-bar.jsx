@@ -87,9 +87,9 @@ class SearchDogsBar extends React.Component {
             className="form-control"
             style={{ margin: '0 auto' }}
           />
-          <InputGroupAddon addonType="append">
+          {/* <InputGroupAddon addonType="append">
             <button className="btn oc-bg-grey oc-btn-grey active" aria-pressed="true">Go</button>
-          </InputGroupAddon>
+          </InputGroupAddon> */}
         </InputGroup>
       </div>
     );

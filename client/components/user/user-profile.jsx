@@ -20,7 +20,8 @@ export default function UserProfile(props) {
         if (!user.success) {
           throw new Error(user.data);
         }
-        user.user.requests = user.user.requests.filter(a => a.date > Date.now() / 1000).sort((a, b) => (a.date > b.date) ? 1 : -1);
+        user.user.requests = user.user.requests.sort((a, b) => (a.date > b.date) ? 1 : -1);
+        // .filter(a => a.date > Date.now() / 1000)
         setUser(user.user);
       });
     return function cleanup() {
@@ -135,7 +136,7 @@ export default function UserProfile(props) {
             </div>
             {(userID === parseInt(id))
               ? <div className="open-requests">
-                <h4>Open Requests</h4>
+                <h4 className="mb-1">Open Requests</h4>
                 <div className="requests-list w-100">
                   {(user.requests)
                     ? user.requests.map(req => {
