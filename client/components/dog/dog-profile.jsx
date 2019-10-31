@@ -77,6 +77,14 @@ export default function DogProfile(props) {
     });
   }
 
+  const dogInfoPaw = {
+    backgroundImage: `url("/assets/images/paw-single.png")`,
+    maxHeight: '50vh',
+    backgroundSize: 'contain',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  };
+
   return (
     <>
       <div className="dog-profile-images container-fluid px-0">
@@ -98,7 +106,7 @@ export default function DogProfile(props) {
       <hr className="my-2 w-75"/>
       <div className="container-fluid dog-total-info">
         <div className="row">
-          <div className="col-md-6 dog-information">
+          <div className="col-md-6 dog-information sketchy" style={dogInfoPaw}>
             <h2 className="d-inline">{dog.name} - </h2>
             <h3 className="d-inline-block capitalize">{startCase(toLower(dog.breed))}</h3>
             <Link to={`/user/${dog.user_id}`} className="float-right btn dog-to-user">{dog.first} {dog.last}</Link>

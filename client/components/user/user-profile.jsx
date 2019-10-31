@@ -115,7 +115,7 @@ export default function UserProfile(props) {
     <div className="container-fluid dog-total-info">
       <hr />
       <div className="row">
-        <div className="col-xl-6" style={userCardStyle}>
+        <div className="col-xl-6 sketchy" style={userCardStyle}>
           <div className="user-profile-card mx-auto d-flex flex-column p-4">
             <div className="img-and-info row">
               <div className="col-3 prof-pic" style={profPic}></div>
