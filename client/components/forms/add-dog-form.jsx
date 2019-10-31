@@ -40,7 +40,7 @@ export default class AddDogForm extends React.Component {
     // const { target } = event;
     const name = event.target.name;
     const value = event.target.value;
-    // console.log(name, value);
+    console.log(name, value);
     this.setState({ [name]: value });
   }
   handleImageSelect() {
@@ -109,7 +109,7 @@ export default class AddDogForm extends React.Component {
       <Container>
         <hr />
         <Row className="justify-content-center">
-          <div className="form-container input-forms">
+          <div className="input-forms">
             <h4>Add New Dog</h4>
             <Form encType="multipart/form-data" onSubmit={this.handleSubmit}>
               <FormGroup>
@@ -119,7 +119,6 @@ export default class AddDogForm extends React.Component {
                   id="nameInput"
                   name="nameInput"
                   placeholder="Name"
-                  className="form-control"
                   value={this.state.nameInput}
                   onChange={this.handleInputChange}
                   required />
@@ -146,7 +145,6 @@ export default class AddDogForm extends React.Component {
                   id="weightInput"
                   name="weightInput"
                   placeholder="Weight (lbs)"
-                  className="form-control"
                   value={this.state.weightInput}
                   onChange={this.handleInputChange}
                   required />
@@ -157,7 +155,7 @@ export default class AddDogForm extends React.Component {
                 <DOBPicker updateDOBCallback={this.updateDOB} />
               </FormGroup>
 
-              <FormGroup tag="fieldset" onClick={this.handleInputChange}>
+              <FormGroup tag="fieldset" onChange={this.handleInputChange}>
                 <p className="mb-1">Gender</p>
                 <FormGroup check inline>
                   <Input
@@ -236,7 +234,6 @@ export default class AddDogForm extends React.Component {
                   name="descriptionInput"
                   id="descriptionInput"
                   placeholder="Description"
-                  className="form-control"
                   value={this.state.descriptionInput}
                   onChange={this.handleInputChange} />
               </FormGroup>
@@ -248,7 +245,6 @@ export default class AddDogForm extends React.Component {
                   id="igInput"
                   name="igInput"
                   placeholder="Instagram Link"
-                  className="form-control"
                   value={this.state.igInput}
                   onChange={this.handleInputChange} />
               </FormGroup>
