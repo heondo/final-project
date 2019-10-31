@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Card, CardText, CardBody,
-  CardTitle, CardSubtitle
+  CardTitle, CardSubtitle, UncontrolledTooltip
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { startCase, toLower } from 'lodash';
@@ -34,32 +34,47 @@ export default class DogCard extends React.Component {
                 <span className="">
                   - {startCase(toLower(dog.breed))}
                 </span>
-                <span className="float-right">
+                <span className="float-right" id={`weight-dog-card${dog.id}`}>
                   <i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {dog.weight} lbs
+                  <UncontrolledTooltip placement="bottom" target={`weight-dog-card${dog.id}`}>
+                    Weight
+                  </UncontrolledTooltip>
                 </span>
               </CardTitle>
               <CardSubtitle className="d-flex w-100 justify-content-between">
-                <span>
+                <span id={`age-dog-card${dog.id}`}>
                   <i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {' '}{dog.age}
+                  <UncontrolledTooltip placement="bottom" target={`age-dog-card${dog.id}`}>
+                    Age
+                  </UncontrolledTooltip>
                 </span>
                 <span >
                   {dog.display_address}
                 </span>
               </CardSubtitle>
               <CardText className="dog-card-last-row">
-                <span>
+                <span id={`gender-dog-card${dog.id}`}>
                   <i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i>
                   {' '}{dog.sex}
+                  <UncontrolledTooltip placement="bottom" target={`gender-dog-card${dog.id}`}>
+                    Gender
+                  </UncontrolledTooltip>
                 </span>
-                <span>
+                <span id={`energy-dog-card${dog.id}`}>
                   <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i>
                   {' '}{
                     (energy === 'Medium') ? 'Med' : energy
                   }
+                  <UncontrolledTooltip placement="bottom" target={`energy-dog-card${dog.id}`}>
+                    Energy Level
+                  </UncontrolledTooltip>
                 </span>
-                <span>
+                <span id={`dates-dog-card${dog.id}`}>
                   <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i>
                   {' '}{dog.num_dates} dates
+                  <UncontrolledTooltip placement="bottom" target={`dates-dog-card${dog.id}`}>
+                    Number of Dates
+                  </UncontrolledTooltip>
                 </span>
                 <span className="float-right miles">
                   {(dog.miles || dog.miles === 0) ? <p>{dog.miles.toFixed(1)} mi</p> : undefined}
