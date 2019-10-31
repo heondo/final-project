@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, UncontrolledTooltip } from 'reactstrap';
 import { useParams, Link } from 'react-router-dom';
 import MakePlaydate from '../forms/make-playdate';
 import PlaydatesList from '../listing/playdates-list';
@@ -7,7 +7,7 @@ import { convertEnergyLevel } from './../help/functions';
 import { startCase, toLower } from 'lodash';
 
 export default function DogProfile(props) {
-  const genericPic = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
+  const genericPic = './../assets/images/unknown-dog.png';
   const params = useParams();
   const { id } = params;
   const { userID, userDogs } = props;
@@ -101,18 +101,51 @@ export default function DogProfile(props) {
           <div className="col-md-6 dog-information">
             <h2 className="d-inline">{dog.name} - </h2>
             <h3 className="d-inline-block capitalize">{startCase(toLower(dog.breed))}</h3>
-            <Link to={`/user/${dog.user_id}`} className="float-right btn dog-to-user">{dog.first} {dog.last}</Link>
+            <div className="d-inline float-right">
+              <span>Meet My Owner: </span>
+              <Link to={`/user/${dog.user_id}`} className="btn dog-to-user">{dog.first} {dog.last}</Link>
+            </div>
             <div className="font-weight-light mb-2">Location:
               <h6 className="d-inline mb-1"> {dog.display_address}</h6>
             </div>
             <h5>Details: </h5>
             <div className="dog-info-specs d-flex flex-wrap mb-1">
-              <div className="mr-5"><i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i> {dog.sex}</div>
-              <div className="mr-5"><i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {dog.age}</div>
-              <div className="mr-5"><i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {dog.weight} lbs</div>
-              <div className="mr-5"><i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates</div>
-              <div className="mr-5"><i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}</div>
-              <div className="mr-5"><i className="fas fa-hand-scissors" title="Neutered/Spayed"></i> {dog.fixed ? 'Yes' : 'No'}</div>
+              <div className="mr-5" id={`gender-dog-profile${dog.id}`}>
+                <i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i> {dog.sex}
+                <UncontrolledTooltip placement="bottom" target={`gender-dog-profile${dog.id}`}>
+                  Gender
+                </UncontrolledTooltip>
+              </div>
+              <div className="mr-5" id={`age-dog-profile${dog.id}`}>
+                <i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {dog.age}
+                <UncontrolledTooltip placement="bottom" target={`age-dog-profile${dog.id}`}>
+                  Age
+                </UncontrolledTooltip>
+              </div>
+              <div className="mr-5" id={`weight-dog-profile${dog.id}`}>
+                <i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {dog.weight} lbs
+                <UncontrolledTooltip placement="bottom" target={`weight-dog-profile${dog.id}`}>
+                  Weight
+                </UncontrolledTooltip>
+              </div>
+              <div className="mr-5" id={`dates-dog-profile${dog.id}`}>
+                <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates
+                <UncontrolledTooltip placement="bottom" target={`dates-dog-profile${dog.id}`}>
+                  Number of Dates
+                </UncontrolledTooltip>
+              </div>
+              <div className="mr-5" id={`energy-dog-profile${dog.id}`}>
+                <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}
+                <UncontrolledTooltip placement="bottom" target={`energy-dog-profile${dog.id}`}>
+                  Energy Level
+                </UncontrolledTooltip>
+              </div>
+              <div className="mr-5" id={`fixed-dog-profile${dog.id}`}>
+                <i className="fas fa-hand-scissors" title="Neutered/Spayed"></i> {dog.fixed ? 'Yes' : 'No'}
+                <UncontrolledTooltip placement="bottom" target={`fixed-dog-profile${dog.id}`}>
+                  Neutered/Spayed
+                </UncontrolledTooltip>
+              </div>
             </div>
             <h3>About {dog.name}</h3>
             <div>{dog.bio}</div>

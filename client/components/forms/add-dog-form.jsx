@@ -40,7 +40,7 @@ export default class AddDogForm extends React.Component {
     // const { target } = event;
     const name = event.target.name;
     const value = event.target.value;
-    console.log(name, value);
+    // console.log(name, value);
     this.setState({ [name]: value });
   }
   handleImageSelect() {
