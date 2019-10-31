@@ -84,7 +84,7 @@ export default class DogList extends React.Component {
         </Nav>
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
-            <h4>{dogs.length} Dogs Nearby</h4>
+            <h4 className="my-3">{dogs.length} Dogs Nearby</h4>
             <Row>
               {
                 dogs.map(dog => <DogCard key={dog.id} dog={dog} />)

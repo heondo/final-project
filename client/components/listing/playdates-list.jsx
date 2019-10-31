@@ -4,7 +4,7 @@ import PlaydatesListItem from './playdates-list-item';
 export default function PlaydatesList(props) {
   const { dog, userID, userDogs, setDogProfileState } = props;
   if (!dog.playdates || dog.playdates.length <= 0) {
-    return <h5 className="text-muted">No upcoming playdates currently scheduled</h5>;
+    return <h5 className="text-muted my-3">No upcoming playdates currently scheduled</h5>;
   } else {
     dog.playdates.sort((a, b) => (a.date > b.date) ? 1 : -1);
     return (

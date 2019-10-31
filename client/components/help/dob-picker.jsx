@@ -15,6 +15,7 @@ export default function DOBPicker(props) {
       showMonthDropdown
       showYearDropdown
       dropdownMode="select"
+      className="form-control"
     />
   );
 }

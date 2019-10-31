@@ -54,7 +54,11 @@ h1,h2,h3,h4,h5 {
 }
 
 .react-autosuggest__input--focused {
-  outline: none;
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .react-autosuggest__input--open {
