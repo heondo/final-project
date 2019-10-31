@@ -88,14 +88,21 @@ class Header extends React.Component {
       </Nav>
     );
 
+    const headerStyle = {
+      backgroundColor: 'rgb(217, 235, 232)',
+      position: 'fixed',
+      top: '0',
+      zIndex: '1005'
+    };
+
     return (
-      <div className="container-fluid">
-        <Navbar className="d-flex header-bar" color="light" light expand="lg">
+      <div className="container-fluid" style={headerStyle} >
+        <Navbar className="d-flex header-bar" expand="lg">
           <NavbarBrand className="header-logo" onClick={() => {
             this.props.history.push('/');
           }}>
             <span style={bgImage} className="d-inline-block align-middle"></span>
-            <h2 className="d-inline my-auto ml-3">TINDOG</h2>
+            <h2 className="d-inline-block mt-1 ml-3">TINDOG</h2>
           </NavbarBrand>
           <SearchDogsBar/>
           <Filter/>
