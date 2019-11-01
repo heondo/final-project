@@ -73,39 +73,39 @@ export default class DogList extends React.Component {
           transitionName={this.props.match.path === '/' ? 'SlideIn' : 'SlideOut'}
         >
           <Nav tabs>
-            <NavItem>
-              <NavLink
-                className={(activeTab === '1') ? 'active' : ''}
-                onClick={() => { this.toggleTab('1'); }}
-              >
-                Dogs
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={(activeTab === '2') ? 'active' : ''}
-                onClick={() => { this.toggleTab('2'); }}
-              >
-                Playdates
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <TabContent activeTab={activeTab}>
-            <TabPane tabId="1">
-              <h4 className="my-3">{dogs.length} Dogs Nearby</h4>
-              <Row>
-                {
-                  dogs.map(dog => <DogCard key={dog.id} dog={dog} />)
-                }
-              </Row>
-            </TabPane>
-            <TabPane tabId="2">
-              <h4 className="my-3">Playdate Listings</h4>
-              <Container fluid>
-                {this.findDogsWithPlaydates(this.state.dogs).map(dog => <ListingPanel key={dog.id} dog={dog} />)}
-              </Container>
-            </TabPane>
-          </TabContent>
+          <NavItem>
+            <NavLink
+              className={(activeTab === '1') ? 'active' : ''}
+              onClick={() => { this.toggleTab('1'); }}
+            >
+              Dogs
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={(activeTab === '2') ? 'active' : ''}
+              onClick={() => { this.toggleTab('2'); }}
+            >
+              Playdates
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={activeTab}>
+          <TabPane tabId="1">
+            <h4 className="my-3">{dogs.length === 1 ? `${dogs.length} Dog Nearby` : `${dogs.length} Dogs Nearby`}</h4>
+            <Row>
+              {
+                dogs.map(dog => <DogCard key={dog.id} dog={dog} />)
+              }
+            </Row>
+          </TabPane>
+          <TabPane tabId="2">
+            <h4 className="my-3">Playdate Listings</h4>
+            <Container fluid>
+              {this.findDogsWithPlaydates(this.state.dogs).map(dog => <ListingPanel key={dog.id} dog={dog} />)}
+            </Container>
+          </TabPane>
+        </TabContent>
         </ReactCSSTransitionGroup>
       </Container>
     );

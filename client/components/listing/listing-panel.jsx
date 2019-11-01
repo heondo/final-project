@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Media, Button, Badge } from 'reactstrap';
+import { Row, Col, Badge, UncontrolledTooltip } from 'reactstrap';
 import { calculateWeightClass, convertEnergyLevel, convertDate, formatBreedName } from '../help/functions';
 
 export default function ListingPanel(props) {
@@ -22,22 +22,35 @@ export default function ListingPanel(props) {
         <Col md='3'>
           <h3>{dogInfo.name}</h3>
           <h6 className="text-muted">{breed + ' - ' + weightClass}</h6>
-          <span className="mr-2">
+          <span className="mr-2" id={`age-listing-panel${dogInfo.id}`}>
             <i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {dogInfo.age}
+            <UncontrolledTooltip placement="bottom" target={`age-listing-panel${dogInfo.id}`}>
+              Age
+            </UncontrolledTooltip>
           </span>
-          <span className="mr-2">
+          <span className="mr-2" id={`gender-listing-panel${dogInfo.id}`}>
             <i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i>
             {' '}{dogInfo.sex}
+            <UncontrolledTooltip placement="bottom" target={`gender-listing-panel${dogInfo.id}`}>
+              Gender
+            </UncontrolledTooltip>
           </span>
-          <span>
+          <span id={`energy-listing-panel${dogInfo.id}`}>
             <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i>
             {' '}{
               (energyLevel === 'Medium') ? 'Med' : energyLevel
             }
+            <UncontrolledTooltip placement="bottom" target={`energy-listing-panel${dogInfo.id}`}>
+              Energy Level
+            </UncontrolledTooltip>
           </span>
-          <div>
+          <br />
+          <div className="d-inline-block mt-2" id={`dates-listing-panel${dogInfo.id}`}>
             <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i>
             {' '}{dogInfo.num_dates} dates attended
+            <UncontrolledTooltip placement="bottom" target={`dates-listing-panel${dogInfo.id}`}>
+              Number of Dates
+            </UncontrolledTooltip>
           </div>
         </Col>
 
