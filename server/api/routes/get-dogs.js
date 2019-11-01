@@ -108,6 +108,8 @@ router.get('/:id', (req, res, next) => {
           data[0].playdates.forEach(play => {
             if (play.requested_users) {
               play.requested_users = play.requested_users.split(',');
+            } else {
+              play.requested_users = [];
             }
           });
         }
