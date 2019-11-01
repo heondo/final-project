@@ -205,7 +205,13 @@ class Filter extends React.Component {
 
             <FormGroup className="float-right">
               <button type="submit" className="oc-bg-blue oc-btn-blue btn btn-sm active mx-2">Apply Filters</button>
-              <button className="oc-bg-grey oc-btn-grey btn btn-sm active" onClick={this.closeInputDropdown}>Close</button>
+              <button className="oc-bg-grey oc-btn-grey btn btn-sm active" onClick={event => {
+                event.preventDefault();
+                event.stopPropagation();
+                this.closeInputDropdown();
+              }}>
+                  Close
+              </button>
             </FormGroup>
           </Form>
         </DropdownMenu>
