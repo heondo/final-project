@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import UserLocationInput from '../map/user-location-input';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Container, Row, Col, Form, FormGroup, Label, Input, CustomInput, FormFeedback } from 'reactstrap';
 
 export default class NewUserForm extends React.Component {
@@ -89,78 +90,85 @@ export default class NewUserForm extends React.Component {
     }
     return (
       <Container>
-        <hr />
-        <Row className="justify-content-center">
-          <div className="form-container input-forms">
-            <h4>New User</h4>
-            <Form encType="multipart/form-data" onSubmit={this.handleSubmit}>
-              <Row form>
-                <Col xs="6">
-                  <FormGroup>
-                    <Label htmlFor="firstNameInput">Name</Label>
-                    <Input
-                      type="text"
-                      id="firstNameInput"
-                      name="firstNameInput"
-                      placeholder="First Name"
-                      value={this.state.firstNameInput}
-                      onChange={this.handleInputChange}
-                      required />
-                  </FormGroup>
-                </Col>
+        <ReactCSSTransitionGroup
+          transitionAppear={true}
+          transitionAppearTimeout={600}
+          transitionEnterTimeout={600}
+          transitionLeaveTimeout={200}
+          transitionName={this.props.match.path === '/dog/:id' ? 'SlideIn' : 'SlideOut'}
+        >
+          <hr />
+          <Row className="justify-content-center">
+            <div className="form-container input-forms">
+              <h4>New User</h4>
+              <Form encType="multipart/form-data" onSubmit={this.handleSubmit}>
+                <Row form>
+                  <Col xs="6">
+                    <FormGroup>
+                      <Label htmlFor="firstNameInput">Name</Label>
+                      <Input
+                        type="text"
+                        id="firstNameInput"
+                        name="firstNameInput"
+                        placeholder="First Name"
+                        value={this.state.firstNameInput}
+                        onChange={this.handleInputChange}
+                        required />
+                    </FormGroup>
+                  </Col>
 
-                <Col xs="6">
-                  <FormGroup>
-                    <Label htmlFor="lastNameInput"><br /></Label>
-                    <Input
-                      type="text"
-                      id="lastNameInput"
-                      name="lastNameInput"
-                      placeholder="Last Name"
-                      value={this.state.lastNameInput}
-                      onChange={this.handleInputChange}
-                      required />
-                  </FormGroup>
-                </Col>
-              </Row>
+                  <Col xs="6">
+                    <FormGroup>
+                      <Label htmlFor="lastNameInput"><br /></Label>
+                      <Input
+                        type="text"
+                        id="lastNameInput"
+                        name="lastNameInput"
+                        placeholder="Last Name"
+                        value={this.state.lastNameInput}
+                        onChange={this.handleInputChange}
+                        required />
+                    </FormGroup>
+                  </Col>
+                </Row>
 
-              <FormGroup>
-                <Label htmlFor="emailInput">Email</Label>
-                {(this.state.validEmailInput) ? <Input
-                  type="email"
-                  id="emailInput"
-                  name="emailInput"
-                  placeholder="Email Address"
-                  value={this.state.emailInput}
-                  onChange={this.handleInputChange}
-                  required />
-                  : <Input
+                <FormGroup>
+                  <Label htmlFor="emailInput">Email</Label>
+                  {(this.state.validEmailInput) ? <Input
                     type="email"
                     id="emailInput"
                     name="emailInput"
                     placeholder="Email Address"
                     value={this.state.emailInput}
                     onChange={this.handleInputChange}
-                    invalid
-                    required />}
-                <FormFeedback>This email address is already taken</FormFeedback>
-              </FormGroup>
+                    required />
+                    : <Input
+                      type="email"
+                      id="emailInput"
+                      name="emailInput"
+                      placeholder="Email Address"
+                      value={this.state.emailInput}
+                      onChange={this.handleInputChange}
+                      invalid
+                      required />}
+                  <FormFeedback>This email address is already taken</FormFeedback>
+                </FormGroup>
 
-              <FormGroup>
-                <Label htmlFor="passWordInput">Password</Label>
-                <Input
-                  type="passWord"
-                  id="passWordInput"
-                  name="passWordInput"
-                  placeholder="Password"
-                  value={this.state.passWordInput}
-                  onChange={this.handleInputChange}
-                  required />
-              </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="passWordInput">Password</Label>
+                  <Input
+                    type="passWord"
+                    id="passWordInput"
+                    name="passWordInput"
+                    placeholder="Password"
+                    value={this.state.passWordInput}
+                    onChange={this.handleInputChange}
+                    required />
+                </FormGroup>
 
-              <FormGroup>
-                <Label htmlFor="locationInput">Location</Label>
-                {/* <Input
+                <FormGroup>
+                  <Label htmlFor="locationInput">Location</Label>
+                  {/* <Input
                   type="text"
                   id="locationInput"
                   name="locationInput"
@@ -168,40 +176,41 @@ export default class NewUserForm extends React.Component {
                   value={this.state.locationInput}
                   onChange={this.handleInputChange}
                   required /> */}
-                <UserLocationInput updateLocationCallback={this.updateLocation} />
-              </FormGroup>
+                  <UserLocationInput updateLocationCallback={this.updateLocation} />
+                </FormGroup>
 
-              <FormGroup>
-                <Label htmlFor="bioInput">Description</Label>
-                <Input
-                  type="textarea"
-                  name="bioInput"
-                  id="bioInput"
-                  placeholder="Description"
-                  value={this.state.bioInput}
-                  onChange={this.handleInputChange} />
-              </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="bioInput">Description</Label>
+                  <Input
+                    type="textarea"
+                    name="bioInput"
+                    id="bioInput"
+                    placeholder="Description"
+                    value={this.state.bioInput}
+                    onChange={this.handleInputChange} />
+                </FormGroup>
 
-              <FormGroup>
-                <Label htmlFor="profilePicInput">Upload Profile Picture</Label>
-                <CustomInput
-                  type="file"
-                  name="profilePicInput"
-                  id="profilePicInput"
-                  label={uploadPlaceholderText}
-                  innerRef={this.imageToUpload}
-                  onChange={this.handleImageSelect} />
-              </FormGroup>
+                <FormGroup>
+                  <Label htmlFor="profilePicInput">Upload Profile Picture</Label>
+                  <CustomInput
+                    type="file"
+                    name="profilePicInput"
+                    id="profilePicInput"
+                    label={uploadPlaceholderText}
+                    innerRef={this.imageToUpload}
+                    onChange={this.handleImageSelect} />
+                </FormGroup>
 
-              <FormGroup className="d-flex justify-content-end">
-                <button type="submit" className="oc-bg-blue oc-btn-blue btn active mx-2">Sign Up</button>
-                <Link to={`/`}>
-                  <button className="oc-bg-grey oc-btn-grey btn active">Cancel</button>
-                </Link>
-              </FormGroup>
-            </Form>
-          </div>
-        </Row>
+                <FormGroup className="d-flex justify-content-end">
+                  <button type="submit" className="oc-bg-blue oc-btn-blue btn active mx-2">Sign Up</button>
+                  <Link to={`/`}>
+                    <button className="oc-bg-grey oc-btn-grey btn active">Cancel</button>
+                  </Link>
+                </FormGroup>
+              </Form>
+            </div>
+          </Row>
+        </ReactCSSTransitionGroup>
       </Container>
     );
   }

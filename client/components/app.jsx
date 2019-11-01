@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route
-
 } from 'react-router-dom';
 import AddDogForm from './forms/add-dog-form';
 import Header from './help/header';
@@ -42,15 +41,15 @@ export default class App extends React.Component {
         <Router >
           <Header isLoggedIn={isLoggedIn} login={this.login} logout={this.logout} userID={userID}/>
           <Switch>
-            <Route path="/dog/:id" render={props => <DogProfile {...props} userID={userID} userDogs={userDogs}/> }>
+            <Route path="/dog/:id" render={props => <DogProfile {...props} userID={userID} userDogs={userDogs} />}>
             </Route>
             <Route path="/add-dog" render={props => <AddDogForm {...props} userID={userID} />}>
             </Route>
             <Route path="/my-playdates/:id" render={props => <UserPlayReqs {...props} userID={userID} />}>
             </Route>
-            <Route path="/user/:id" render={props => <UserProfile {...props} userID={userID}/>}>
+            <Route path="/user/:id" render={props => <UserProfile {...props} userID={userID} />}>
             </Route>
-            <Route path="/login" render={props => <Login {...props} login={this.login}/>}>
+            <Route path="/login" render={props => <Login {...props} login={this.login} />}>
             </Route>
             <Route path="/signup" render={props => <NewUserForm {...props} login={this.login} />}>
             </Route>
