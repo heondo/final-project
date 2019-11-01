@@ -56,16 +56,16 @@ export default class UserDog extends React.Component {
                     Gender
                   </UncontrolledTooltip>
                 </span>
-                <span className="mr-3" id={`dates-user-dog${dog.id}`}>
-                  <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates,
-                  <UncontrolledTooltip placement="bottom" target={`dates-user-dog${dog.id}`}>
-                    Number of Dates
-                  </UncontrolledTooltip>
-                </span>
                 <span className="mr-3" id={`energy-user-dog${dog.id}`}>
                   <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}
                   <UncontrolledTooltip placement="bottom" target={`energy-user-dog${dog.id}`}>
                     Energy Level
+                  </UncontrolledTooltip>
+                </span>
+                <span className="mr-3" id={`dates-user-dog${dog.id}`}>
+                  <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates,
+                  <UncontrolledTooltip placement="bottom" target={`dates-user-dog${dog.id}`}>
+                    Number of Dates
                   </UncontrolledTooltip>
                 </span>
               </CardText>
