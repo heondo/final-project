@@ -91,6 +91,7 @@ export default class AddDogForm extends React.Component {
       .then(response => response.json())
       .then(addedDogData => {
         console.log(addedDogData);
+        this.props.addedNewDog(addedDogData.insertDogData.insertId, this.state.nameInput);
         this.props.history.push(`/dog/${addedDogData.insertDogData.insertId}`);
       })
       .catch(error => console.error(error));

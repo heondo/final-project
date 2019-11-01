@@ -19,11 +19,18 @@ export default class App extends React.Component {
     super(props);
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
+    this.addedNewDog = this.addedNewDog.bind(this);
     this.state = {
       isLoggedIn: false,
       userID: null,
       userDogs: []
     };
+  }
+
+  addedNewDog(id, name) {
+    const { userDogs } = this.state;
+    userDogs.push({ id, name });
+    this.setState({ userDogs });
   }
 
   login(userID, dogs) {
@@ -43,7 +50,7 @@ export default class App extends React.Component {
           <Switch>
             <Route path="/dog/:id" render={props => <DogProfile {...props} userID={userID} userDogs={userDogs} />}>
             </Route>
-            <Route path="/add-dog" render={props => <AddDogForm {...props} userID={userID} />}>
+            <Route path="/add-dog" render={props => <AddDogForm {...props} userID={userID} addedNewDog={this.addedNewDog}/>}>
             </Route>
             <Route path="/my-playdates/:id" render={props => <UserPlayReqs {...props} userID={userID} />}>
             </Route>
