@@ -70,17 +70,17 @@ export default function UserRequests(props) {
       <div className="col-md-4 col-6 mx-0 px-0">
         <p className="mb-0"><strong>{request_name}</strong> wants to meet <strong>{name}</strong></p>
         <ul className="list-unstyled">
-          <li className="d-inline-block" id={`energy-user-requests${request_dog_id}`}>
-            <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(req_energy)}
-            <UncontrolledTooltip placement="bottom" target={`energy-user-requests${request_dog_id}`}>
-              Energy Level
-            </UncontrolledTooltip>
-          </li>
-          <br />
           <li className="d-inline-block" id={`weight-user-requests${request_dog_id}`}>
             <i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {req_weight} lbs
             <UncontrolledTooltip placement="bottom" target={`weight-user-requests${request_dog_id}`}>
               Weight
+            </UncontrolledTooltip>
+          </li>
+          <br />
+          <li className="d-inline-block" id={`energy-user-requests${request_dog_id}`}>
+            <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(req_energy)}
+            <UncontrolledTooltip placement="bottom" target={`energy-user-requests${request_dog_id}`}>
+              Energy Level
             </UncontrolledTooltip>
           </li>
           <br />

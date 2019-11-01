@@ -149,16 +149,16 @@ export default function DogProfile(props) {
                     Weight
                   </UncontrolledTooltip>
                 </div>
-                <div className="mr-5" id={`dates-dog-profile${dog.id}`}>
-                  <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates
-                  <UncontrolledTooltip placement="bottom" target={`dates-dog-profile${dog.id}`}>
-                    Number of Dates
-                  </UncontrolledTooltip>
-                </div>
                 <div className="mr-5" id={`energy-dog-profile${dog.id}`}>
                   <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}
                   <UncontrolledTooltip placement="bottom" target={`energy-dog-profile${dog.id}`}>
                     Energy Level
+                  </UncontrolledTooltip>
+                </div>
+                <div className="mr-5" id={`dates-dog-profile${dog.id}`}>
+                  <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates
+                  <UncontrolledTooltip placement="bottom" target={`dates-dog-profile${dog.id}`}>
+                    Number of Dates
                   </UncontrolledTooltip>
                 </div>
                 <div className="mr-5" id={`fixed-dog-profile${dog.id}`}>
