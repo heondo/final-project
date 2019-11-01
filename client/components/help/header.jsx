@@ -89,7 +89,7 @@ class Header extends React.Component {
     );
 
     const headerStyle = {
-      backgroundColor: 'rgb(217, 235, 232)',
+      background: 'rgb(217, 235, 232)',
       position: 'fixed',
       top: '0',
       zIndex: '1005'
@@ -98,7 +98,7 @@ class Header extends React.Component {
     return (
       <div className="container-fluid" style={headerStyle} >
         <Navbar className="d-flex header-bar" expand="lg">
-          <NavbarBrand className="header-logo" onClick={() => {
+          <NavbarBrand className="header-logo d-flex align-items-center" onClick={() => {
             this.props.history.push('/');
           }}>
             <span style={bgImage} className="d-inline-block align-middle"></span>
