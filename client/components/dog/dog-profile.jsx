@@ -8,7 +8,7 @@ import { convertEnergyLevel } from './../help/functions';
 import { startCase, toLower } from 'lodash';
 
 export default function DogProfile(props) {
-  const genericPic = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
+  const genericPic = './../assets/images/unknown-dog.png';
   const params = useParams();
   const { id } = params;
   const { userID, userDogs } = props;
@@ -68,14 +68,25 @@ export default function DogProfile(props) {
 
   const otherFour = [];
   for (let i = 1; i < 5; i++) {
-    otherFour.push({
-      backgroundImage: `url('${images[i]}')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      width: '100%',
-      height: '100%'
-    });
+    if (images[i] === genericPic) {
+      otherFour.push({
+        backgroundImage: `url('${images[i]}')`,
+        backgroundSize: 'contain',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        height: '100%'
+      });
+    } else {
+      otherFour.push({
+        backgroundImage: `url('${images[i]}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        height: '100%'
+      });
+    }
   }
 
   const dogInfoPaw = {
@@ -125,7 +136,10 @@ export default function DogProfile(props) {
             <div className="col-md-6 dog-information" style={dogInfoPaw}>
               <h2 className="d-inline">{dog.name} - </h2>
               <h3 className="d-inline-block capitalize">{startCase(toLower(dog.breed))}</h3>
-              <Link to={`/user/${dog.user_id}`} className="float-right btn dog-to-user">{dog.first} {dog.last}</Link>
+              <div className="d-inline float-right">
+                <span>Meet My Owner: </span>
+                <Link to={`/user/${dog.user_id}`} className="btn dog-to-user">{dog.first} {dog.last}</Link>
+              </div>
               <div className="font-weight-light mb-2">Location:
                 <h6 className="d-inline mb-1"> {dog.display_address}</h6>
               </div>
