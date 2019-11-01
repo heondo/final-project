@@ -54,6 +54,11 @@ export default class MakePlaydate extends React.Component {
             throw new Error(res.error);
           }
           this.handleGetDog();
+          this.setState({
+            query: '',
+            coordinates: {},
+            selectedDays: []
+          });
           // DO SOMETHING WHEN THE PLAYDATES MADE
         })
         .catch(error => console.error(error));
