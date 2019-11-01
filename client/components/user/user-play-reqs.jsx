@@ -19,7 +19,7 @@ export default function UserPlayReqs(props) {
         console.log(Date.now());
         let newArr = res.playdates.concat(res.requests).filter(a => {
           if (a.response_time) {
-            if ((Date.now() / 1000) - a.response_time > 172800) {
+            if ((Date.now() / 1000) - a.response_time > 172800 || a.accepted === 0) {
               return false;
             }
           }
@@ -91,7 +91,10 @@ export default function UserPlayReqs(props) {
           <div className="col-lg-1 col-2" style={ownerDogStyle} ></div>
           <div className="col-lg-3 col-6">
             <p>{`${data.other_dog_name} does not wish to meet with ${data.dog_name} :(`}
-              <br /><br /><div className="denied-request badge">Request Denied</div></p>
+              {
+                ((Date.now() / 1000) - data.response_time < 172800) ? <div>Recently Denied</div> : <br />
+              }
+              <br /><div className="denied-request badge">Request Denied</div></p>
           </div>
           <div className="col-lg-1 col-2" style={otherDogStyle} onClick={() => {
             history.push(`/dog/${data.other_dog_id}`);
@@ -111,7 +114,10 @@ export default function UserPlayReqs(props) {
           <div className="col-lg-1 col-2" style={ownerDogStyle}></div>
           <div className="col-lg-3 col-6">
             <p>{`${data.other_dog_name} has agreed to meet with ${data.dog_name}!`}
-              <br /><br/><div className="success-request badge">Request Accepted</div></p>
+              {
+                ((Date.now() / 1000) - data.response_time < 172800) ? <div>Recently Confirmed!</div> : <br />
+              }
+              <br/><div className="success-request badge">Request Accepted</div></p>
           </div>
           <div className="col-lg-1 col-2" style={otherDogStyle} onClick={() => {
             history.push(`/dog/${data.other_dog_id}`);
@@ -157,7 +163,10 @@ export default function UserPlayReqs(props) {
         <div className="col-lg-1 col-2" style={ownerDogStyle}></div>
         <div className="col-lg-3 col-6">
           <div>{`${data.dog_name} is meeting with ${data.req_dog_name}`}
-            <br /><br /><div className="success-playdate badge">Playdate Confirmed</div></div>
+            {
+              ((Date.now() / 1000) - data.accepted_date < 172800) ? <div>Recently Confirmed!</div> : <br />
+            }
+            <br /><div className="success-playdate badge">Playdate Confirmed</div></div>
         </div>
         <div className="col-lg-1 col-2" style={otherDogStyle} onClick={() => {
           history.push(`/dog/${data.req_dog_id}`);
