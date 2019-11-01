@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { convertDate } from './../help/functions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default function UserPlayReqs(props) {
   const [playReqs, setPlayReqs] = useState([]);
@@ -184,20 +185,27 @@ export default function UserPlayReqs(props) {
       </div>;
   };
 
+  console.log(props.match.path);
+
   return (
     <div className="container-fluid text-center dog-total-info">
-      <hr />
-      <h4 className="mb-4 mx-auto" style={{
-        textDecorationLine: 'underline',
-        textDecorationStyle: 'double'
-      }}>My Playdates and Requests</h4>
-      <div className="d-flex flex-column">
-        {
-          (playReqs) ? playReqs.map((pr, index) => {
-            return whichTypeDate(pr, index);
-          }) : <h5>No upcoming playdates or requests</h5>
-        }
-      </div>
+      <ReactCSSTransitionGroup
+        transitionAppear={true}
+        transitionAppearTimeout={600}
+        transitionEnterTimeout={600}
+        transitionLeaveTimeout={200}
+        transitionName={props.match.path === '/my-playdates/:id' ? 'SlideIn' : 'SlideOut'}
+      >
+        <hr />
+        <h4 className="mb-4 mx-auto">My Playdates and Requests</h4>
+        <div className="d-flex flex-column">
+          {
+            (playReqs) ? playReqs.map((pr, index) => {
+              return whichTypeDate(pr, index);
+            }) : <h5>No upcoming playdates or requests</h5>
+          }
+        </div>
+      </ReactCSSTransitionGroup>
     </div>
   );
 }

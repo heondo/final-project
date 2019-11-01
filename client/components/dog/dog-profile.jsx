@@ -3,11 +3,12 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, UncontrolledTooltip } from 
 import { useParams, Link } from 'react-router-dom';
 import MakePlaydate from '../forms/make-playdate';
 import PlaydatesList from '../listing/playdates-list';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { convertEnergyLevel } from './../help/functions';
 import { startCase, toLower } from 'lodash';
 
 export default function DogProfile(props) {
-  const genericPic = './../assets/images/unknown-dog.png';
+  const genericPic = 'http://www.leighdogsandcatshome.co.uk/wp-content/uploads/2016/10/dog-outline.jpg';
   const params = useParams();
   const { id } = params;
   const { userID, userDogs } = props;
@@ -77,114 +78,135 @@ export default function DogProfile(props) {
     });
   }
 
+  const dogInfoPaw = {
+    backgroundImage: `url("/assets/images/paw-single.png")`,
+    maxHeight: '50vh',
+    backgroundSize: 'contain',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  };
+
   return (
     <>
       <div className="dog-profile-images container-fluid px-0">
-        <hr />
-        <div className="row mx-auto" style={imgRowStyle}>
-          <div className="col-sm-6" style={primStyle}></div>
-          <div className="col-sm-6">
-            <div className="row" style={smallerRows}>
-              <div className="col d-none d-sm-block" style={otherFour[0]}></div>
-              <div className="col d-none d-md-block" style={otherFour[2]}></div>
-            </div>
-            <div className="row" style={smallerRows}>
-              <div className="col d-none d-sm-block" style={otherFour[1]}></div>
-              <div className="col d-none d-md-block" style={otherFour[3]}></div>
+        <ReactCSSTransitionGroup
+          transitionAppear={true}
+          transitionAppearTimeout={600}
+          transitionEnterTimeout={600}
+          transitionLeaveTimeout={200}
+          transitionName={props.match.path === '/dog/:id' ? 'SlideIn' : 'SlideOut'}
+        >
+          <hr />
+          <div className="row mx-auto" style={imgRowStyle}>
+            <div className="col-sm-6" style={primStyle}></div>
+            <div className="col-sm-6">
+              <div className="row" style={smallerRows}>
+                <div className="col d-none d-sm-block" style={otherFour[0]}></div>
+                <div className="col d-none d-md-block" style={otherFour[2]}></div>
+              </div>
+              <div className="row" style={smallerRows}>
+                <div className="col d-none d-sm-block" style={otherFour[1]}></div>
+                <div className="col d-none d-md-block" style={otherFour[3]}></div>
+              </div>
             </div>
           </div>
-        </div>
+        </ReactCSSTransitionGroup>
       </div>
       <hr className="my-2 w-75"/>
       <div className="container-fluid dog-total-info">
-        <div className="row">
-          <div className="col-md-6 dog-information">
-            <h2 className="d-inline">{dog.name} - </h2>
-            <h3 className="d-inline-block capitalize">{startCase(toLower(dog.breed))}</h3>
-            <div className="d-inline float-right">
-              <span>Meet My Owner: </span>
-              <Link to={`/user/${dog.user_id}`} className="btn dog-to-user">{dog.first} {dog.last}</Link>
+        <ReactCSSTransitionGroup
+          transitionAppear={true}
+          transitionAppearTimeout={600}
+          transitionEnterTimeout={600}
+          transitionLeaveTimeout={200}
+          transitionName={props.match.path === '/dog/:id' ? 'SlideIn' : 'SlideOut'}
+        >
+          <div className="row">
+            <div className="col-md-6 dog-information" style={dogInfoPaw}>
+              <h2 className="d-inline">{dog.name} - </h2>
+              <h3 className="d-inline-block capitalize">{startCase(toLower(dog.breed))}</h3>
+              <Link to={`/user/${dog.user_id}`} className="float-right btn dog-to-user">{dog.first} {dog.last}</Link>
+              <div className="font-weight-light mb-2">Location:
+                <h6 className="d-inline mb-1"> {dog.display_address}</h6>
+              </div>
+              <h5>Details: </h5>
+              <div className="dog-info-specs d-flex flex-wrap mb-1">
+                <div className="mr-5" id={`gender-dog-profile${dog.id}`}>
+                  <i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i> {dog.sex}
+                  <UncontrolledTooltip placement="bottom" target={`gender-dog-profile${dog.id}`}>
+                    Gender
+                  </UncontrolledTooltip>
+                </div>
+                <div className="mr-5" id={`age-dog-profile${dog.id}`}>
+                  <i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {dog.age}
+                  <UncontrolledTooltip placement="bottom" target={`age-dog-profile${dog.id}`}>
+                    Age
+                  </UncontrolledTooltip>
+                </div>
+                <div className="mr-5" id={`weight-dog-profile${dog.id}`}>
+                  <i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {dog.weight} lbs
+                  <UncontrolledTooltip placement="bottom" target={`weight-dog-profile${dog.id}`}>
+                    Weight
+                  </UncontrolledTooltip>
+                </div>
+                <div className="mr-5" id={`dates-dog-profile${dog.id}`}>
+                  <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates
+                  <UncontrolledTooltip placement="bottom" target={`dates-dog-profile${dog.id}`}>
+                    Number of Dates
+                  </UncontrolledTooltip>
+                </div>
+                <div className="mr-5" id={`energy-dog-profile${dog.id}`}>
+                  <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}
+                  <UncontrolledTooltip placement="bottom" target={`energy-dog-profile${dog.id}`}>
+                    Energy Level
+                  </UncontrolledTooltip>
+                </div>
+                <div className="mr-5" id={`fixed-dog-profile${dog.id}`}>
+                  <i className="fas fa-hand-scissors" title="Neutered/Spayed"></i> {dog.fixed ? 'Yes' : 'No'}
+                  <UncontrolledTooltip placement="bottom" target={`fixed-dog-profile${dog.id}`}>
+                    Neutered/Spayed
+                  </UncontrolledTooltip>
+                </div>
+              </div>
+              <h3>About {dog.name}</h3>
+              <div>{dog.bio}</div>
             </div>
-            <div className="font-weight-light mb-2">Location:
-              <h6 className="d-inline mb-1"> {dog.display_address}</h6>
+            <div className="col-md-6 dogs-listings">
+              <h4>{dog.name}&apos;s Listings</h4>
+              {(parseInt(userID) === parseInt(dog.user_id)
+                ? <>
+                  <Nav tabs>
+                    <NavItem>
+                      <NavLink
+                        className={(activeTab === '1') ? 'active' : ''}
+                        onClick={() => { toggleTab('1'); }}
+                      >
+                        Listings
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink
+                        className={(activeTab === '2') ? 'active' : ''}
+                        onClick={() => { toggleTab('2'); }}
+                      >
+                        Make Playdate
+                      </NavLink>
+                    </NavItem>
+                  </Nav>
+                  <TabContent activeTab={activeTab}>
+                    <TabPane tabId="1">
+                      <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} setDogProfileState={setStateCallback} />
+                    </TabPane>
+                    <TabPane tabId="2">
+                      <MakePlaydate userID={dog.user_id} dogID={dog.id} getDog={getDog} />
+                    </TabPane>
+                  </TabContent>
+                </>
+                : <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} setDogProfileState={setStateCallback} />
+              )}
             </div>
-            <h5>Details: </h5>
-            <div className="dog-info-specs d-flex flex-wrap mb-1">
-              <div className="mr-5" id={`gender-dog-profile${dog.id}`}>
-                <i className="fas fa-transgender-alt oc-txt-blue" title="Gender"></i> {dog.sex}
-                <UncontrolledTooltip placement="bottom" target={`gender-dog-profile${dog.id}`}>
-                  Gender
-                </UncontrolledTooltip>
-              </div>
-              <div className="mr-5" id={`age-dog-profile${dog.id}`}>
-                <i className="fas fa-birthday-cake oc-txt-red" title="Age"></i> {dog.age}
-                <UncontrolledTooltip placement="bottom" target={`age-dog-profile${dog.id}`}>
-                  Age
-                </UncontrolledTooltip>
-              </div>
-              <div className="mr-5" id={`weight-dog-profile${dog.id}`}>
-                <i className="fas fa-dumbbell oc-weight-color" title="Weight"></i> {dog.weight} lbs
-                <UncontrolledTooltip placement="bottom" target={`weight-dog-profile${dog.id}`}>
-                  Weight
-                </UncontrolledTooltip>
-              </div>
-              <div className="mr-5" id={`dates-dog-profile${dog.id}`}>
-                <i className="fas fa-calendar-day oc-txt-brown" title="Number of Dates"></i> {dog.num_dates} dates
-                <UncontrolledTooltip placement="bottom" target={`dates-dog-profile${dog.id}`}>
-                  Number of Dates
-                </UncontrolledTooltip>
-              </div>
-              <div className="mr-5" id={`energy-dog-profile${dog.id}`}>
-                <i className="fas fa-bolt oc-txt-orange" title="Energy Level"></i> {convertEnergyLevel(dog.energy_lvl)}
-                <UncontrolledTooltip placement="bottom" target={`energy-dog-profile${dog.id}`}>
-                  Energy Level
-                </UncontrolledTooltip>
-              </div>
-              <div className="mr-5" id={`fixed-dog-profile${dog.id}`}>
-                <i className="fas fa-hand-scissors" title="Neutered/Spayed"></i> {dog.fixed ? 'Yes' : 'No'}
-                <UncontrolledTooltip placement="bottom" target={`fixed-dog-profile${dog.id}`}>
-                  Neutered/Spayed
-                </UncontrolledTooltip>
-              </div>
-            </div>
-            <h3>About {dog.name}</h3>
-            <div>{dog.bio}</div>
           </div>
-          <div className="col-md-6 dogs-listings">
-            <h4>{dog.name}&apos;s Listings</h4>
-            {(parseInt(userID) === parseInt(dog.user_id)
-              ? <>
-                <Nav tabs>
-                  <NavItem>
-                    <NavLink
-                      className={(activeTab === '1') ? 'active' : ''}
-                      onClick={() => { toggleTab('1'); }}
-                    >
-                    Listings
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={(activeTab === '2') ? 'active' : ''}
-                      onClick={() => { toggleTab('2'); }}
-                    >
-                    Make Playdate
-                    </NavLink>
-                  </NavItem>
-                </Nav>
-                <TabContent activeTab={activeTab}>
-                  <TabPane tabId="1">
-                    <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} setDogProfileState={setStateCallback} />
-                  </TabPane>
-                  <TabPane tabId="2">
-                    <MakePlaydate userID={dog.user_id} dogID={dog.id} getDog={getDog}/>
-                  </TabPane>
-                </TabContent>
-              </>
-              : <PlaydatesList dog={dog} userID={userID} userDogs={userDogs} setDogProfileState={setStateCallback} />
-            )}
-          </div>
-        </div>
+        </ReactCSSTransitionGroup>
       </div>
     </>
   );

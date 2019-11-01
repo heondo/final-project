@@ -1,6 +1,7 @@
 import React from 'react';
 import DogCard from './dog-card';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Container, Row } from 'reactstrap';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ListingPanel from '../listing/listing-panel';
 const qs = require('query-string');
 
@@ -64,7 +65,14 @@ export default class DogList extends React.Component {
     const { dogs, activeTab } = this.state;
     return (
       <Container fluid className="dog-total-info dog-listings">
-        <Nav tabs>
+        <ReactCSSTransitionGroup
+          transitionAppear={true}
+          transitionAppearTimeout={600}
+          transitionEnterTimeout={600}
+          transitionLeaveTimeout={200}
+          transitionName={this.props.match.path === '/' ? 'SlideIn' : 'SlideOut'}
+        >
+          <Nav tabs>
           <NavItem>
             <NavLink
               className={(activeTab === '1') ? 'active' : ''}
@@ -98,6 +106,7 @@ export default class DogList extends React.Component {
             </Container>
           </TabPane>
         </TabContent>
+        </ReactCSSTransitionGroup>
       </Container>
     );
   }

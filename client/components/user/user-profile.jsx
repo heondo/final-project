@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import update from 'immutability-helper';
 import UserDog from './user-dog';
 import UserRequests from './user-requests';
@@ -113,55 +114,63 @@ export default function UserProfile(props) {
 
   return (
     <div className="container-fluid dog-total-info">
-      <hr />
-      <div className="row">
-        <div className="col-xl-6" style={userCardStyle}>
-          <div className="user-profile-card mx-auto d-flex flex-column p-4">
-            <div className="img-and-info row">
-              <div className="col-3 prof-pic" style={profPic}></div>
-              <div className="col-8 ml-2">
-                <ul className="list-unstyled mt-3">
-                  <li><h4>{user.first} {user.last}</h4></li>
-                  <li>
-                    <span className="d-inline-block">Location:</span>
-                    <span className="d-inline col pl-1 mb-2">{user.display_address}</span>
-                  </li>
-                  <li><h6>Total Dates: {user.num_dates}</h6></li>
-                </ul>
-              </div>
-            </div>
-            <div className="bio my-2">
-              <h5>Bio</h5>
-              {user.bio}
-            </div>
-            {(userID === parseInt(id))
-              ? <div className="open-requests">
-                <h4 className="mb-1">Open Requests</h4>
-                <div className="requests-list w-100">
-                  {(user.requests)
-                    ? user.requests.map(req => {
-                      return <UserRequests key={req.id} request={req} denyRequest={denyRequest} acceptRequest={acceptRequest}/>;
-                    })
-                    : <h5>You have no open requests</h5>}
+      <ReactCSSTransitionGroup
+        transitionAppear={true}
+        transitionAppearTimeout={600}
+        transitionEnterTimeout={600}
+        transitionLeaveTimeout={200}
+        transitionName={props.match.path === '/user/:id' ? 'SlideIn' : 'SlideOut'}
+      >
+        <hr />
+        <div className="row">
+          <div className="col-xl-6" style={userCardStyle}>
+            <div className="user-profile-card mx-auto d-flex flex-column p-4">
+              <div className="img-and-info row">
+                <div className="col-3 prof-pic" style={profPic}></div>
+                <div className="col-8 ml-2">
+                  <ul className="list-unstyled mt-3">
+                    <li><h4>{user.first} {user.last}</h4></li>
+                    <li>
+                      <span className="d-inline-block">Location:</span>
+                      <span className="d-inline col pl-1 mb-2">{user.display_address}</span>
+                    </li>
+                    <li><h6>Total Dates: {user.num_dates}</h6></li>
+                  </ul>
                 </div>
               </div>
-              : undefined
-            }
+              <div className="bio my-2">
+                <h5>Bio</h5>
+                {user.bio}
+              </div>
+              {(userID === parseInt(id))
+                ? <div className="open-requests">
+                  <h4 className="mb-1">Open Requests</h4>
+                  <div className="requests-list w-100">
+                    {(user.requests)
+                      ? user.requests.map(req => {
+                        return <UserRequests key={req.id} request={req} denyRequest={denyRequest} acceptRequest={acceptRequest} />;
+                      })
+                      : <h5>You have no open requests</h5>}
+                  </div>
+                </div>
+                : undefined
+              }
+            </div>
+          </div>
+          <div className="col-xl-6">
+            <div className="user-dogs-header w-75 mr-5 mb-3">
+              {(userID === parseInt(id)) ? <h4>Your Dogs <Link to="/add-dog" className="float-right text-decoration-none">+New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
+            </div>
+            <div className="users-dogs d-flex flex-wrap">
+              {
+                user.dogs.map(dog => {
+                  return <UserDog key={dog.id} dog={dog} />;
+                })
+              }
+            </div>
           </div>
         </div>
-        <div className="col-xl-6">
-          <div className="user-dogs-header w-100 mr-5 mb-3">
-            {(userID === parseInt(id)) ? <h4>Your Dogs <Link to="/add-dog" className="float-right text-decoration-none">+New Dog</Link> </h4> : <h4>{`${user.first} ${user.last}'s Dogs`}</h4>}
-          </div>
-          <div className="users-dogs d-flex flex-wrap">
-            {
-              user.dogs.map(dog => {
-                return <UserDog key={dog.id} dog={dog}/>;
-              })
-            }
-          </div>
-        </div>
-      </div>
+      </ReactCSSTransitionGroup>
     </div>
   );
 }

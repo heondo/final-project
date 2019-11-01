@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Container, Row, Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 class Login extends React.Component {
@@ -49,65 +50,73 @@ class Login extends React.Component {
 
     return (
       <Container>
-        <hr />
-        <Row className="justify-content-center">
-          <div className="form-container input-forms">
-            <h4>Login</h4>
-            <Form onSubmit={this.handleSubmit}>
-              <FormGroup>
-                <Label htmlFor="emailInput">Email</Label>
-                {(!this.state.emailValid) ? (
-                  <Input
-                    type="email"
-                    id="emailLogin"
-                    name="email"
-                    placeholder="Email Address"
-                    value={this.state.email}
-                    invalid
-                    onChange={this.handleInputChange}
-                    required />)
-                  : (<Input
-                    type="email"
-                    id="emailLogin"
-                    name="email"
-                    placeholder="Email Address"
-                    value={this.state.email}
-                    onChange={this.handleInputChange}
-                    required />)}
-                <FormFeedback>That email is not in our database!</FormFeedback>
-              </FormGroup>
+        <ReactCSSTransitionGroup
+          transitionAppear={true}
+          transitionAppearTimeout={600}
+          transitionEnterTimeout={600}
+          transitionLeaveTimeout={200}
+          transitionName={this.props.match.path === '/dog/:id' ? 'SlideIn' : 'SlideOut'}
+        >
+          <hr />
+          <Row className="justify-content-center">
+            <div className="form-container input-forms">
+              <h4>Login</h4>
+              <Form onSubmit={this.handleSubmit}>
+                <FormGroup>
+                  <Label htmlFor="emailInput">Email</Label>
+                  {(!this.state.emailValid) ? (
+                    <Input
+                      type="email"
+                      id="emailLogin"
+                      name="email"
+                      placeholder="Email Address"
+                      value={this.state.email}
+                      invalid
+                      onChange={this.handleInputChange}
+                      required />)
+                    : (<Input
+                      type="email"
+                      id="emailLogin"
+                      name="email"
+                      placeholder="Email Address"
+                      value={this.state.email}
+                      onChange={this.handleInputChange}
+                      required />)}
+                  <FormFeedback>That email is not in our database!</FormFeedback>
+                </FormGroup>
 
-              <FormGroup>
-                <Label htmlFor="passWordInput">Password</Label>
-                {(!this.state.passWordValid) ? (
-                  <Input
-                    type="passWord"
-                    id="passwordLogin"
-                    name="password"
-                    placeholder="Password"
-                    invalid
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                    required />)
-                  : (<Input
-                    type="passWord"
-                    id="passwordLogin"
-                    name="password"
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                    required />)}
-                <FormFeedback>Incorrect Password</FormFeedback>
-              </FormGroup>
-              <FormGroup className="d-flex justify-content-end">
-                <button type="submit" className="oc-bg-blue oc-btn-blue btn active mx-2">Log In</button>
-                <button className="oc-bg-grey oc-btn-grey btn active" onClick={() => {
-                  this.props.history.push(`/`);
-                }}>Cancel</button>
-              </FormGroup>
-            </Form>
-          </div>
-        </Row>
+                <FormGroup>
+                  <Label htmlFor="passWordInput">Password</Label>
+                  {(!this.state.passWordValid) ? (
+                    <Input
+                      type="passWord"
+                      id="passwordLogin"
+                      name="password"
+                      placeholder="Password"
+                      invalid
+                      value={this.state.password}
+                      onChange={this.handleInputChange}
+                      required />)
+                    : (<Input
+                      type="passWord"
+                      id="passwordLogin"
+                      name="password"
+                      placeholder="Password"
+                      value={this.state.password}
+                      onChange={this.handleInputChange}
+                      required />)}
+                  <FormFeedback>Incorrect Password</FormFeedback>
+                </FormGroup>
+                <FormGroup className="d-flex justify-content-end">
+                  <button type="submit" className="oc-bg-blue oc-btn-blue btn active mx-2">Log In</button>
+                  <button className="oc-bg-grey oc-btn-grey btn active" onClick={() => {
+                    this.props.history.push(`/`);
+                  }}>Cancel</button>
+                </FormGroup>
+              </Form>
+            </div>
+          </Row>
+        </ReactCSSTransitionGroup>
       </Container>
     );
   }
