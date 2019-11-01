@@ -20,7 +20,7 @@ export default class App extends React.Component {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
       userID: null,
       userDogs: []
     };
