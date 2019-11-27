@@ -50,7 +50,7 @@ router.get('/:id', (req, res, next) => {
             data[0].num_dates = 0;
             data[0].dogs = (data[0].dogs) ? JSON.parse(data[0].dogs) : [];
             data[0].requests = (data[0].requests) ? JSON.parse(data[0].requests) : [];
-            // data[0].requests = data[0].requests.filter(r => parseInt(r.date) > (Date.now() / 1000));
+            data[0].requests = data[0].requests.filter(r => parseInt(r.date) > (Date.now() / 1000));
             data[0].dogs.forEach(dog => {
               dog.age = calculateAge(dog.birth);
               if (!dog.image) {
