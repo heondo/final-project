@@ -194,8 +194,6 @@ export default function UserPlayReqs(props) {
       </div>;
   };
 
-  console.log(props.match.path);
-
   return (
     <div className="container-fluid text-center dog-total-info">
       <ReactCSSTransitionGroup
