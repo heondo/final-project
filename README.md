@@ -1,4 +1,4 @@
-# final-project
+# Tindog
 adison and heondo
 
 ### Final group Project by Adison Lay and Heondo Kim
