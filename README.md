@@ -19,5 +19,3 @@ open days/locations they want to meet, and join/reject those playdate openings.
 
 It was a ton of fun trying so many new things in a time constraint but I think we pulled off something pretty
 impressive for a first go.
-
-##### View our live demo [here](tindog.heondokim.com)
